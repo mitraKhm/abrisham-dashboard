@@ -1,6 +1,8 @@
 <template>
 <div>
-  video
+<v-card height="620">
+
+</v-card>
 </div>
 </template>
 
