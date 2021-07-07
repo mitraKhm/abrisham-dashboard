@@ -15,7 +15,10 @@
           </div>
           <div class="d-flex subtitle">
             <div class="d-flex part">
-              <v-img src='' />
+              <v-img 
+                src="../assets/ic_alaa.png"
+                width="18"
+              />
               <p>گروه آموزشی آلاء</p>
             </div>
             <div class="d-flex part">

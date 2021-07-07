@@ -1,10 +1,11 @@
 <template>
   <div class="content-list-box">
-    <slot name="header">
-      gfd
-    </slot>
+    <slot name="header" />
     <slot name="filter" />
-    <content-list-item />
+    <content-list-item
+      v-for="i in 5"
+      :key="i"
+    />
   </div>
 </template>
 
