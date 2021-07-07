@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import "./assets/Fonts/Flaticons/css/uicons-regular-rounded.css"
+import "./assets/Fonts/IRANSans/css/font.scss"
 import SideMenu from "./components/SideMenu";
 export default {
   components: {SideMenu}

@@ -1,6 +1,8 @@
 <template>
 
-  <div/>
+  <div>
+    <i class="fi fi-rr-camera" />
+  </div>
 </template>
 
 <script>
