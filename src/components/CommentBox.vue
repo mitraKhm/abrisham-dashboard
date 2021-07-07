@@ -1,5 +1,4 @@
 <template>
-
   <div>
     <i class="fi fi-rr-camera" />
   </div>

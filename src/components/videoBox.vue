@@ -1,55 +1,72 @@
 <template>
   <div class="video-box">
-    <v-card  flat color="#eff3ff" class="rounded-xl video-main">
-    </v-card>
+    <v-card
+      flat
+      color="#eff3ff"
+      class="rounded-xl video-main"
+    />
     <div class="video-description">
       <v-row no-gutters>
-        <v-col >
+        <v-col>
           <div class="d-flex flex-wrap title">
             <p>دین و زندگی</p>
             <p>فرسنگ هشتم</p>
             <p>جلسه 23</p>
           </div>
           <div class="d-flex subtitle">
-           <div class="d-flex part">
-             <v-chip class="icon"></v-chip>
-             <p>گروه آموزشی آلاء</p>
-           </div>
             <div class="d-flex part">
-              <v-chip class="icon"></v-chip>
+              <v-chip class="icon" />
+              <p>گروه آموزشی آلاء</p>
+            </div>
+            <div class="d-flex part">
+              <v-chip class="icon" />
               <p>محمد رضایی بقا</p>
             </div>
           </div>
         </v-col>
         <v-col class="icon-btn-box">
-          <v-btn  color="#ff8f00" dark class="video-btn">
+          <v-btn
+            color="#ff8f00"
+            dark
+            class="video-btn"
+          >
             دیده نشده
           </v-btn>
           <div class="video-box-icon">
-            <v-chip width="24" class="transparent">
+            <v-chip
+              width="24"
+              class="transparent"
+            >
               m
             </v-chip>
-            <v-chip width="24" class="transparent">
+            <v-chip
+              width="24"
+              class="transparent"
+            >
               m
             </v-chip>
-            <v-chip width="24" class="transparent">
+            <v-chip
+              width="24"
+              class="transparent"
+            >
               m
             </v-chip>
           </div>
         </v-col>
       </v-row>
     </div>
-   <div class="d-flex">
-     <p class="video-box-title">درسنامه فرسنگ هشتم (قسمت بیست و سوم)، فصل سوم شیمی یازدهم (قسمت
-       بیست و سوم)
-     </p>
-   </div>
+    <div class="d-flex">
+      <p class="video-box-title">
+        درسنامه فرسنگ هشتم (قسمت بیست و سوم)، فصل سوم شیمی یازدهم (قسمت
+        بیست و سوم)
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "videoBox"
+  name: "VideoBox"
 }
 </script>
 <style scoped>
