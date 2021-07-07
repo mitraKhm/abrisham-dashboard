@@ -8,16 +8,34 @@
     <v-row>
       <v-col md="9">
         <v-row>
-          <v-col>content-component</v-col>
-          <v-col>content-comment</v-col>
+          <v-col md="12">content-component</v-col>
+
+          <v-col md="12">
+            <comment-box />
+          </v-col>
         </v-row>
       </v-col>
       <v-col md="3">
         <v-row>
-          <v-col>side-list-videos</v-col>
-          <v-col>side-list-pamphlet</v-col>
+          <v-col md="12">
+            <content-list>
+
+            </content-list>
+          </v-col>
+          <v-col md="12">
+            <content-list>
+
+            </content-list>
+          </v-col>
         </v-row>
       </v-col>
     </v-row>
   </div>
 </template>
+<script>
+import CommentBox from "@/components/CommentBox";
+import ContentList from "@/components/ContentList";
+export default {
+  components: {ContentList, CommentBox}
+}
+</script>
