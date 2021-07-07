@@ -38,6 +38,7 @@ export default {
 
 <style lang="scss">
 .v-application {
+  &,
   .title,
   .text-lg-h1,
   .text-lg-h2,
