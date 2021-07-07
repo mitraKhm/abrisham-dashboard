@@ -1,10 +1,10 @@
 <template>
   <div class="video-box">
-    <v-card height="620" flat color="#eff3ff" class="rounded-xl video-main">
+    <v-card  flat color="#eff3ff" class="rounded-xl video-main">
     </v-card>
     <div class="video-description">
-      <v-row>
-        <v-col>
+      <v-row no-gutters>
+        <v-col >
           <div class="d-flex flex-wrap title">
             <p>دین و زندگی</p>
             <p>فرسنگ هشتم</p>
@@ -21,7 +21,7 @@
             </div>
           </div>
         </v-col>
-        <v-col class="d-flex flex-wrap justify-end icon-btn-box">
+        <v-col class="icon-btn-box">
           <v-btn  color="#ff8f00" dark class="video-btn">
             دیده نشده
           </v-btn>
@@ -53,14 +53,19 @@ export default {
 }
 </script>
 <style scoped>
+.v-application p{
+  margin-bottom: 0;
+}
+.video-box .video-main {
+  margin-bottom: 25px;
+  height:620px
+}
 .video-box {
   width: 1100px;
 }
-
 .video-box .video-main {
   margin-bottom: 25px;
 }
-
 .video-box .video-box-icon {
   margin-right: 66px;
 }
@@ -69,7 +74,9 @@ export default {
   margin-bottom: 42px;
 }
 .video-description .icon-btn-box{
-  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 .video-box .video-description .title {
   color: #3e5480;
@@ -99,5 +106,87 @@ export default {
   color: #3e5480;
   font-size: 20px;
   font-weight: 500;
+}
+@media screen and (max-width: 1200px){
+  .video-box {
+    width: 709px;
+  }
+  .video-box .video-box-icon {
+    margin-right: 60px;
+  }
+  .video-description{
+    margin-bottom: 29px;
+  }
+
+  .video-box .video-main {
+    margin-bottom: 15px;
+  }
+}
+@media screen and (max-width: 990px){
+  .video-box {
+    width: 532px;
+  }
+  .video-box .video-main {
+    margin-bottom: 10px;
+    height:300px
+  }
+  .video-box .video-description .video-btn{
+    height: 40px;
+  }
+  .video-box .video-box-icon {
+    margin-right: 0;
+  }
+  .video-description .icon-btn-box{
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .video-box-title {
+    text-align: right;
+  }
+}
+@media screen and (max-width: 350px){
+  .video-box {
+    width: 320px;
+  }
+  .video-box .video-main {
+    height:180px
+  }
+  .video-description .icon-btn-box{
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .video-box .video-description .title {
+    font-size: 16px;
+    text-align: right;
+  }
+  .video-box .video-description .subtitle {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  .video-box .video-description .video-btn{
+    width: 110px;
+    height: 36px;
+  }
+  .video-box .video-main {
+    margin-bottom: 10px;
+  }
+  .video-description{
+    margin-bottom:16px;
+  }
+  .video-box-title {
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+@media screen and (max-width: 320px){
+  .video-box {
+    width: 290px;
+  }
+  .video-box .video-main {
+    height:163px
+  }
+  .video-description{
+    margin-bottom:10px;
+  }
 }
 </style>
