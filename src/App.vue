@@ -2,9 +2,7 @@
   <!-- App.vue -->
   <v-app>
     <v-navigation-drawer app right :width="130">
-      <!-- -->
-      <router-link to="/">Home</router-link> |
-      <router-link to="/Schedule">برنامه</router-link>
+      <side-menu />
     </v-navigation-drawer>
 
     <v-app-bar app elevate-on-scroll>
@@ -28,6 +26,15 @@
   </v-app>
 
 </template>
+
+<script>
+import "./assets/Fonts/Flaticons/css/uicons-regular-rounded.css"
+import "./assets/Fonts/IRANSans/css/font.scss"
+import SideMenu from "./components/SideMenu";
+export default {
+  components: {SideMenu}
+}
+</script>
 
 <style lang="scss">
 #app {
