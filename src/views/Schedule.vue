@@ -2,8 +2,8 @@
   <div class="schedule-page">
     <div>
       نمایش محتوا بر اساس فعالیت شما
-      chip1
-      chip2
+      <chip-group />
+      <chip-group />
     </div>
     <v-row>
       <v-col md="9">
@@ -32,8 +32,10 @@
 <script>
 import CommentBox from "@/components/CommentBox";
 import ContentList from "@/components/ContentList";
-import VideoBox from "../components/videoBox";
+import chipGroup from "../components/chipGroup";
+import videoBox  from "../components/videoBox";
+
 export default {
-  components: {VideoBox, ContentList, CommentBox}
+  components: {ContentList, CommentBox , chipGroup , videoBox}
 }
 </script>
