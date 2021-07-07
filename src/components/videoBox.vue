@@ -33,24 +33,9 @@
             دیده نشده
           </v-btn>
           <div class="video-box-icon">
-            <v-chip
-              width="24"
-              class="transparent"
-            >
-              m
-            </v-chip>
-            <v-chip
-              width="24"
-              class="transparent"
-            >
-              m
-            </v-chip>
-            <v-chip
-              width="24"
-              class="transparent"
-            >
-              m
-            </v-chip>
+            <i class="fi fi-rr-download icon" />
+            <i class="fi fi-rr-share icon" />
+            <i class="fi fi-rr-bookmark icon" />
           </div>
         </v-col>
       </v-row>
@@ -85,6 +70,11 @@ export default {
 }
 .video-box .video-box-icon {
   margin-right: 66px;
+}
+.video-box .video-box-icon .icon{
+  font-size: 24px;
+  margin-right: 40px;
+  color:#3e5480;
 }
 .video-description{
   align-items: flex-start;
