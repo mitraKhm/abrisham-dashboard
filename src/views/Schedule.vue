@@ -1,10 +1,25 @@
 <template>
   <div class="schedule-page">
-    <div>
-      نمایش محتوا بر اساس فعالیت شما
-      <chip-group />
-      <chip-group />
-    </div>
+    <v-row>
+      <v-col
+        xl="7"
+        md="6"
+        cols="12"
+        order-md="2"
+        class="d-flex d-md-block justify-center"
+      >
+        <chip-group />
+      </v-col>
+      <v-col
+        xl="5"
+        md="6"
+        cols="12"
+        order-md="1"
+        class="text-md-right text-center"
+      >
+        نمایش محتوا بر اساس فعالیت شما
+      </v-col>
+    </v-row>
     <v-row>
       <v-col md="9">
         <v-row>
