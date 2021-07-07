@@ -5,9 +5,9 @@
     </div>
     <div class="menu-items">
       <div
-          v-for="(item, index) in menuItems"
-          :key="index"
-          class="menu-item"
+        v-for="(item, index) in menuItems"
+        :key="index"
+        class="menu-item"
       >
         <v-btn :to="{name: item.routeName}">
           {{ item.icon }}
