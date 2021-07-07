@@ -1,12 +1,10 @@
 <template>
-  <div >
-
-  </div>
+  <div />
 </template>
 
 <script>
 export default {
-  name: "chipGroup",
+  name: "ChipGroup",
   props: {
     value: {
       type: Array,
