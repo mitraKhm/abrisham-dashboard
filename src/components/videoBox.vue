@@ -15,11 +15,14 @@
           </div>
           <div class="d-flex subtitle">
             <div class="d-flex part">
-              <v-chip class="icon" />
+              <v-img 
+                src="../assets/ic_alaa.png"
+                width="18"
+              />
               <p>گروه آموزشی آلاء</p>
             </div>
             <div class="d-flex part">
-              <v-chip class="icon" />
+              <i class="fi fi-rr-graduation-cap icon" />
               <p>محمد رضایی بقا</p>
             </div>
           </div>
@@ -36,6 +39,7 @@
             <i class="fi fi-rr-download icon" />
             <i class="fi fi-rr-share icon" />
             <i class="fi fi-rr-bookmark icon" />
+
           </div>
         </v-col>
       </v-row>
@@ -88,6 +92,7 @@ export default {
 .video-box .video-description .title {
   color: #3e5480;
   font-size: 20px;
+  line-height: 40px
 }
 .video-box .video-description .video-btn{
   width: 120px;
@@ -140,6 +145,9 @@ export default {
   .video-box .video-description .video-btn{
     height: 40px;
   }
+  .video-box .video-box-icon .icon{
+    margin-right: 35px;
+  }
   .video-box .video-box-icon {
     margin-right: 0;
   }
@@ -165,6 +173,10 @@ export default {
   .video-box .video-description .title {
     font-size: 16px;
     text-align: right;
+
+  }
+  .video-box .video-description .subtitle .part{
+    margin-left: 30px;
   }
   .video-box .video-description .subtitle {
     font-size: 14px;
@@ -173,6 +185,10 @@ export default {
   .video-box .video-description .video-btn{
     width: 110px;
     height: 36px;
+  }
+  .video-box .video-box-icon .icon{
+    font-size: 18px;
+    margin-right: 20px;
   }
   .video-box .video-main {
     margin-bottom: 10px;
