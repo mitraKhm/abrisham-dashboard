@@ -8,9 +8,7 @@
         flat
         dark
         color="#009498"
-      >
-    تلت
-      </v-card>
+      />
       <div class="contentListItem-box">
         <v-card
           flat

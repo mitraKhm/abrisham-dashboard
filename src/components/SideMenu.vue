@@ -1,16 +1,21 @@
 <template>
   <div>
     <div class="menu-logo">
-      logo
+      <img
+        src="../assets/image/logo.png"
+        alt="logo"
+        class="logo-image"
+      >
     </div>
     <div class="menu-items">
-      <ul
-        v-for="(item, index) in menuItems"
-        :key="index"
-        class="menu-item"
-      >
-        <li>
-          <router-link :to="{name: item.routeName}">
+      <ul>
+        <li
+          v-for="(item, index) in menuItems"
+          :key="index"
+          class="menu-item"
+        >
+          <div class="menu-indicator" />
+          <router-link :to="{name: item.routeName} ">
             <i
               class="fi"
               :class="('fi-rr-' + item.icon)"
@@ -18,6 +23,14 @@
           </router-link>
         </li>
       </ul>
+      <div class="powerItem">
+        <router-link :to="{name: powerItem.routeName}">
+          <i
+            class="fi"
+            :class="('fi-rr-' + powerItem[0].icon)"
+          />
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -27,6 +40,8 @@ export default {
   name: "SideMenu",
   data() {
     return {
+      sliderPosition:0,
+      selectedIndex:0,
       menuItems: [
         {
           icon: 'home',
@@ -56,26 +71,72 @@ export default {
           icon: 'envelope',
           routeName: 'Home'
         },
-        {
+       {
           icon: 'world',
           routeName: 'Home'
         },
+      ],
+      powerItem: [
+        {
+          icon: 'power',
+          routeName: 'Home'
+        }
+      ],
+      method:[
+
+
       ]
+
     }
   }
 }
 </script>
 
 <style>
-.menu-logo{
-  margin: 0 22px 130px 0;
+.menu-logo {
+  justify-content: center;
+  text-align: center;
+  margin: 30px auto 130px ;
+
+
 }
-.menu-items .menu-item a{
+.menu-logo .logo-image{
+  width: 70px;
+  height: 70px;
+
+}
+.menu-items{
+  /*position: relative;*/
+  /*overflow:visible;*/
+}
+.menu-items .menu-item{
+  list-style: none;
+  margin-bottom: 26px;
+  text-align: center;
+
+}
+.menu-items .menu-item a {
   text-decoration: none;
-  color: #b1ccee;
-  width: 24px;
-  height: 24px;
+
 }
+.menu-items .menu-item .fi{
+  color: #b1ccee;
+  font-size: 26px;
+}
+.powerItem{
+  position: absolute;
+  bottom: -169px;
+  align-items: center;
+}
+
+.powerItem a{
+  text-decoration: none;
+}
+.powerItem .fi{
+  color: #b1ccee;
+  font-size: 26px;
+}
+
 
 
 </style>
