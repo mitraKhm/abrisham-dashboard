@@ -1,55 +1,57 @@
 <template>
   <div class="video-box">
-    <v-card  flat color="#eff3ff" class="rounded-xl video-main">
-    </v-card>
+    <v-card
+      flat
+      color="#eff3ff"
+      class="rounded-xl video-main"
+    />
     <div class="video-description">
       <v-row no-gutters>
-        <v-col >
+        <v-col>
           <div class="d-flex flex-wrap title">
             <p>دین و زندگی</p>
             <p>فرسنگ هشتم</p>
             <p>جلسه 23</p>
           </div>
           <div class="d-flex subtitle">
-           <div class="d-flex part">
-             <v-chip class="icon"></v-chip>
-             <p>گروه آموزشی آلاء</p>
-           </div>
             <div class="d-flex part">
-              <v-chip class="icon"></v-chip>
+              <v-chip class="icon" />
+              <p>گروه آموزشی آلاء</p>
+            </div>
+            <div class="d-flex part">
+              <v-chip class="icon" />
               <p>محمد رضایی بقا</p>
             </div>
           </div>
         </v-col>
         <v-col class="icon-btn-box">
-          <v-btn  color="#ff8f00" dark class="video-btn">
+          <v-btn
+            color="#ff8f00"
+            dark
+            class="video-btn"
+          >
             دیده نشده
           </v-btn>
           <div class="video-box-icon">
-            <v-chip width="24" class="transparent">
-              m
-            </v-chip>
-            <v-chip width="24" class="transparent">
-              m
-            </v-chip>
-            <v-chip width="24" class="transparent">
-              m
-            </v-chip>
+            <i class="fi fi-rr-download icon" />
+            <i class="fi fi-rr-share icon" />
+            <i class="fi fi-rr-bookmark icon" />
           </div>
         </v-col>
       </v-row>
     </div>
-   <div class="d-flex">
-     <p class="video-box-title">درسنامه فرسنگ هشتم (قسمت بیست و سوم)، فصل سوم شیمی یازدهم (قسمت
-       بیست و سوم)
-     </p>
-   </div>
+    <div class="d-flex">
+      <p class="video-box-title">
+        درسنامه فرسنگ هشتم (قسمت بیست و سوم)، فصل سوم شیمی یازدهم (قسمت
+        بیست و سوم)
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "videoBox"
+  name: "VideoBox"
 }
 </script>
 <style scoped>
@@ -68,6 +70,11 @@ export default {
 }
 .video-box .video-box-icon {
   margin-right: 66px;
+}
+.video-box .video-box-icon .icon{
+  font-size: 24px;
+  margin-right: 40px;
+  color:#3e5480;
 }
 .video-description{
   align-items: flex-start;
@@ -88,7 +95,7 @@ export default {
   border-radius: 10px;
   box-shadow: 0 5px 10px 0 rgba(62, 84, 128, 0.2);
 }
-.video-box .video-description .video-btn-text{
+.video-box .video-description .video-btn-text {
   font-size: 16px;
   font-weight: 500;
 }
@@ -122,7 +129,7 @@ export default {
     margin-bottom: 15px;
   }
 }
-@media screen and (max-width: 990px){
+@media screen and (max-width: 576px){
   .video-box {
     width: 532px;
   }
