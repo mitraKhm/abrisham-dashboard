@@ -6,23 +6,40 @@
       height="740"
     >
       <v-card-title>جدول برنامه مطالعاتی راه ابریشم آلاء</v-card-title>
-      <v-card elevation="0">
-        <v-card-text>رشته:</v-card-text>
-        <v-select
-            items="نتبمنتدذ"
-            solo
-        ></v-select>
-      </v-card>
-      <v-expansion-panels>
+      <div class="major-card">
+            <p class="major-card-text">رشته:</p>
+            <v-select
+                items="تجربی"
+                solo
+            ></v-select>
+
+      </div>
+      <v-expansion-panels
+          v-for="(item,i) in 5"
+          :key="i"
+          class="study-plan-expansion"
+      >
         <v-expansion-panel
-            v-for="(item,i) in 5"
-            :key="i"
+
         >
-          <v-expansion-panel-header>
-            Item
+          <v-expansion-panel-header class="study-plan-expansion-header">
+            <v-row>
+              <v-col cols="4">
+                روز اول
+              </v-col>
+              <v-col cols="4">
+                روز اول
+              </v-col>
+              <v-col cols="4">
+                روز اول
+              </v-col>
+            </v-row>
+
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          <v-card elevation="0">
+            <v-sheet class="study-plan-sheet">فردا دیره، دیروز هم دیشب تموم شد، الان دقیقا لحظه ای هست که باید شروع کنی!</v-sheet>
+          </v-card>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -37,6 +54,10 @@
 /*  border-radius: 40px;*/
 /*}*/
 
+.v-text-field.v-text-field--enclosed {
+  padding-top: 12px !important;
+  margin-right: 15px !important;
+}
 .theme--light.v-card {
   background-color: #ffe2bc;
   color: #3e5480;
@@ -61,6 +82,59 @@
 .theme--light.v-expansion-panels .v-expansion-panel {
   margin-top: 15px;
   border-radius: 20px;
+}
+ .v-expansion-panels {
+   border-radius: 20px !important;
+ }
+ /*.study-plan-sheet{*/
+ /*  background-color: #eff3ff;*/
+ /*}*/
+.theme--light.v-sheet .study-plan-sheet{
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  background-color: #eff3ff;
+  color: #3e5480;
+  border-color: #FFFFFF;
+  padding-top: 7px;
+  padding-bottom: 5px;
+}
+.major-card{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  position: relative;
+  margin-top: -57px;
+}
+.v-card__subtitle, .v-card__text, .v-card__title .major-card{
+  /*padding-left: 92px;*/
+}
+.v-expansion-panels:not(.v-expansion-panels--accordion):not(.v-expansion-panels--tile) > .v-expansion-panel--active {
+  border-radius: 20px !important;
+}
+.major-card .v-input  {
+  max-width: 12%;
+}
+.study-plan-expansion {
+  padding: 0 60px 0 60px !important;
+}
+.major-card-text{
+  margin-right: 60px;
+}
+.study-plan-expansion-header{
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: right;
+  color: #333333;
 }
 </style>
 
