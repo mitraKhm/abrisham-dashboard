@@ -21,17 +21,59 @@
       </div>
     </slot>
     <slot name="filter">
-      <v-select
-        :items="items"
-      >
-        <template v-slot:option="option">
-          <span
-            class="fa"
-            :class="option.icon"
-          />
-          {{ option.title }}
-        </template>
-      </v-select>
+      <div class="d-flex justify-space-between">
+        <div class="text-center">
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                width="220"
+                color="#eff3ff"
+                v-bind="attrs"
+                depressed
+                rounded
+                v-on="on"
+              >
+
+
+                همه
+                  <i class="fi fi-rr-angle-small-down" />
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item
+                v-for="(item, index) in items"
+                :key="index"
+              >
+                <v-list-item-title>{{ item }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </div>
+        <div class="text-center">
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                color="#eff3ff"
+                v-bind="attrs"
+                depressed
+                rounded
+                v-on="on"
+              >
+                همه
+                <i class="fi fi-rr-download" />
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item
+                v-for="(item, index) in items"
+                :key="index"
+              >
+                <v-list-item-title>{{ item }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </div>
+      </div>
     </slot>
     <div class="content-box">
       <content-list-item
@@ -51,7 +93,7 @@ export default {
   },
   data(){
     return {
-      items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      items: ['تست1', 'تست1', 'تست1', 'تست1'],
     }
   }
 }
