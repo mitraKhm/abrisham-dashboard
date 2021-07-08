@@ -1,9 +1,8 @@
 <template>
   <div>
     <v-card
-      class="study-plan-card"
+      class="study-plan"
       elevation="0"
-      height="740"
     >
       <v-card-title>جدول برنامه مطالعاتی راه ابریشم آلاء</v-card-title>
       <div class="major-card">
@@ -37,10 +36,25 @@
 
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-          <v-card elevation="0">
             <v-sheet class="study-plan-sheet">فردا دیره، دیروز هم دیشب تموم شد، الان دقیقا لحظه ای هست که باید شروع کنی!</v-sheet>
-          </v-card>
-            <v-card></v-card>
+            <v-card class="study-plan-card" elevation="0" height="118">
+                <v-card-text>
+                  <v-row>
+                    <v-col cols="4">
+                      روز اول
+                    </v-col>
+                    <v-col cols="4">
+                      شنبه
+                    </v-col>
+                    <v-col cols="4">
+                      12 تیر
+                    </v-col>
+                  </v-row>
+                </v-card-text>
+              <v-card class="study-plan-boxes" elevation="0" height="69">
+
+              </v-card>
+            </v-card>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -51,7 +65,7 @@
 <script></script>
 
 <style>
-/*.study-plan-card {*/
+/*.study-plan {*/
 /*  border-radius: 40px;*/
 /*}*/
 
@@ -62,6 +76,7 @@
 .theme--light.v-card {
   background-color: #ffe2bc;
   color: #3e5480;
+  padding-bottom: 51px;
 }
 .v-sheet.v-card {
   border-radius: 40px;
@@ -136,6 +151,30 @@
   letter-spacing: normal;
   text-align: right;
   color: #3e5480;
+}
+.theme--light.v-card .study-plan-card {
+  background-color: #e1f0ff;
+  color: #3e5480;
+  margin-top: 10px;
+}
+.v-sheet.v-card .study-plan-card {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.theme--light.v-card .study-plan-boxes {
+  background-color: #ffffff;
+  color: #3e5480;
+  margin-bottom: 1px;
+}
+.v-sheet.v-card .study-plan-boxes {
+  border-radius: 0 0 10px 10px;
+  width: 99.6%;
+}
+.v-card__subtitle, .v-card__text, .v-card__title .study-plan-card{
+  padding: 11px;
 }
 </style>
 
