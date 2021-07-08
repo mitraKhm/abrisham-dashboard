@@ -34,7 +34,11 @@
       <v-col md="3">
         <v-row>
           <v-col md="12">
-            <content-list />
+            <content-list>
+              <template v-slot:header>
+                test
+              </template>
+            </content-list>
           </v-col>
           <v-col md="12">
             <content-list />
@@ -45,8 +49,9 @@
   </div>
 </template>
 <script>
-import CommentBox from "@/components/CommentBox";
-import ContentList from "@/components/ContentList";
+
+import CommentBox from "../components/CommentBox";
+import ContentList from "../components/ContentList";
 import chipGroup from "../components/chipGroup";
 import videoBox  from "../components/videoBox";
 
