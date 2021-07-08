@@ -39,7 +39,6 @@
             <i class="fi fi-rr-download icon" />
             <i class="fi fi-rr-share icon" />
             <i class="fi fi-rr-bookmark icon" />
-
           </div>
         </v-col>
       </v-row>

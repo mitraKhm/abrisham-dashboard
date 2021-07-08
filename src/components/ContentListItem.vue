@@ -1,54 +1,58 @@
 <template>
-  <div class="d-flex px-8">
-    <div>
-      <v-card
-        width="100%"
-        height="22"
-        class="mb-2 rounded-pill text-center text-caption"
-        flat
-        dark
-        color="#009498"
-      >
-    تلت
-      </v-card>
-      <div class="contentListItem-box">
+  <v-card
+    class="rounded-0 transparent"
+    :color=" selected ? '#f2f5ff' : 'transparent'"
+    flat
+  >
+    <div class="contentListItem-main-box">
+      <div class="right-content">
         <v-card
+          height="22"
+          class="mb-2 rounded-pill text-center text-caption"
           flat
-          class="rounded-card"
+          dark
+          color="#009498"
         >
-          <v-img
-            src="../assets/hendese.jpg"
-          />
+          تلت
         </v-card>
-        <div
-          v-if="data[0].seen"
-          class="seen"
-        />
+        <div class="contentListItem-box">
+          <v-card
+            flat
+            class="rounded-card"
+          >
+            <v-img
+              src="../assets/hendese.jpg"
+            />
+          </v-card>
+          <div
+            v-if="data[0].seen"
+            class="seen"
+          />
+        </div>
+      </div>
+      <div class="left-content">
+        <v-sheet
+          text-color="#3e5480"
+          depressed
+          height="22"
+          width="78"
+          class="mb-2 rounded-pill text-center text-caption"
+          color="#eff3ff"
+        >
+          افبقلادقفبلات
+        </v-sheet>
+        <div class="title-box">
+          <p class="contentListItem-title ">
+            {{ data[0].title }}
+          </p>
+          <p class="contentListItem-description ">
+            {{ data[0].description }}
+          </p>
+        </div>
       </div>
     </div>
-    <div class="mr-4">
-      <v-sheet
-        text-color="#3e5480"
-        depressed
-        height="22"
-        width="78"
-        class="mb-2 rounded-pill text-center text-caption"
-        color="#eff3ff"
-      >
-        افبقلادقفبلات
-      </v-sheet>
-      <div class="title-box">
-        <p class="contentListItem-title text-truncate">
-          {{ data[0].title }}
-        </p>
-        <p class="contentListItem-description text-truncate">
-          {{ data[0].description }}
-        </p>
-      </div>
-    </div>
-  </div>
+  </v-card>
 </template>
-
 <script>
 
 export default {
@@ -59,19 +63,32 @@ export default {
       default: () => {
         return [
           {
-            title: 'جلسه فیلان - فرسنگ هشتم - دین و زندگی',
             // eslint-disable-next-line vue/max-len
-            description: ' (قسمت بیست و سوم)،   (قسمت بیست و سوم)، فصل سومفصل سوم',
+           title: 'جلسه فیلان - فرسنگ هشتم جلسه فیلان - فرسنگ هشتم جلسه فیلان - فرسنگ هشتم ',
+            // eslint-disable-next-line vue/max-len
+            description: '(قسمت بیست و سوم)، فصل سوم',
             seen: false,
           },
         ]
       }
+    },
+    selected :{
+      type:Boolean,
+      default : true
     }
   }
 }
 </script>
 
 <style scoped>
+.v-application p {
+  margin-bottom: 0;
+}
+.contentListItem-main-box{
+  border-bottom: solid 1px rgba(159, 165, 192, 0.58);
+  margin:0 32px 21px 32px;
+  display:flex
+}
 .contentListItem-box {
   position: relative;
 }
@@ -87,6 +104,11 @@ export default {
 .contentListItem-description {
   font-size: 14px;
   color: #9fa5c0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 .contentListItem-title {
   font-size: 18px;
@@ -94,18 +116,29 @@ export default {
   text-align: right;
   color: #3e5480;
   margin-bottom: 0;
-}
-.title-box {
-  width: calc(100% - 130px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 .contentListItem-box .rounded-card{
   width: 96px;
   height: 54px;
   border-radius: 10px;
 }
+.right-content{
+  margin-bottom: 21px;
+}
+.left-content{
+  margin-right: 15px;
+}
 @media screen and (max-width: 1200px){
   .contentListItem-box {
     position: relative;
+  }
+  .contentListItem-main-box{
+    margin:0 11px 21px 11px;
   }
   .contentListItem-box .rounded-card{
     height: 40px;
@@ -117,12 +150,13 @@ export default {
     width: 71px;
     border-radius: 5px;
   }
-  .contentListItem-description {
+  .title-box .contentListItem-description {
     font-size: 14px;
     color: #9fa5c0;
   }
-  .title-box {
-    width: calc(100% - 130px);
+  .left-content{
+    margin-right: 10px;
+
   }
  .title-box .contentListItem-title {
     font-size: 18px;
@@ -133,25 +167,32 @@ export default {
   }
 }
 @media screen and (max-width: 576px) {
-
+  .left-content{
+    margin-right: 5px;
+  }
+  .right-content{
+    margin-bottom: 15px;
+  }
+  .contentListItem-main-box{
+    margin-bottom: 15px;
+  }
 }
 @media screen and (max-width: 350px) {
-
+  .title-box .contentListItem-title{
+    font-size: 14px;
+  }
+  .title-box .contentListItem-description {
+    font-size: 12px;
+  }
 }
 @media screen and (max-width: 320px) {
   .contentListItem-box .rounded-card{
     height: 33px;
     width: 60px;
-    border-radius: 15px;
   }
   .contentListItem-box .seen {
     height: 33px;
     width: 60px;
-    border-radius: 15px;
   }
-  .title-box .contentListItem-title{
-    font-size: 14px;
-  }
-
 }
 </style>

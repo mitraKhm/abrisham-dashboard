@@ -46,6 +46,11 @@
         </v-row>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col>
+        <study-plan />
+      </v-col>
+    </v-row>
   </div>
 </template>
 <script>
@@ -54,8 +59,9 @@ import CommentBox from "../components/CommentBox";
 import ContentList from "../components/ContentList";
 import chipGroup from "../components/chipGroup";
 import videoBox  from "../components/videoBox";
+import StudyPlan from "../components/StudyPlan";
 
 export default {
-  components: {ContentList, CommentBox , chipGroup , videoBox}
+  components: {StudyPlan, ContentList, CommentBox , chipGroup , videoBox}
 }
 </script>
