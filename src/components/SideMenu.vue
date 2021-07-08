@@ -5,13 +5,16 @@
     </div>
     <div class="menu-items">
       <ul
-          v-for="(item, index) in menuItems"
-          :key="index"
-          class="menu-item"
+        v-for="(item, index) in menuItems"
+        :key="index"
+        class="menu-item"
       >
         <li>
           <router-link :to="{name: item.routeName}">
-            <i class="fi" :class="('fi-rr-' + item.icon)"/>
+            <i
+              class="fi"
+              :class="('fi-rr-' + item.icon)"
+            />
           </router-link>
         </li>
       </ul>

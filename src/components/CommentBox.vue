@@ -1,17 +1,14 @@
 <template>
   <div class="comment-box">
     <v-textarea
-        class="rounded-xl  comment-main"
-        background-color="#eff3ff"
-        placeholder="یادداشت این جلسه"
-        filled
-        auto-grow
-        solo
-        flat
-    >
-
-
-    </v-textarea>
+      class="rounded-xl  comment-main"
+      background-color="#eff3ff"
+      placeholder="یادداشت این جلسه"
+      filled
+      auto-grow
+      solo
+      flat
+    />
   </div>
 </template>
 
