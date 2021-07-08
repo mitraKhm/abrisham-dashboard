@@ -28,10 +28,10 @@
                 روز اول
               </v-col>
               <v-col cols="4">
-                روز اول
+                شنبه
               </v-col>
               <v-col cols="4">
-                روز اول
+                12 تیر
               </v-col>
             </v-row>
 
@@ -40,6 +40,7 @@
           <v-card elevation="0">
             <v-sheet class="study-plan-sheet">فردا دیره، دیروز هم دیشب تموم شد، الان دقیقا لحظه ای هست که باید شروع کنی!</v-sheet>
           </v-card>
+            <v-card></v-card>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -134,7 +135,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: right;
-  color: #333333;
+  color: #3e5480;
 }
 </style>
 
