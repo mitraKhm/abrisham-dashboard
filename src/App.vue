@@ -41,16 +41,4 @@ export default {
 </script>
 
 <style lang="scss">
-.v-application {
-  &,
-  .title,
-  .text-lg-h1,
-  .text-lg-h2,
-  .text-lg-h3,
-  .text-lg-h4,
-  .text-lg-h5,
-  .text-lg-h6 {
-    font-family: IRANSans, "Roboto", sans-serif !important;
-  }
-}
 </style>
