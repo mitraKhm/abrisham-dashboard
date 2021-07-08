@@ -1,22 +1,27 @@
 <template>
   <!-- App.vue -->
   <v-app>
-    <v-navigation-drawer app right :width="130">
+    <v-navigation-drawer
+      app
+      right
+      :width="130"
+    >
       <side-menu />
     </v-navigation-drawer>
 
-    <v-app-bar app elevate-on-scroll>
+    <v-app-bar
+      app
+      elevate-on-scroll
+    >
       <!-- -->
     </v-app-bar>
 
     <!-- Sizes your content based upon application components -->
     <v-main>
-
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
-
         <!-- If using vue-router -->
-        <router-view/>
+        <router-view />
       </v-container>
     </v-main>
 
@@ -24,7 +29,6 @@
       <!-- -->
     </v-footer>
   </v-app>
-
 </template>
 
 <script>
@@ -37,24 +41,16 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+.v-application {
+  &,
+  .title,
+  .text-lg-h1,
+  .text-lg-h2,
+  .text-lg-h3,
+  .text-lg-h4,
+  .text-lg-h5,
+  .text-lg-h6 {
+    font-family: IRANSans, "Roboto", sans-serif !important;
   }
 }
 </style>
