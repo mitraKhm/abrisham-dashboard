@@ -4,7 +4,10 @@
     :color=" selected ? '#f2f5ff' : 'transparent'"
     flat
   >
-    <div class="contentListItem-main-box">
+    <div
+      class="contentListItem-main-box"
+      :class=" $vnode.key === length ? '' : 'list-border-bottom'"
+    >
       <div class="right-content">
         <v-card
           height="22"
@@ -26,8 +29,10 @@
           </v-card>
           <div
             v-if="data[0].seen"
-            class="seen"
-          />
+            class="d-flex justify-center align-center"
+          >
+            <i class="fi fi-rr-check icon" />
+          </div>
         </div>
       </div>
       <div class="left-content">
@@ -36,10 +41,15 @@
           depressed
           height="22"
           width="78"
-          class="mb-2 rounded-pill text-center text-caption"
+          class="d-flex justify-center mb-2 rounded-pill time-sheet "
           color="#eff3ff"
         >
-          افبقلادقفبلات
+          <i class="fi fi-rr-clock ml-2" />
+          <div>
+            <span>{{ data[0].time1 }}</span>
+            <span> الی </span>
+            <span>{{ data[0].time2 }}</span>
+          </div>
         </v-sheet>
         <div class="title-box">
           <p class="contentListItem-title ">
@@ -64,19 +74,26 @@ export default {
         return [
           {
             // eslint-disable-next-line vue/max-len
-           title: 'جلسه فیلان - فرسنگ هشتم جلسه فیلان - فرسنگ هشتم جلسه فیلان - فرسنگ هشتم ',
+            title: 'جلسه فیلان - فرسنگ هشتم جلسه فیلان - فرسنگ هشتم جلسه فیلان - فرسنگ هشتم ',
             // eslint-disable-next-line vue/max-len
             description: '(قسمت بیست و سوم)، فصل سوم',
-            seen: false,
+            seen: true,
+            time1: '12',
+            time2: '19'
           },
         ]
       }
     },
-    selected :{
-      type:Boolean,
-      default : true
+    selected: {
+      type: Boolean,
+      default: true
+    },
+    length: {
+      type: Number,
+      default: 0
     }
-  }
+  },
+  methods: {}
 }
 </script>
 
@@ -84,14 +101,20 @@ export default {
 .v-application p {
   margin-bottom: 0;
 }
-.contentListItem-main-box{
-  border-bottom: solid 1px rgba(159, 165, 192, 0.58);
-  margin:0 32px 21px 32px;
-  display:flex
+
+.contentListItem-main-box {
+  margin: 0 32px 21px 32px;
+  display: flex
 }
+
+.list-border-bottom {
+  border-bottom: solid 1px rgba(159, 165, 192, 0.58);
+}
+
 .contentListItem-box {
   position: relative;
 }
+
 .contentListItem-box .seen {
   height: 54px;
   width: 96px;
@@ -101,6 +124,12 @@ export default {
   position: absolute;
   top: 0;
 }
+
+.contentListItem-box .seen .icon {
+  font-size: 25px;
+  color: #fff;
+}
+
 .contentListItem-description {
   font-size: 14px;
   color: #9fa5c0;
@@ -110,6 +139,7 @@ export default {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
+
 .contentListItem-title {
   font-size: 18px;
   font-weight: 500;
@@ -122,43 +152,61 @@ export default {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
-.contentListItem-box .rounded-card{
+
+.contentListItem-main-box .left-content .time-sheet {
+  font-size: 12px;
+}
+
+.contentListItem-box .rounded-card {
   width: 96px;
   height: 54px;
   border-radius: 10px;
 }
-.right-content{
+
+.right-content {
   margin-bottom: 21px;
 }
-.left-content{
+
+.left-content {
   margin-right: 15px;
 }
-@media screen and (max-width: 1200px){
+
+@media screen and (max-width: 1200px) {
   .contentListItem-box {
     position: relative;
   }
-  .contentListItem-main-box{
-    margin:0 11px 21px 11px;
+
+  .contentListItem-main-box {
+    margin: 0 11px 21px 11px;
   }
-  .contentListItem-box .rounded-card{
+
+  .contentListItem-box .rounded-card {
     height: 40px;
     width: 71px;
     border-radius: 5px;
   }
+
   .contentListItem-box .seen {
     height: 40px;
     width: 71px;
     border-radius: 5px;
   }
+
   .title-box .contentListItem-description {
     font-size: 14px;
     color: #9fa5c0;
   }
-  .left-content{
+
+  .left-content {
     margin-right: 10px;
 
   }
- .title-box .contentListItem-title {
+
+  .contentListItem-main-box .left-content .time-sheet {
+    font-size: 12px;
+  }
+
+  .title-box .contentListItem-title {
     font-size: 18px;
     font-weight: 500;
     text-align: right;
@@ -166,30 +214,37 @@ export default {
     margin-bottom: 0;
   }
 }
+
 @media screen and (max-width: 576px) {
-  .left-content{
+  .left-content {
     margin-right: 5px;
   }
-  .right-content{
+
+  .right-content {
     margin-bottom: 15px;
   }
-  .contentListItem-main-box{
+
+  .contentListItem-main-box {
     margin-bottom: 15px;
   }
 }
+
 @media screen and (max-width: 350px) {
-  .title-box .contentListItem-title{
+  .title-box .contentListItem-title {
     font-size: 14px;
   }
+
   .title-box .contentListItem-description {
     font-size: 12px;
   }
 }
+
 @media screen and (max-width: 320px) {
-  .contentListItem-box .rounded-card{
+  .contentListItem-box .rounded-card {
     height: 33px;
     width: 60px;
   }
+
   .contentListItem-box .seen {
     height: 33px;
     width: 60px;
