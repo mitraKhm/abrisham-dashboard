@@ -40,7 +40,7 @@ export default {
             id: 2,
             selected: false,
             color: '#fe665a',
-          }
+          },
         ]
       },
     },
@@ -59,7 +59,6 @@ export default {
    value: {
       handler() {
        this.chipData=this.value
-        console.log('run')
       },
       immediate: true
     },
@@ -87,6 +86,6 @@ export default {
   color: #3e5480
 }
 .list-box{
-  align-items: center;
+  align-0: center;
 }
 </style>

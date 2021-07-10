@@ -14,14 +14,11 @@
         <v-select
           items="تجربی"
           solo
-          flat
         />
-        <!--        append-icon="chevron-down"-->
       </div>
       <v-expansion-panels
         v-for="(item,i) in 5"
         :key="i"
-        flat
         class="study-plan-expansion"
       >
         <v-expansion-panel>
@@ -39,40 +36,12 @@
             </v-row>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <v-sheet class="study-plan-sheet">
-              فردا دیره، دیروز هم دیشب تموم شد، الان دقیقا لحظه ای هست که باید شروع
-              کنی!
-            </v-sheet>
-            <v-card
-              class="study-plan-card"
-              elevation="0"
-              height="118"
-            >
-              <v-card-text>
-                <v-row>
-                  <v-col cols="4">
-                    <div class="study-plan-card-hours">
-                      12
-                    </div>
-                  </v-col>
-                  <v-col cols="4">
-                    <div class="study-plan-card-hours">
-                      13
-                    </div>
-                  </v-col>
-                  <v-col cols="4">
-                    <div class="study-plan-card-hours">
-                      14
-                    </div>
-                  </v-col>
-                </v-row>
-              </v-card-text>
-              <v-card
-                class="study-plan-boxes"
-                elevation="0"
-                height="69"
-              />
+            <v-card elevation="0">
+              <v-sheet class="study-plan-sheet">
+                فردا دیره، دیروز هم دیشب تموم شد، الان دقیقا لحظه ای هست که باید شروع کنی!
+              </v-sheet>
             </v-card>
+            <v-card />
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
