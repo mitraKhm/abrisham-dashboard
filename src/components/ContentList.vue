@@ -105,21 +105,15 @@ export default {
   margin: 0 26px;
 }
 @media screen and (max-width: 1200px){
-  .content-box {
-    /*margin-top: 20px;*/
-  }
   .content-list-box .v-select-box{
     margin: 0 26px;
   }
   .content-list-box .slot-header-box{
-    flex-direction: column;
     margin: 13px 11px
   }
 }
 @media screen and (max-width: 576px) {
-  .content-box {
-    /*margin-top: 25px;*/
-  }
+
 }
 @media screen and (max-width: 350px) {
   .content-list-box .slot-header-box{
@@ -138,9 +132,6 @@ export default {
   }
 }
 @media screen and (max-width: 320px) {
-  .content-box {
-    /*margin-top: 23px;*/
-  }
 
 }
 </style>
