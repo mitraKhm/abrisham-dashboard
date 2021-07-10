@@ -119,8 +119,8 @@ export default {
   max-width: 36px;
   margin-left: 30px;
 }
-.profile-box .v-avatar{
-  width: 36px !important;
+.app-bar .profile-box .v-avatar{
+  width: 36px !important ;
   height: 36px !important;
 }
 .profile-box .icon{
@@ -130,6 +130,12 @@ export default {
 }
 @media screen and (max-width: 1200px){
   .profile-box{
+    margin-left: 20px;
+  }
+  .profile-box .name{
+    margin-left: 20px;
+  }
+  .profile-box .avatar{
     margin-left: 20px;
   }
 }
