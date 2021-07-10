@@ -1,24 +1,24 @@
 <template>
   <div>
     <v-card
-      class="study-plan"
-      elevation="0"
+        class="study-plan"
+        elevation="0"
     >
       <v-card-title class="study-plan-header-title">جدول برنامه مطالعاتی راه ابریشم آلاء</v-card-title>
       <div class="major-card">
         <p class="major-card-text">رشته:</p>
         <v-select
-          items="تجربی"
-          solo
-          flat
+            items="تجربی"
+            solo
+            flat
         ></v-select>
         <!--        append-icon="chevron-down"-->
       </div>
       <v-expansion-panels
-        v-for="(item,i) in 5"
-        :key="i"
-        flat
-        class="study-plan-expansion"
+          v-for="(item,i) in 5"
+          :key="i"
+          flat
+          class="study-plan-expansion"
       >
         <v-expansion-panel
         >
@@ -37,6 +37,12 @@
 
           </v-expansion-panel-header>
           <v-expansion-panel-content>
+            <v-progress-linear
+                indeterminate
+                background-color="blue lighten-4"
+                color="blue accent-2"
+                :active="loading"
+            ></v-progress-linear>
             <v-sheet class="study-plan-sheet">فردا دیره، دیروز هم دیشب تموم شد، الان دقیقا لحظه ای هست که باید شروع
               کنی!
             </v-sheet>
@@ -71,7 +77,30 @@
   </div>
 </template>
 
-<script></script>
+<script>
+import { StudyPlan } from '@/Models/StudyPlan.js'
+export default {
+  props: {
+    studyPlan: {
+      type: StudyPlan,
+      default: new StudyPlan()
+    },
+    status: {
+      type: Boolean,
+      default: false
+    },
+  },
+  created() {
+    console.log(this.studyPlan)
+  },
+  data (){
+    return {
+      loading : false
+    }
+
+  }
+}
+</script>
 
 <style scoped>
 .major-card .v-text-field.v-text-field--enclosed {
@@ -118,7 +147,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  background-color: #eff3ff;
+  background-color: #feedbb;
   color: #3e5480;
   border-color: #FFFFFF;
   padding-top: 7px;
