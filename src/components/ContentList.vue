@@ -21,64 +21,35 @@
       </div>
     </slot>
     <slot name="filter">
-      <div class="d-flex justify-space-between">
-        <div class="text-center">
-          <v-menu offset-y>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                width="220"
-                color="#eff3ff"
-                v-bind="attrs"
-                depressed
-                rounded
-                v-on="on"
-              >
-
-
-                همه
-                  <i class="fi fi-rr-angle-small-down" />
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item
-                v-for="(item, index) in items"
-                :key="index"
-              >
-                <v-list-item-title>{{ item }}</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
+      <div class="d-flex justify-space-between v-select-box">
+        <div class="ml-xm-2 ml-5">
+          <v-select
+            :items="items"
+            :menu-props="{ bottom: true, offsetY: true }"
+            solo
+            append-icon="mdi-chevron-down"
+            dense
+            background-color="#eff3ff"
+            flat
+            placeholder="gtrh"
+          />
         </div>
-        <div class="text-center">
-          <v-menu offset-y>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                color="#eff3ff"
-                v-bind="attrs"
-                depressed
-                rounded
-                v-on="on"
-              >
-                همه
-                <i class="fi fi-rr-download" />
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item
-                v-for="(item, index) in items"
-                :key="index"
-              >
-                <v-list-item-title>{{ item }}</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-        </div>
+        <v-select
+          :items="items"
+          :menu-props="{ bottom: true, offsetY: true }"
+          solo
+          append-icon="mdi-chevron-down"
+          dense
+          background-color="#eff3ff"
+          flat
+        />
       </div>
     </slot>
     <div class="content-box">
       <content-list-item
-        v-for="i in 5"
+        v-for="i in listLength"
         :key="i"
+        :length="listLength"
       />
     </div>
   </div>
@@ -93,64 +64,82 @@ export default {
   },
   data(){
     return {
-      items: ['تست1', 'تست1', 'تست1', 'تست1'],
+      items: ['تست1', 'تست2', 'تست3', 'تست4'],
+      listLength:6,
     }
   }
 }
 </script>
 
-<style scoped>
+<style>
+.content-list-box .v-select-box .v-select--is-menu-active .v-input__control .v-input__slot{
+  border:solid;
+  background-color: transparent !important;
+}
+.content-list-box .v-select-box .v-menu__content{
+  top:274px;
+}
+.content-list-box .v-select-box .v-text-field.v-text-field--enclosed{
+  margin-right: 0!important;
+}
 .content-list-box {
   border-radius: 30px;
   border: solid 6px #eff3ff;
 }
 .content-box {
-  margin-top: 43px;
+  /*margin-top: 43px;*/
 }
-.slot-header-box{
+.content-list-box .slot-header-box{
   display: flex;
   justify-content: space-between;
-  margin: 19px 26px
+  margin: 19px 14px
 }
-.slot-header-box .slot-header-box-movie{
+.content-list-box .slot-header-box .slot-header-box-movie{
   font-size: 20px;
-  height: 32px;
   font-weight: 500;
 }
-.slot-header-box .slot-header-box-days{
+.content-list-box  .slot-header-box .slot-header-box-days{
   font-size: 14px;
 }
-font-size: 12px;
+.content-list-box  .v-select-box{
+  margin: 0 26px;
+}
 @media screen and (max-width: 1200px){
   .content-box {
-    margin-top: 20px;
+    /*margin-top: 20px;*/
   }
-  .slot-header-box{
+  .content-list-box .v-select-box{
+    margin: 0 26px;
+  }
+  .content-list-box .slot-header-box{
     flex-direction: column;
     margin: 13px 11px
   }
 }
 @media screen and (max-width: 576px) {
   .content-box {
-    margin-top: 25px;
+    /*margin-top: 25px;*/
   }
 }
 @media screen and (max-width: 350px) {
-  .slot-header-box{
+  .content-list-box .slot-header-box{
     flex-direction: row;
     justify-content: space-between;
-    margin: 13px 11px
+    margin: 13px 0;
   }
-  .slot-header-box .slot-header-box-movie {
+  .content-list-box .v-select-box{
+    margin: 0 6px;
+  }
+  .content-list-box .slot-header-box .slot-header-box-movie {
     font-size:16px;
   }
-  .slot-header-box .slot-header-box-days{
+  .content-list-box .slot-header-box .slot-header-box-days{
     font-size: 12px;
   }
 }
 @media screen and (max-width: 320px) {
   .content-box {
-    margin-top: 23px;
+    /*margin-top: 23px;*/
   }
 
 }

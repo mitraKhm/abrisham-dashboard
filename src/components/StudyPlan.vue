@@ -4,9 +4,13 @@
         class="study-plan"
         elevation="0"
     >
-      <v-card-title class="study-plan-header-title">جدول برنامه مطالعاتی راه ابریشم آلاء</v-card-title>
+      <v-card-title class="study-plan-header-title">
+        جدول برنامه مطالعاتی راه ابریشم آلاء
+      </v-card-title>
       <div class="major-card">
-        <p class="major-card-text">رشته:</p>
+        <p class="major-card-text">
+          رشته:
+        </p>
         <v-select
             items="تجربی"
             solo
@@ -20,8 +24,7 @@
           flat
           class="study-plan-expansion"
       >
-        <v-expansion-panel
-        >
+        <v-expansion-panel>
           <v-expansion-panel-header class="study-plan-expansion-header">
             <v-row>
               <v-col cols="4">
