@@ -22,28 +22,24 @@
     </v-row>
     <v-row>
       <v-col md="9">
-        <v-row>
-          <v-col md="12">
-            <video-box />
-          </v-col>
-          <v-col md="12">
-            <comment-box />
-          </v-col>
-        </v-row>
+        <video-box
+          :content="currentContent"
+        />
       </v-col>
       <v-col md="3">
-        <v-row>
-          <v-col md="12">
-            <content-list>
-              <template v-slot:header>
-                test
-              </template>
-            </content-list>
-          </v-col>
-          <v-col md="12">
-            <content-list />
-          </v-col>
-        </v-row>
+        <content-list>
+          <template v-slot:header>
+            test
+          </template>
+        </content-list>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col md="9">
+        <comment-box />
+      </v-col>
+      <v-col md="3">
+        <content-list />
       </v-col>
     </v-row>
     <v-row>
@@ -55,14 +51,20 @@
 </template>
 <script>
 
+import {Content} from "../Models/Content";
 import CommentBox from "../components/CommentBox";
 import ContentList from "../components/ContentList";
 import chipGroup from "../components/chipGroup";
-import videoBox  from "../components/videoBox";
+import videoBox from "../components/videoBox";
 import StudyPlan from "../components/StudyPlan";
 
 export default {
-  components: {StudyPlan, ContentList, CommentBox , chipGroup , videoBox}
+  components: {StudyPlan, ContentList, CommentBox, chipGroup, videoBox},
+  data() {
+    return {
+      currentContent: new Content()
+    }
+  }
 }
 </script>
 
