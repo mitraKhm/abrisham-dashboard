@@ -4,14 +4,18 @@
       class="study-plan"
       elevation="0"
     >
-      <v-card-title class="study-plan-header-title">جدول برنامه مطالعاتی راه ابریشم آلاء</v-card-title>
+      <v-card-title class="study-plan-header-title">
+        جدول برنامه مطالعاتی راه ابریشم آلاء
+      </v-card-title>
       <div class="major-card">
-        <p class="major-card-text">رشته:</p>
+        <p class="major-card-text">
+          رشته:
+        </p>
         <v-select
           items="تجربی"
           solo
           flat
-        ></v-select>
+        />
         <!--        append-icon="chevron-down"-->
       </div>
       <v-expansion-panels
@@ -20,8 +24,7 @@
         flat
         class="study-plan-expansion"
       >
-        <v-expansion-panel
-        >
+        <v-expansion-panel>
           <v-expansion-panel-header class="study-plan-expansion-header">
             <v-row>
               <v-col cols="4">
@@ -34,13 +37,17 @@
                 12 تیر
               </v-col>
             </v-row>
-
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <v-sheet class="study-plan-sheet">فردا دیره، دیروز هم دیشب تموم شد، الان دقیقا لحظه ای هست که باید شروع
+            <v-sheet class="study-plan-sheet">
+              فردا دیره، دیروز هم دیشب تموم شد، الان دقیقا لحظه ای هست که باید شروع
               کنی!
             </v-sheet>
-            <v-card class="study-plan-card" elevation="0" height="118">
+            <v-card
+              class="study-plan-card"
+              elevation="0"
+              height="118"
+            >
               <v-card-text>
                 <v-row>
                   <v-col cols="4">
@@ -60,9 +67,11 @@
                   </v-col>
                 </v-row>
               </v-card-text>
-              <v-card class="study-plan-boxes" elevation="0" height="69">
-
-              </v-card>
+              <v-card
+                class="study-plan-boxes"
+                elevation="0"
+                height="69"
+              />
             </v-card>
           </v-expansion-panel-content>
         </v-expansion-panel>

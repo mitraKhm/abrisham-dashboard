@@ -33,10 +33,8 @@
                 rounded
                 v-on="on"
               >
-
-
                 همه
-                  <i class="fi fi-rr-angle-small-down" />
+                <i class="fi fi-rr-angle-small-down" />
               </v-btn>
             </template>
             <v-list>

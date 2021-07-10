@@ -1,10 +1,10 @@
 <template>
   <!-- App.vue -->
-  <v-app>
+  <v-app v-resize="onResize">
     <v-navigation-drawer
       app
       right
-      :width="130"
+      :width="drawerSize"
     >
       <side-menu />
     </v-navigation-drawer>
@@ -36,9 +36,35 @@ import "./assets/Fonts/Flaticons/css/uicons-regular-rounded.css"
 import "./assets/Fonts/IRANSans/css/font.scss"
 import SideMenu from "./components/SideMenu";
 export default {
-  components: {SideMenu}
+  components: {SideMenu},
+  computed: {
+    windowSize () {
+      return this.$store.getters['windowSize']
+    },
+    drawerSize () {
+      if (this.windowSize.x > 1920) {
+        return 130
+      } else
+      if (this.windowSize.x > 1200) {
+        return 100
+      } else
+      if (this.windowSize.x > 990) {
+        return 80
+      }
+
+      return 80
+    }
+  },
+  methods: {
+    onResize () {
+      this.$store.commit('updateWindowSize', { x: window.innerWidth, y: window.innerHeight })
+    },
+  }
 }
 </script>
 
 <style lang="scss">
+.side-menu-drawer {
+
+}
 </style>
