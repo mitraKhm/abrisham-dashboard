@@ -1,10 +1,13 @@
 <template>
   <div class="video-box">
-    <v-card
-      flat
-      color="#eff3ff"
-      class="rounded-xl video-main"
-    />
+      <v-card
+          flat
+          color="#eff3ff"
+          class="rounded-xl video-main"
+      >
+        <v-responsive :aspect-ratio="16/9" >
+        </v-responsive>
+      </v-card>
     <div class="video-description">
       <v-row no-gutters>
         <v-col>
@@ -14,14 +17,14 @@
             <p>جلسه 23</p>
           </div>
           <div class="d-flex subtitle">
-            <div class="d-flex part">
+            <div class="d-flex part align-start">
               <v-img 
                 src="../assets/ic_alaa.png"
-                width="18"
+                class="alaa-logo icon"
               />
               <p>گروه آموزشی آلاء</p>
             </div>
-            <div class="d-flex part">
+            <div class="d-flex part align-center">
               <i class="fi fi-rr-graduation-cap icon" />
               <p>محمد رضایی بقا</p>
             </div>
@@ -63,10 +66,6 @@ export default {
 }
 .video-box .video-main {
   margin-bottom: 25px;
-  height:620px
-}
-.video-box {
-  width: 1100px;
 }
 .video-box .video-main {
   margin-bottom: 25px;
@@ -107,6 +106,9 @@ export default {
   font-size: 16px;
   color: #9fa5c0;
 }
+.video-box .video-description .subtitle .part .alaa-logo{
+  width: 13px;
+ }
 .video-box .video-description .subtitle .part{
   margin-left: 46px;
 }
@@ -119,9 +121,6 @@ export default {
   font-weight: 500;
 }
 @media screen and (max-width: 1200px){
-  .video-box {
-    width: 709px;
-  }
   .video-box .video-box-icon {
     margin-right: 60px;
   }
@@ -134,12 +133,8 @@ export default {
   }
 }
 @media screen and (max-width: 576px){
-  .video-box {
-    width: 532px;
-  }
   .video-box .video-main {
     margin-bottom: 10px;
-    height:300px
   }
   .video-box .video-description .video-btn{
     height: 40px;
@@ -159,12 +154,6 @@ export default {
   }
 }
 @media screen and (max-width: 350px){
-  .video-box {
-    width: 320px;
-  }
-  .video-box .video-main {
-    height:180px
-  }
   .video-description .icon-btn-box{
     flex-direction: row;
     justify-content: space-between;
@@ -172,7 +161,6 @@ export default {
   .video-box .video-description .title {
     font-size: 16px;
     text-align: right;
-
   }
   .video-box .video-description .subtitle .part{
     margin-left: 30px;
@@ -201,12 +189,7 @@ export default {
   }
 }
 @media screen and (max-width: 320px){
-  .video-box {
-    width: 290px;
-  }
-  .video-box .video-main {
-    height:163px
-  }
+
   .video-description{
     margin-bottom:10px;
   }
