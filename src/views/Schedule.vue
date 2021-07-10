@@ -34,16 +34,17 @@
       <v-col md="3">
         <v-row>
           <v-col md="12">
-            <content-list>
-              <template v-slot:header>
-                test
-              </template>
-            </content-list>
+            <content-list />
           </v-col>
           <v-col md="12">
             <content-list />
           </v-col>
         </v-row>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <study-plan />
       </v-col>
     </v-row>
   </div>
@@ -54,8 +55,24 @@ import CommentBox from "../components/CommentBox";
 import ContentList from "../components/ContentList";
 import chipGroup from "../components/chipGroup";
 import videoBox  from "../components/videoBox";
+import StudyPlan from "../components/StudyPlan";
 
 export default {
-  components: {ContentList, CommentBox , chipGroup , videoBox}
+  components: {StudyPlan, ContentList, CommentBox , chipGroup , videoBox}
 }
 </script>
+
+<style lang="scss">
+.schedule-page {
+  @media screen and (max-width: 1920px) {
+    & {
+      margin: 0 58px;
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    & {
+      margin: 0 8px;
+    }
+  }
+}
+</style>

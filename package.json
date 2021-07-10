@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "js-abstract-model": "^0.1.27",
+    "persian-date": "^1.1.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuetify": "^2.4.0",
@@ -50,7 +52,6 @@
       "vue/eqeqeq": "warn",
       "vue/key-spacing": "error",
       "vue/keyword-spacing": "error",
-      "vue/max-len": "warn",
       "vue/no-deprecated-scope-attribute": "warn",
       "vue/no-deprecated-slot-attribute": "warn",
       "vue/no-deprecated-slot-scope-attribute": "warn",
