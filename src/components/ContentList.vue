@@ -42,7 +42,7 @@ export default {
   data(){
     return {
       items: ['تست1', 'تست2', 'تست3', 'تست4'],
-      listLength:6,
+      listLength:4,
     }
   }
 }
@@ -62,6 +62,8 @@ export default {
 .content-list-box {
   border-radius: 30px;
   border: solid 6px #eff3ff;
+  height: 100%;
+  overflow: hidden;
 }
 .content-box {
   /*margin-top: 43px;*/
