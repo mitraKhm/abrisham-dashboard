@@ -1,57 +1,55 @@
 <template>
   <v-card
-      class="rounded-0 transparent"
-      :color=" selected ? '#f2f5ff' : 'transparent'"
-      flat
+    class="rounded-0 transparent"
+    :color=" selected ? '#f2f5ff' : 'transparent'"
+    flat
   >
     <div
-        class="contentListItem-main-box"
-        :class=" $vnode.key === length ? '' : 'list-border-bottom'"
+      class="contentListItem-main-box"
+      :class=" $vnode.key === length ? '' : 'list-border-bottom'"
     >
       <div class="right-content">
         <v-card
-            height="22"
-            class="mb-2 rounded-pill text-center text-caption"
-            flat
-            dark
-            color="#009498"
+          height="22"
+          class="mb-2 rounded-pill text-center text-caption"
+          flat
+          dark
+          color="#009498"
         >
           تلت
         </v-card>
         <div class="contentListItem-box">
           <v-card
-              flat
-              class="rounded-card"
+            flat
+            class="rounded-card"
           >
             <v-img
-                src="../assets/hendese.jpg"
+              src="../assets/hendese.jpg"
             />
           </v-card>
           <div
-              v-if="data[0].seen"
-              class="d-flex justify-center align-center"
-          ><i class="fi fi-rr-check icon"></i>
+            v-if="data[0].seen"
+            class="d-flex justify-center align-center"
+          >
+            <i class="fi fi-rr-check icon" />
           </div>
         </div>
       </div>
       <div class="left-content">
         <v-sheet
-            text-color="#3e5480"
-            depressed
-            height="22"
-            width="78"
-            class="d-flex justify-center mb-2 rounded-pill time-sheet "
-            color="#eff3ff"
+          text-color="#3e5480"
+          depressed
+          height="22"
+          width="78"
+          class="d-flex justify-center mb-2 rounded-pill time-sheet "
+          color="#eff3ff"
         >
-           <i class="fi fi-rr-clock ml-2">
-           </i>
+          <i class="fi fi-rr-clock ml-2" />
           <div>
             <span>{{ data[0].time1 }}</span>
             <span> الی </span>
             <span>{{ data[0].time2 }}</span>
           </div>
-
-
         </v-sheet>
         <div class="title-box">
           <p class="contentListItem-title ">

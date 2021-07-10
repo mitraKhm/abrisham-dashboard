@@ -1,13 +1,12 @@
 <template>
   <div class="video-box">
-      <v-card
-          flat
-          color="#eff3ff"
-          class="rounded-xl video-main"
-      >
-        <v-responsive :aspect-ratio="16/9" >
-        </v-responsive>
-      </v-card>
+    <v-card
+      flat
+      color="#eff3ff"
+      class="rounded-xl video-main"
+    >
+      <v-responsive :aspect-ratio="16/9" />
+    </v-card>
     <div class="video-description">
       <v-row no-gutters>
         <v-col>
