@@ -61,3 +61,18 @@ export default {
   components: {StudyPlan, ContentList, CommentBox , chipGroup , videoBox}
 }
 </script>
+
+<style lang="scss">
+.schedule-page {
+  @media screen and (max-width: 1920px) {
+    & {
+      margin: 0 58px;
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    & {
+      margin: 0 8px;
+    }
+  }
+}
+</style>
