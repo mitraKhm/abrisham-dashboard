@@ -84,9 +84,1187 @@
 import { StudyPlan } from '@/Models/StudyPlan.js'
 export default {
   props: {
-    studyPlan: {
+    studyPlans: {
       type: StudyPlan,
-      default: new StudyPlan()
+      // default: new StudyPlan()
+      default: [
+        {
+        baseRoute:null,
+        crud: {
+          headers: null
+        },
+        list:[
+          {
+            apiResource:null,
+            body:null,
+            crud: {
+              headers: null
+            },
+            date:"2021-03-23",
+            editMode:false,
+            id:"2021-03-23",
+            loading:false,
+            plans: {
+              baseRoute:null,
+              crud: {
+                headers: null
+              },
+              list:[
+                {
+                  apiResource: null,
+                  backgroundColor: "#ffe79e",
+                  borderColor: "#707070",
+                  contents: Object,
+                  crud: Object,
+                  date: "2021-03-23",
+                  description: null,
+                  editMode: false,
+                  end: "08:45:00",
+                  id: 2104,
+                  loading: false,
+                  long_description: null,
+                  major: {
+                    actionUrl: null,
+                    apiResource: null
+                  },
+                  major_id: 1,
+                  start: "07:30:00",
+                  textColor: "#333333",
+                  title: "شیمی دهم جلسه1",
+                  warn: {
+                    keys: null,
+                    mode: false
+                  }
+                },
+                {
+                  apiResource: null,
+                  backgroundColor: "#ffe79e",
+                  borderColor: "#707070",
+                  contents: Object,
+                  crud: Object,
+                  date: "2021-03-23",
+                  description: null,
+                  editMode: false,
+                  end: "08:45:00",
+                  id: 2104,
+                  loading: false,
+                  long_description: null,
+                  major: {
+                    actionUrl: null,
+                    apiResource: null
+                  },
+                  major_id: 1,
+                  start: "07:30:00",
+                  textColor: "#333333",
+                  title: "شیمی دهم جلسه1",
+                  warn: {
+                    keys: null,
+                    mode: false
+                  }
+                },
+                {
+                  apiResource: null,
+                  backgroundColor: "#ffe79e",
+                  borderColor: "#707070",
+                  contents: Object,
+                  crud: Object,
+                  date: "2021-03-23",
+                  description: null,
+                  editMode: false,
+                  end: "08:45:00",
+                  id: 2104,
+                  loading: false,
+                  long_description: null,
+                  major: {
+                    actionUrl: null,
+                    apiResource: null
+                  },
+                  major_id: 1,
+                  start: "07:30:00",
+                  textColor: "#333333",
+                  title: "شیمی دهم جلسه1",
+                  warn: {
+                    keys: null,
+                    mode: false
+                  }
+                },
+                {
+                  apiResource: null,
+                  backgroundColor: "#ffe79e",
+                  borderColor: "#707070",
+                  contents: Object,
+                  crud: Object,
+                  date: "2021-03-23",
+                  description: null,
+                  editMode: false,
+                  end: "08:45:00",
+                  id: 2104,
+                  loading: false,
+                  long_description: null,
+                  major: {
+                    actionUrl: null,
+                    apiResource: null
+                  },
+                  major_id: 1,
+                  start: "07:30:00",
+                  textColor: "#333333",
+                  title: "شیمی دهم جلسه1",
+                  warn: {
+                    keys: null,
+                    mode: false
+                  }
+                },
+                {
+                  apiResource: null,
+                  backgroundColor: "#ffe79e",
+                  borderColor: "#707070",
+                  contents: Object,
+                  crud: Object,
+                  date: "2021-03-23",
+                  description: null,
+                  editMode: false,
+                  end: "08:45:00",
+                  id: 2104,
+                  loading: false,
+                  long_description: null,
+                  major: {
+                    actionUrl: null,
+                    apiResource: null
+                  },
+                  major_id: 1,
+                  start: "07:30:00",
+                  textColor: "#333333",
+                  title: "شیمی دهم جلسه1",
+                  warn: {
+                    keys: null,
+                    mode: false
+                  }
+                }
+              ],
+              loading:false,
+              paginate:undefined
+            },
+            studyPlan_id:145,
+            title:null,
+            warn: {
+              keys:null,
+              mode:false
+            }
+          }
+        ],
+        loading:false,
+        paginate:undefined
+
+      },
+        {
+          baseRoute:null,
+          crud: {
+            headers: null
+          },
+          list:[
+            {
+              apiResource:null,
+              body:null,
+              crud: {
+                headers: null
+              },
+              date:"2021-03-23",
+              editMode:false,
+              id:"2021-03-23",
+              loading:false,
+              plans: {
+                baseRoute:null,
+                crud: {
+                  headers: null
+                },
+                list:[
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  }
+                ],
+                loading:false,
+                paginate:undefined
+              },
+              studyPlan_id:145,
+              title:null,
+              warn: {
+                keys:null,
+                mode:false
+              }
+            }
+          ],
+          loading:false,
+          paginate:undefined
+
+        },
+        {
+          baseRoute:null,
+          crud: {
+            headers: null
+          },
+          list:[
+            {
+              apiResource:null,
+              body:null,
+              crud: {
+                headers: null
+              },
+              date:"2021-03-23",
+              editMode:false,
+              id:"2021-03-23",
+              loading:false,
+              plans: {
+                baseRoute:null,
+                crud: {
+                  headers: null
+                },
+                list:[
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  }
+                ],
+                loading:false,
+                paginate:undefined
+              },
+              studyPlan_id:145,
+              title:null,
+              warn: {
+                keys:null,
+                mode:false
+              }
+            }
+          ],
+          loading:false,
+          paginate:undefined
+
+        },
+        {
+          baseRoute:null,
+          crud: {
+            headers: null
+          },
+          list:[
+            {
+              apiResource:null,
+              body:null,
+              crud: {
+                headers: null
+              },
+              date:"2021-03-23",
+              editMode:false,
+              id:"2021-03-23",
+              loading:false,
+              plans: {
+                baseRoute:null,
+                crud: {
+                  headers: null
+                },
+                list:[
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  }
+                ],
+                loading:false,
+                paginate:undefined
+              },
+              studyPlan_id:145,
+              title:null,
+              warn: {
+                keys:null,
+                mode:false
+              }
+            }
+          ],
+          loading:false,
+          paginate:undefined
+
+        },
+        {
+          baseRoute:null,
+          crud: {
+            headers: null
+          },
+          list:[
+            {
+              apiResource:null,
+              body:null,
+              crud: {
+                headers: null
+              },
+              date:"2021-03-23",
+              editMode:false,
+              id:"2021-03-23",
+              loading:false,
+              plans: {
+                baseRoute:null,
+                crud: {
+                  headers: null
+                },
+                list:[
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  }
+                ],
+                loading:false,
+                paginate:undefined
+              },
+              studyPlan_id:145,
+              title:null,
+              warn: {
+                keys:null,
+                mode:false
+              }
+            }
+          ],
+          loading:false,
+          paginate:undefined
+
+        },
+        {
+          baseRoute:null,
+          crud: {
+            headers: null
+          },
+          list:[
+            {
+              apiResource:null,
+              body:null,
+              crud: {
+                headers: null
+              },
+              date:"2021-03-23",
+              editMode:false,
+              id:"2021-03-23",
+              loading:false,
+              plans: {
+                baseRoute:null,
+                crud: {
+                  headers: null
+                },
+                list:[
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  }
+                ],
+                loading:false,
+                paginate:undefined
+              },
+              studyPlan_id:145,
+              title:null,
+              warn: {
+                keys:null,
+                mode:false
+              }
+            }
+          ],
+          loading:false,
+          paginate:undefined
+
+        },
+        {
+          baseRoute:null,
+          crud: {
+            headers: null
+          },
+          list:[
+            {
+              apiResource:null,
+              body:null,
+              crud: {
+                headers: null
+              },
+              date:"2021-03-23",
+              editMode:false,
+              id:"2021-03-23",
+              loading:false,
+              plans: {
+                baseRoute:null,
+                crud: {
+                  headers: null
+                },
+                list:[
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  },
+                  {
+                    apiResource: null,
+                    backgroundColor: "#ffe79e",
+                    borderColor: "#707070",
+                    contents: Object,
+                    crud: Object,
+                    date: "2021-03-23",
+                    description: null,
+                    editMode: false,
+                    end: "08:45:00",
+                    id: 2104,
+                    loading: false,
+                    long_description: null,
+                    major: {
+                      actionUrl: null,
+                      apiResource: null
+                    },
+                    major_id: 1,
+                    start: "07:30:00",
+                    textColor: "#333333",
+                    title: "شیمی دهم جلسه1",
+                    warn: {
+                      keys: null,
+                      mode: false
+                    }
+                  }
+                ],
+                loading:false,
+                paginate:undefined
+              },
+              studyPlan_id:145,
+              title:null,
+              warn: {
+                keys:null,
+                mode:false
+              }
+            }
+          ],
+          loading:false,
+          paginate:undefined
+
+        }
+      ]
     },
     status: {
       type: Boolean,
@@ -94,7 +1272,7 @@ export default {
     },
   },
   created() {
-    console.log(this.studyPlan)
+    console.log(this.studyPlans)
   },
   data (){
     return {
