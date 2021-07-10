@@ -8,25 +8,30 @@
       >
     </div>
     <div class="menu-items">
-      <ul>
+      <ul class="menu-items-list">
         <li
           v-for="(item, index) in menuItems"
           :key="index"
-          class="menu-item"
+          class="menu-item "
         >
-          <div class="menu-indicator" />
+          <div
+            v-if="$route.name===item.routeName"
+            class="menu-indicator"
+          />
           <router-link
             :to="{name: item.routeName} "
           >
             <i
-              class="fi"
-              :class="('fi-rr-' + item.icon)"
+              class="fi activeMaryam"
+              :class="['fi-rr-' + item.icon , $route.name===item.routeName ? 'activate' :'']"
             />
           </router-link>
         </li>
       </ul>
-      <div class="powerItem">
-        <router-link :to="{name: powerItem.routeName}">
+      <div class="power-item">
+        <router-link
+          :to="{name: powerItem.routeName}"
+        >
           <i
             class="fi"
             :class="('fi-rr-' + powerItem[0].icon)"
@@ -42,85 +47,111 @@ export default {
   name: "SideMenu",
   data() {
     return {
-      selectedItem: false,
+      isActive:null,
       menuItems: [
         {
           icon: 'home',
-          routeName: 'Home'
+          routeName: 'Home',
         },
         {
           icon: 'play-alt',
-          routeName: 'Schedule'
+          routeName: 'UserAbrishamProgress',
         },
         {
           icon: 'calendar',
-          routeName: 'Home'
+          routeName: 'Schedule',
         },
         {
           icon: 'headphones',
-          routeName: 'Home'
+          routeName: 'Home',
         },
         {
           icon: 'list-check',
-          routeName: 'Home'
+          routeName: 'Home',
+
         },
         {
           icon: 'stats',
-          routeName: 'Home'
+          routeName: 'Home',
         },
         {
           icon: 'envelope',
-          routeName: 'Home'
+          routeName: 'Home',
         },
        {
           icon: 'world',
-          routeName: 'Home'
+          routeName: 'Home',
         },
       ],
       powerItem: [
         {
           icon: 'power',
-          routeName: 'Home'
+          routeName: 'Home',
         }
       ],
-
     }
-  }
+  },
+  methods:{
+    }
+
 }
 </script>
 
 <style>
+
 .menu-logo {
   justify-content: center;
   text-align: center;
-  margin: 30px auto 130px ;
+  margin: 30px auto 122px ;
 }
 .menu-logo .logo-image{
   width: 70px;
   height: 70px;
 
 }
-.menu-items{
-  /*position: relative;*/
-  /*overflow:visible;*/
+@media screen and (max-width: 1200px){
+  .menu-logo .logo-image{
+    width: 60px;
+    height: 60px;
+
+  }
 }
-.menu-items .menu-item{
+@media screen and (max-width: 990px){
+  .menu-logo .logo-image{
+    width: 50px;
+    height: 50px;
+  }
+}
+
+.menu-items{
+  position: relative;
+}
+
+.menu-items .menu-items-list{
+  position: relative;
+  padding: 0;
+}
+
+.menu-items .menu-items-list .menu-item{
   list-style: none;
   margin-bottom: 26px;
   text-align: center;
 
 }
-.menu-items .menu-item-selected{
+.menu-items .menu-items-list .menu-item .activate{
   color: #ff8f00;
 }
-.menu-items .menu-item .menu-indicator{
+
+
+.menu-items .menu-items-list .menu-item .menu-indicator{
+  position: absolute;
   height: 36px;
   width: 8px;
   background-color:#ff8f00 ;
   border: none;
   border-radius:6px 0 0 6px;
 }
-.menu-items .menu-item a {
+.menu-items .menu-items-list .menu-item a {
   text-decoration: none;
 }
 
@@ -128,22 +159,20 @@ export default {
   color: #b1ccee;
   font-size: 26px;
 }
-.powerItem{
+.menu-items .power-item{
   position: absolute;
-  bottom: -169px;
+  width: 100%;
+  text-align: center;
   align-items: center;
+  margin-top:144px;
 }
 
-.powerItem a{
+.power-item a{
   text-decoration: none;
 }
-.powerItem .fi{
+.power-item .fi{
   color: #b1ccee;
   font-size: 26px;
 }
-
-
-
-
 
 </style>
