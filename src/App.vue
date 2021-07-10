@@ -4,6 +4,8 @@
     <v-navigation-drawer
       app
       right
+      disable-resize-watcher
+      permanent
       :width="drawerSize"
     >
       <side-menu />
