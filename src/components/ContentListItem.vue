@@ -4,7 +4,11 @@
     :color=" selected ? '#f2f5ff' : 'transparent'"
     flat
   >
-    <div class="contentListItem-main-box">
+    <div
+        class="contentListItem-main-box"
+        :class=" $vnode.key === length ? '' : 'list-border-bottom'"
+        @click="test($vnode.key)"
+    >
       <div class="right-content">
         <v-card
           height="22"
@@ -75,6 +79,15 @@ export default {
     selected :{
       type:Boolean,
       default : true
+    },
+    length:{
+      type:Number,
+      default:0
+    }
+  },
+  methods:{
+    test(e){
+      console.log(e)
     }
   }
 }
@@ -85,9 +98,11 @@ export default {
   margin-bottom: 0;
 }
 .contentListItem-main-box{
-  border-bottom: solid 1px rgba(159, 165, 192, 0.58);
   margin:0 32px 21px 32px;
   display:flex
+}
+.list-border-bottom{
+  border-bottom: solid 1px rgba(159, 165, 192, 0.58);
 }
 .contentListItem-box {
   position: relative;

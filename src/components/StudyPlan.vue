@@ -7,21 +7,20 @@
     >
       <v-card-title>جدول برنامه مطالعاتی راه ابریشم آلاء</v-card-title>
       <div class="major-card">
-            <p class="major-card-text">رشته:</p>
-            <v-select
-                items="تجربی"
-                solo
-            ></v-select>
-
+        <p class="major-card-text">
+          رشته:
+        </p>
+        <v-select
+          items="تجربی"
+          solo
+        />
       </div>
       <v-expansion-panels
-          v-for="(item,i) in 5"
-          :key="i"
-          class="study-plan-expansion"
+        v-for="(item,i) in 5"
+        :key="i"
+        class="study-plan-expansion"
       >
-        <v-expansion-panel
-
-        >
+        <v-expansion-panel>
           <v-expansion-panel-header class="study-plan-expansion-header">
             <v-row>
               <v-col cols="4">
@@ -34,13 +33,14 @@
                 12 تیر
               </v-col>
             </v-row>
-
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-          <v-card elevation="0">
-            <v-sheet class="study-plan-sheet">فردا دیره، دیروز هم دیشب تموم شد، الان دقیقا لحظه ای هست که باید شروع کنی!</v-sheet>
-          </v-card>
-            <v-card></v-card>
+            <v-card elevation="0">
+              <v-sheet class="study-plan-sheet">
+                فردا دیره، دیروز هم دیشب تموم شد، الان دقیقا لحظه ای هست که باید شروع کنی!
+              </v-sheet>
+            </v-card>
+            <v-card />
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
