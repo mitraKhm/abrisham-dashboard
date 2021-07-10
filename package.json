@@ -52,7 +52,6 @@
       "vue/eqeqeq": "warn",
       "vue/key-spacing": "error",
       "vue/keyword-spacing": "error",
-      "vue/max-len": "warn",
       "vue/no-deprecated-scope-attribute": "warn",
       "vue/no-deprecated-slot-attribute": "warn",
       "vue/no-deprecated-slot-scope-attribute": "warn",
