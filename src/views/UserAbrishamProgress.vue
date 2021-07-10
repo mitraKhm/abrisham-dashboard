@@ -92,9 +92,21 @@ export default {
     }
   },
   created() {
-    // this.getStudyPlans()
+    this.getLessons()
   },
   methods: {
+    getLessons () {
+      axios.get('/api/v2/abrisham/lessons')
+      .then( response => {
+        console.log('gg', response)
+      })
+    },
+    getSets (productId) {
+      axios.get('/api/v2/product/' + productId + '/sets')
+      .then( response => {
+        console.log('gg', response)
+      })
+    },
     // getStudyPlans () {
     //   this.studyPlans.fetch({'studyPlan_id' : 1}, '/api/v2/plan')
     //   .then( (response) => {

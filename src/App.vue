@@ -37,6 +37,7 @@
 import "./assets/Fonts/Flaticons/css/uicons-regular-rounded.css"
 import "./assets/Fonts/IRANSans/css/font.scss"
 import SideMenu from "./components/SideMenu";
+import axios from "axios";
 export default {
   components: {SideMenu},
   computed: {
@@ -57,7 +58,21 @@ export default {
       return 80
     }
   },
+  created() {
+    this.login()
+  },
   methods: {
+    login () {
+      const access_token = window.localStorage.getItem('access_token')
+      if (!access_token) {
+        axios.post('/api/v2/login', {mobile: '09358745928', password: '0014258269'})
+            .then(response => {
+              window.localStorage.setItem('access_token', response.data.data.access_token)
+              axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.data.access_token
+            })
+      }
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token
+    },
     onResize () {
       this.$store.commit('updateWindowSize', { x: window.innerWidth, y: window.innerHeight })
     },
