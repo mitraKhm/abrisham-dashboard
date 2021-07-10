@@ -15,7 +15,9 @@
           class="menu-item"
         >
           <div class="menu-indicator" />
-          <router-link :to="{name: item.routeName} ">
+          <router-link
+            :to="{name: item.routeName} "
+          >
             <i
               class="fi"
               :class="('fi-rr-' + item.icon)"
@@ -40,8 +42,7 @@ export default {
   name: "SideMenu",
   data() {
     return {
-      sliderPosition:0,
-      selectedIndex:0,
+      selectedItem: false,
       menuItems: [
         {
           icon: 'home',
@@ -82,10 +83,6 @@ export default {
           routeName: 'Home'
         }
       ],
-      method:[
-
-
-      ]
 
     }
   }
@@ -97,8 +94,6 @@ export default {
   justify-content: center;
   text-align: center;
   margin: 30px auto 130px ;
-
-
 }
 .menu-logo .logo-image{
   width: 70px;
@@ -115,10 +110,20 @@ export default {
   text-align: center;
 
 }
+.menu-items .menu-item-selected{
+  color: #ff8f00;
+}
+.menu-items .menu-item .menu-indicator{
+  height: 36px;
+  width: 8px;
+  background-color:#ff8f00 ;
+  border: none;
+  border-radius:6px 0 0 6px;
+}
 .menu-items .menu-item a {
   text-decoration: none;
-
 }
+
 .menu-items .menu-item .fi{
   color: #b1ccee;
   font-size: 26px;
@@ -136,6 +141,8 @@ export default {
   color: #b1ccee;
   font-size: 26px;
 }
+
+
 
 
 
