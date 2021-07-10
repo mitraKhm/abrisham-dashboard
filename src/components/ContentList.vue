@@ -21,29 +21,6 @@
       </div>
     </slot>
     <slot name="filter">
-      <div class="d-flex justify-space-between v-select-box">
-        <div class="ml-xm-2 ml-5">
-          <v-select
-            :items="items"
-            :menu-props="{ bottom: true, offsetY: true }"
-            solo
-            append-icon="mdi-chevron-down"
-            dense
-            background-color="#eff3ff"
-            flat
-            placeholder="gtrh"
-          />
-        </div>
-        <v-select
-          :items="items"
-          :menu-props="{ bottom: true, offsetY: true }"
-          solo
-          append-icon="mdi-chevron-down"
-          dense
-          background-color="#eff3ff"
-          flat
-        />
-      </div>
     </slot>
     <div class="content-box">
       <content-list-item
