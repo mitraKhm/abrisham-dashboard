@@ -20,6 +20,13 @@ const routes = [
             /* webpackChunkName: "about" */
             '../views/Schedule.vue'
             )
+    },
+    {
+        path: '/user-abrisham-progress',
+        name: 'UserAbrishamProgress',
+        component: () => import(
+            '../views/UserAbrishamProgress.vue'
+            )
     }
 ]
 
