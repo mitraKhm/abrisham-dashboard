@@ -64,14 +64,14 @@ export default {
       return this.$store.getters['windowSize']
     },
     drawerSize () {
-      if (this.windowSize.x > 1920) {
-        return 130
+      if (this.windowSize.x <= 990) {
+        return 80
       } else
-      if (this.windowSize.x > 1200) {
+      if (this.windowSize.x <= 1200) {
         return 100
       } else
-      if (this.windowSize.x > 990) {
-        return 80
+      if (this.windowSize.x <= 1920) {
+        return 130
       }
       return 80
     }
