@@ -44,7 +44,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <study-plan />
+        <study-plan-group />
       </v-col>
     </v-row>
   </div>
@@ -56,13 +56,13 @@ import CommentBox from "../components/CommentBox";
 import ContentList from "../components/ContentList";
 import chipGroup from "../components/chipGroup";
 import videoBox from "../components/videoBox";
-import StudyPlan from "../components/StudyPlan";
+import StudyPlanGroup from "../components/StudyPlanGroup";
 import {StudyPlanList} from "../Models/StudyPlan";
 import axios from "axios";
 
 export default {
   name: 'Schedule',
-  components: {StudyPlan, ContentList, CommentBox, chipGroup, videoBox},
+  components: {StudyPlanGroup, ContentList, CommentBox, chipGroup, videoBox},
   data() {
     return {
       currentContent: new Content(),
