@@ -61,7 +61,7 @@ import {StudyPlanList} from "../Models/StudyPlan";
 import axios from "axios";
 
 export default {
-  name: 'Schedule',
+  name: 'UserAbrishamProgress',
   components: {StudyPlan, ContentList, CommentBox, chipGroup, videoBox},
   data() {
     return {
