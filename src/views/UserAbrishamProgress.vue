@@ -119,6 +119,12 @@ export default {
         return item
       } )
 
+      const hasSelected = lessons.find( item => item.selected )
+
+      if (!hasSelected && lessons.length > 0) {
+        lessons[0].selected = true
+      }
+
       return lessons
     },
     selectedLesson () {
