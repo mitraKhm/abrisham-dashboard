@@ -21,12 +21,14 @@
       </div>
     </slot>
     <slot name="filter" />
-    <div class="content-box">
-      <content-list-item
-        v-for="i in listLength"
-        :key="i"
-        :length="listLength"
-      />
+    <div class="content-list-items-box">
+      <div class="content-box">
+        <content-list-item
+          v-for="i in listLength"
+          :key="i"
+          :length="listLength"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -41,13 +43,22 @@ export default {
   data(){
     return {
       items: ['تست1', 'تست2', 'تست3', 'تست4'],
-      listLength:4,
+      listLength:8,
     }
   }
 }
 </script>
 
 <style>
+.content-list-items-box{
+  position: relative;
+  height: 100%;
+}
+.content-list-items-box .content-box {
+  position: absolute;
+  overflow: auto;
+  height: 100%;
+}
 .content-list-box .v-select-box .v-select--is-menu-active .v-input__control .v-input__slot{
   border:solid;
   background-color: transparent !important;

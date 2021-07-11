@@ -21,7 +21,10 @@
             md="8"
             cols="12"
           >
-            <chip-group v-model="lessons" title="درس" />
+            <chip-group
+              v-model="lessons"
+              title="درس"
+            />
           </v-col>
         </v-row>
       </v-col>

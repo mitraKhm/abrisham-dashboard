@@ -17,7 +17,7 @@
     <v-main>
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
-        <expansion-menu />
+        <expansion-menu v-if=" windowSize.x <=350" />
         <!-- If using vue-router -->
         <router-view />
       </v-container>
