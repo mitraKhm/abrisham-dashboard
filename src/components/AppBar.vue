@@ -1,29 +1,63 @@
 <template>
+  <v-app-bar
+    app
+    elevate-on-scroll
+    color="white"
+    class="d-flex justify-center align-center app-bar"
+  >
+    <div class="d-flex header-box justify-center align-center">
+      <v-img
+        src="@/assets/logotype.png"
+        class="header-logo-img"
+      />
+    </div>
+    <div class="d-flex justify-center align-center profile-box ">
+      <span
+        v-if="width.x > 350"
+        class="name"
+      >
+        شهاب عبادی
+      </span>
+      <v-avatar
+        v-if="width.x > 350"
+        class="avatar"
+      >
+        <img
+          src="https://cdn.vuetifyjs.com/images/john.jpg"
+          alt="John"
+        >
+      </v-avatar>
+      <i class="fi fi-rr-bell icon" />
 
-   <v-app-bar
-       app
-       elevate-on-scroll
-       color="white"
-       class="d-flex justify-center align-center app-bar"
-   >
-     <div class="d-flex header-box justify-center align-center" >
-       <v-img src="@/assets/logotype.png" class="header-logo-img">
-       </v-img>
-     </div>
-     <div class="d-flex justify-center align-center profile-box ">
-          <span class="name" v-if="width.x > 350">
-          شهاب عبادی
-        </span>
-       <v-avatar class="avatar" v-if="width.x > 350">
-         <img
-             src="https://cdn.vuetifyjs.com/images/john.jpg"
-             alt="John"
-         >
-       </v-avatar>
-       <i class="fi fi-rr-bell icon"></i>
-       <i class="fi fi-rr-menu-dots-vertical icon" v-if="width.x <= 350"></i>
-     </div>
-   </v-app-bar>
+      <div
+        v-if="width.x <= 350"
+        class="text-center"
+      >
+        <v-menu offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <i
+              v-bind="attrs"
+              class="fi fi-rr-menu-dots-vertical icon"
+              v-on="on"
+            />
+          </template>
+          <v-list>
+            <v-list-item>
+              <v-list-item-avatar>
+                <img
+                  src="https://cdn.vuetifyjs.com/images/john.jpg"
+                  alt="John"
+                >
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title> شهاب عبادی</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </div>
+    </div>
+  </v-app-bar>
 </template>
 
 <script>
@@ -36,6 +70,14 @@ export default {
         return {}
       }
     },
+  },
+  data(){
+    return {
+      items:[
+        { title: 'Click Me' },
+        { title: 'Click Me' },
+       ],
+    }
   }
 }
 </script>

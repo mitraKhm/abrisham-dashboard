@@ -20,8 +20,7 @@
         </v-chip>
       </div>
     </slot>
-    <slot name="filter">
-    </slot>
+    <slot name="filter" />
     <div class="content-box">
       <content-list-item
         v-for="i in listLength"
