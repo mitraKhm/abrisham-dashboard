@@ -58,6 +58,7 @@ export default {
   position: absolute;
   overflow: auto;
   height: 100%;
+  width: 100%;
 }
 .content-list-box .v-select-box .v-select--is-menu-active .v-input__control .v-input__slot{
   border:solid;
