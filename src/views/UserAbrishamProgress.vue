@@ -2,16 +2,34 @@
   <div class="schedule-page">
     <v-row>
       <v-col
-        xl="7"
+        xl="9"
         md="6"
         cols="12"
         order-md="2"
         class="d-flex d-md-block justify-center"
       >
-        <chip-group />
+        <v-row>
+          <v-col
+            xl="6"
+            md="6"
+            cols="12"
+          >
+            <chip-group v-model="majors" />
+          </v-col>
+          <v-col
+            xl="6"
+            md="6"
+            cols="12"
+          >
+            <chip-group
+              v-model="lessons"
+              title="درس"
+            />
+          </v-col>
+        </v-row>
       </v-col>
       <v-col
-        xl="5"
+        xl="3"
         md="6"
         cols="12"
         order-md="1"
@@ -27,7 +45,7 @@
         />
       </v-col>
       <v-col md="3">
-        <content-list>
+        <content-list-component :contents="contents" type="video">
           <template v-slot:filter>
             <div class="d-flex justify-space-between v-select-box">
               <div class="ml-xm-2 ml-5">
@@ -53,7 +71,7 @@
               />
             </div>
           </template>
-        </content-list>
+        </content-list-component>
       </v-col>
     </v-row>
     <v-row>
@@ -61,7 +79,7 @@
         <comment-box />
       </v-col>
       <v-col md="3">
-        <content-list />
+        <content-list-component :contents="contents" type="pamphlet" />
       </v-col>
     </v-row>
     <v-row>
@@ -73,9 +91,9 @@
 </template>
 <script>
 
-import {Content} from "../Models/Content";
+import { Content, ContentList } from "../Models/Content";
 import CommentBox from "../components/CommentBox";
-import ContentList from "../components/ContentList";
+import ContentListComponent from "../components/ContentList";
 import chipGroup from "../components/chipGroup";
 import videoBox from "../components/videoBox";
 import {StudyPlanList} from "../Models/StudyPlan";
@@ -84,28 +102,90 @@ import StudyPlanGroup from "@/components/StudyPlanGroup";
 
 export default {
   name: 'UserAbrishamProgress',
-  components: {StudyPlanGroup, ContentList, CommentBox, chipGroup, videoBox},
+  components: {StudyPlanGroup, ContentListComponent, CommentBox, chipGroup, videoBox},
   data() {
     return {
+      majors: [],
+      contents: new ContentList(),
       currentContent: new Content(),
       studyPlans: new StudyPlanList()
     }
   },
+  computed: {
+    lessons () {
+      let lessons = this.majors.filter( majorItem => majorItem.selected).map( item => item.lessons )[0]
+      lessons.map( item => {
+        item.color = 'blue'
+        return item
+      } )
+
+      const hasSelected = lessons.find( item => item.selected )
+
+      if (!hasSelected && lessons.length > 0) {
+        lessons[0].selected = true
+      }
+
+      return lessons
+    },
+    selectedLesson () {
+      return this.lessons.filter( item => item.selected )
+    }
+  },
+  watch : {
+    selectedLesson (newValue) {
+      this.getSets(newValue.id)
+    }
+  },
   created() {
     this.getLessons()
+    this.getSets(443)
+    this.getContents(906)
   },
   methods: {
     getLessons () {
       axios.get('/api/v2/abrisham/lessons')
       .then( response => {
-        console.log('gg', response)
+        console.log('getLessons', response)
+        response.data.forEach( (item, index) => {
+          this.majors.push({
+            id: index,
+            title: item.title,
+            lessons: item.lessons,
+            selected: false,
+            color: 'red'
+          })
+        })
+        this.setMajorSelected()
+      })
+    },
+    setMajorSelected () {
+      this.majors.forEach( mejorItem => {
+        mejorItem.lessons.forEach( lessonItem => {
+          if (lessonItem.selected) {
+            mejorItem.selected = true
+          }
+        })
       })
     },
     getSets (productId) {
       axios.get('/api/v2/product/' + productId + '/sets')
       .then( response => {
-        console.log('gg', response)
+        if (response.data.data.length > 0) {
+          this.getContents(response.data.data[0].id)
+        }
+        console.log('getSets', response)
       })
+    },
+    getContents (setId) {
+      axios.get('/api/v2/set/' + setId)
+      .then( response => {
+        console.log('getContents', response)
+        console.log('getContents', response.data.data.contents)
+        this.contents = new ContentList(response.data.data.contents)
+      })
+    },
+    setComment () {
+
     },
     // getStudyPlans () {
     //   this.studyPlans.fetch({'studyPlan_id' : 1}, '/api/v2/plan')
