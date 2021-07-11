@@ -76,7 +76,7 @@
               />
             </div>
           </template>
-        </content-list>
+        </content-list-component>
       </v-col>
     </v-row>
     <v-row>
@@ -84,7 +84,7 @@
         <comment-box />
       </v-col>
       <v-col md="4">
-        <content-list />
+        <content-list-component :contents="contents" type="pamphlet" />
       </v-col>
     </v-row>
     <v-row>
@@ -96,9 +96,9 @@
 </template>
 <script>
 
-import {Content} from "../Models/Content";
+import { Content, ContentList } from "../Models/Content";
 import CommentBox from "../components/CommentBox";
-import ContentList from "../components/ContentList";
+import ContentListComponent from "../components/ContentList";
 import chipGroup from "../components/chipGroup";
 import videoBox from "../components/videoBox";
 import StudyPlan from "../components/StudyPlan";
@@ -108,10 +108,11 @@ import {SetList, Set} from "@/Models/Set";
 
 export default {
   name: 'UserAbrishamProgress',
-  components: {StudyPlan, ContentList, CommentBox, chipGroup, videoBox},
+  components: {StudyPlan, ContentListComponent, CommentBox, chipGroup, videoBox},
   data() {
     return {
       majors: [],
+      contents: new ContentList(),
       currentContent: new Content(),
       studyPlans: new StudyPlanList(),
       sets: new SetList(),
@@ -125,10 +126,25 @@ export default {
         item.color = 'blue'
         return item
       } )
+
+      const hasSelected = lessons.find( item => item.selected )
+
+      if (!hasSelected && lessons.length > 0) {
+        lessons[0].selected = true
+      }
+
       return lessons
     },
     filteredSets () {
       return this.sets.list.filter(set => this.setFilterId === 'all' || this.setFilterId === set.id)
+    },
+    selectedLesson () {
+      return this.lessons.filter( item => item.selected )
+    }
+  },
+  watch : {
+    selectedLesson (newValue) {
+      this.getSets(newValue.id)
     }
   },
   created() {
@@ -165,6 +181,9 @@ export default {
     getSets (productId) {
       axios.get('/api/v2/product/' + productId + '/sets')
       .then( response => {
+        if (response.data.data.length > 0) {
+          this.getContents(response.data.data[0].id)
+        }
         console.log('getSets', response)
         this.sets = new SetList(response.data.data)
         this.sets.list.unshift(new Set({id: "all", short_title: "همه"}))
@@ -175,6 +194,7 @@ export default {
       .then( response => {
         console.log('getContents', response)
         console.log('getContents', response.data.data.contents)
+        this.contents = new ContentList(response.data.data.contents)
       })
     },
     setComment () {
