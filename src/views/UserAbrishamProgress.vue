@@ -28,8 +28,30 @@
       </v-col>
       <v-col md="3">
         <content-list>
-          <template v-slot:header>
-            test
+          <template v-slot:filter>
+            <div class="d-flex justify-space-between v-select-box">
+              <div class="ml-xm-2 ml-5">
+                <v-select
+                    :items="items"
+                    :menu-props="{ bottom: true, offsetY: true }"
+                    solo
+                    append-icon="mdi-chevron-down"
+                    dense
+                    background-color="#eff3ff"
+                    flat
+                    placeholder="gtrh"
+                />
+              </div>
+              <v-select
+                  :items="items"
+                  :menu-props="{ bottom: true, offsetY: true }"
+                  solo
+                  append-icon="mdi-chevron-down"
+                  dense
+                  background-color="#eff3ff"
+                  flat
+              />
+            </div>
           </template>
         </content-list>
       </v-col>
@@ -70,9 +92,21 @@ export default {
     }
   },
   created() {
-    // this.getStudyPlans()
+    this.getLessons()
   },
   methods: {
+    getLessons () {
+      axios.get('/api/v2/abrisham/lessons')
+      .then( response => {
+        console.log('gg', response)
+      })
+    },
+    getSets (productId) {
+      axios.get('/api/v2/product/' + productId + '/sets')
+      .then( response => {
+        console.log('gg', response)
+      })
+    },
     // getStudyPlans () {
     //   this.studyPlans.fetch({'studyPlan_id' : 1}, '/api/v2/plan')
     //   .then( (response) => {

@@ -21,29 +21,6 @@
       </div>
     </slot>
     <slot name="filter">
-      <div class="d-flex justify-space-between v-select-box">
-        <div class="ml-xm-2 ml-5">
-          <v-select
-            :items="items"
-            :menu-props="{ bottom: true, offsetY: true }"
-            solo
-            append-icon="mdi-chevron-down"
-            dense
-            background-color="#eff3ff"
-            flat
-            placeholder="gtrh"
-          />
-        </div>
-        <v-select
-          :items="items"
-          :menu-props="{ bottom: true, offsetY: true }"
-          solo
-          append-icon="mdi-chevron-down"
-          dense
-          background-color="#eff3ff"
-          flat
-        />
-      </div>
     </slot>
     <div class="content-box">
       <content-list-item
@@ -65,7 +42,7 @@ export default {
   data(){
     return {
       items: ['تست1', 'تست2', 'تست3', 'تست4'],
-      listLength:6,
+      listLength:4,
     }
   }
 }
@@ -85,6 +62,8 @@ export default {
 .content-list-box {
   border-radius: 30px;
   border: solid 6px #eff3ff;
+  height: 100%;
+  overflow: hidden;
 }
 .content-box {
   /*margin-top: 43px;*/
@@ -105,21 +84,15 @@ export default {
   margin: 0 26px;
 }
 @media screen and (max-width: 1200px){
-  .content-box {
-    /*margin-top: 20px;*/
-  }
   .content-list-box .v-select-box{
     margin: 0 26px;
   }
   .content-list-box .slot-header-box{
-    flex-direction: column;
     margin: 13px 11px
   }
 }
 @media screen and (max-width: 576px) {
-  .content-box {
-    /*margin-top: 25px;*/
-  }
+
 }
 @media screen and (max-width: 350px) {
   .content-list-box .slot-header-box{
@@ -138,9 +111,6 @@ export default {
   }
 }
 @media screen and (max-width: 320px) {
-  .content-box {
-    /*margin-top: 23px;*/
-  }
 
 }
 </style>

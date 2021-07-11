@@ -29,7 +29,7 @@
           </v-card>
           <div
             v-if="data[0].seen"
-            class="d-flex justify-center align-center"
+            class="d-flex seen justify-center align-center"
           >
             <i class="fi fi-rr-check icon" />
           </div>
