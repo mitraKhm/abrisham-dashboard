@@ -1,5 +1,7 @@
 <template>
-  <v-card>
+  <v-card
+  class="rounded-lg"
+  >
     <template>
       <v-expansion-panels
         flat
@@ -8,16 +10,19 @@
           <v-expansion-panel-header
             flat
           >
-            <i class="fi fi-rr-calendar" />
+            <i class="fi"
+               :class="'fi-rr-' + headerData[0].icon"
+            />
             <p>
-              برنامه
+              {{headerData[0].title }}
             </p>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <v-list>
               <v-list-item
-                v-for="(i , index) in menuItems"
+                v-for="(i , index) in listData"
                 :key="index"
+                @click="changeSelectedItem(index)"
               >
                 <v-list-item-icon>
                   <i
@@ -45,7 +50,7 @@ export default {
           title:'خانه',
           icon: 'home',
           routeName: 'Home',
-          selected:false
+          selected:true
         },
         {
           title:'فیلم ها',
@@ -69,7 +74,7 @@ export default {
           title:'عملکرد من',
           icon: 'list-check',
           routeName: 'Home',
-          selected:true
+          selected:false
 
         },
         {
@@ -91,11 +96,34 @@ export default {
           selected:false
         },
       ],
-
+      headerData: {},
+      listData: {}
     }
   },
-  computed:{
-
+ created() {
+   this.updateHeaderData()
+   this.updatelistData()
+ },
+  methods:{
+    changeSelectedItem(selectedId){
+      console.log('im run')
+      this.menuItems.map(i =>{
+        i.selected = false
+      })
+      this.menuItems[selectedId].selected = true
+      this.updateHeaderData()
+      this.updatelistData()
+    },
+    updateHeaderData(){
+      this.headerData = this.menuItems.filter( item => {
+        return item.selected
+      })
+    },
+    updatelistData(){
+      this.listData= this.menuItems.filter( item => {
+        return !item.selected
+      })
+     }
   }
 }
 </script>

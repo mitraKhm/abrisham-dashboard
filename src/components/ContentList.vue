@@ -65,6 +65,7 @@ export default {
   },
   created() {
     this.listData = this.contents.list.filter( item => {
+      console.log(item )
       if( this.type === 'video'){
           return item.type === 8
       }

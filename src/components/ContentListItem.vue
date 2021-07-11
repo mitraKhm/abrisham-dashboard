@@ -7,7 +7,7 @@
   >
     <div
       class="d-flex contentListItem-main-box"
-      :class=" $vnode.key === length ? '' : 'list-border-bottom'"
+      :class=" $vnode.key === length-1 ? '' : 'list-border-bottom'"
     >
       <div class="right-content">
         <v-card
