@@ -39,34 +39,39 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col md="9">
+      <v-col md="8">
         <video-box
           :content="currentContent"
         />
       </v-col>
-      <v-col md="3">
+      <v-col md="4">
         <content-list>
           <template v-slot:filter>
             <div class="d-flex justify-space-between v-select-box">
               <div class="ml-xm-2 ml-5">
                 <v-select
-                  :items="items"
+                  value="all"
+                  :items="sets.list"
+                  item-text="short_title"
+                  item-value="id"
                   :menu-props="{ bottom: true, offsetY: true }"
                   solo
                   append-icon="mdi-chevron-down"
                   dense
                   background-color="#eff3ff"
                   flat
-                  placeholder="gtrh"
+                  placeholder="انتخاب فرسنگ ها"
                 />
               </div>
               <v-select
-                :items="items"
+                :disabled="setFilterId === 'all'"
+                :items="filteredSets.section"
                 :menu-props="{ bottom: true, offsetY: true }"
                 solo
                 append-icon="mdi-chevron-down"
                 dense
                 background-color="#eff3ff"
+                placeholder="همه"
                 flat
               />
             </div>
@@ -75,10 +80,10 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col md="9">
+      <v-col md="8">
         <comment-box />
       </v-col>
-      <v-col md="3">
+      <v-col md="4">
         <content-list />
       </v-col>
     </v-row>
@@ -99,6 +104,7 @@ import videoBox from "../components/videoBox";
 import StudyPlan from "../components/StudyPlan";
 import {StudyPlanList} from "../Models/StudyPlan";
 import axios from "axios";
+import {SetList, Set} from "@/Models/Set";
 
 export default {
   name: 'UserAbrishamProgress',
@@ -107,7 +113,9 @@ export default {
     return {
       majors: [],
       currentContent: new Content(),
-      studyPlans: new StudyPlanList()
+      studyPlans: new StudyPlanList(),
+      sets: new SetList(),
+      setFilterId: "all"
     }
   },
   computed: {
@@ -117,8 +125,10 @@ export default {
         item.color = 'blue'
         return item
       } )
-
       return lessons
+    },
+    filteredSets () {
+      return this.sets.list.filter(set => this.setFilterId === 'all' || this.setFilterId === set.id)
     }
   },
   created() {
@@ -156,6 +166,8 @@ export default {
       axios.get('/api/v2/product/' + productId + '/sets')
       .then( response => {
         console.log('getSets', response)
+        this.sets = new SetList(response.data.data)
+        this.sets.list.unshift(new Set({id: "all", short_title: "همه"}))
       })
     },
     getContents (setId) {
