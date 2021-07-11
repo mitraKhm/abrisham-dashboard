@@ -21,17 +21,17 @@
       </v-col>
     </v-row>
     <v-row align-stretch>
-      <v-col md="9">
+      <v-col md="8">
         <video-box
           :content="currentContent"
         />
       </v-col>
-      <v-col md="3">
+      <v-col md="4">
         <content-list />
       </v-col>
     </v-row>
     <v-row>
-      <v-col md="9">
+      <v-col md="8">
         <div class="d-flex">
           <p class="video-box-title">
             درسنامه فرسنگ هشتم (قسمت بیست و سوم)، فصل سوم شیمی یازدهم (قسمت
@@ -40,7 +40,7 @@
         </div>
         <comment-box />
       </v-col>
-      <v-col md="3">
+      <v-col md="4">
         <content-list />
       </v-col>
     </v-row>
@@ -51,6 +51,7 @@
     </v-row>
   </div>
 </template>
+
 <script>
 
 import {Content} from "../Models/Content";
