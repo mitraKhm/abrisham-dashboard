@@ -625,7 +625,7 @@ export default {
 }
 
 .theme--light.v-card .study-plan-card {
-  /*background-color: #e1f0ff;*/
+  background-color: #e1f0ff;
   color: #3e5480;
   margin-top: 10px;
 }
@@ -651,9 +651,8 @@ export default {
 }
 
 .v-card__subtitle, .v-card__text, .v-card__title .study-plan-card {
-  margin-right: 0px;
-  padding-right: 0px;
-  padding-left: 0px;
+  margin-right: 0;
+  padding: 0 5px 6px;
 }
 
 .study-plan .study-plan-card .study-plan-card-hours {
@@ -663,7 +662,10 @@ export default {
   padding: 2px 6px 0 6px;
 }
 
-
+.study-plan-card .theme--light.v-card > .v-card__text, .theme--light.v-card > .v-card__subtitle {
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #e1f0ff;
+}
 </style>
 <style>
 .v-text-field fieldset, .v-text-field .v-input__control, .v-text-field .v-input__slot {

@@ -1,25 +1,28 @@
 <template>
   <div>
+    <!--    timeTable-header-->
     <div class="timeTable">
       <div class="timeTable-header">
-        <div
-          v-if="canShowTimeTableHeader(startTime)"
-          class="timeTableHeader"
-          :style="{ flex: ('0 0 ' + customizedHeaderWidth() + 'px') }"
-        />
-        <div
-          v-for="i in timeArray"
-          :key="i"
-          class="timeTableHeader"
-          :style="{ flex: ('0 0 ' + headerWidth + 'px') }"
-        >
-          <v-row>
-            <v-col>
-              <div class="timeTableHeaderNumber">
-                {{ i }}
-              </div>
-            </v-col>
-          </v-row>
+        <div class="timeTable-header-number-boxes">
+          <div
+            v-if="canShowTimeTableHeader(startTime)"
+            class="timeTableHeader"
+            :style="{ flex: ('0 0 ' + customizedHeaderWidth() + 'px') }"
+          />
+          <div
+            v-for="i in timeArray"
+            :key="i"
+            class="timeTableHeader"
+            :style="{ flex: ('0 0 ' + headerWidth + 'px') }"
+          >
+            <v-row>
+              <v-col>
+                <div class="timeTableHeaderNumber">
+                  {{ i }}
+                </div>
+              </v-col>
+            </v-row>
+          </div>
         </div>
       </div>
       <div
@@ -34,7 +37,7 @@
             right: calcPosition(p.start, p.end).right,
             width: calcPosition(p.start, p.end).width,
             backgroundColor: p.backgroundColor,
-            // borderColor: p.borderColor,
+            borderColor: p.borderColor,
             color: p.textColor
           }"
           @click="showPlanDetails(p.id)"
@@ -172,10 +175,9 @@ export default {
     position: relative;
     overflow-x: scroll;
     background-color: white;
-    border-radius: 30px;
 }
 
-.timeTable-header,
+.timeTable-header-number-boxes,
 .timeTable-body {
     display: flex;
 }
@@ -188,17 +190,25 @@ export default {
 }
 
 .timeTableHeaderNumber {
-    position: relative;
-    background-color: white;
-    width: 40px;
-    height: 40px;
-    right: 38px;
-    border-radius: 50%;
-    font-size: 1rem;
+  position: relative;
+  background-color: white;
+  width: 30px;
+  height: 30px;
+  right: 38px;
+  border-radius: 50%;
+  padding: 5px 7px 1px;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #333333;
 }
 
 .timeTable-body {
-    background: white;
+    background-color: white;
     height: 70px;
 }
 
