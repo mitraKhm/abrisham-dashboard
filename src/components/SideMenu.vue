@@ -100,7 +100,6 @@ export default {
 <style>
 
 .menu-logo {
-  justify-content: center;
   text-align: center;
   margin: 30px auto 122px ;
 }
@@ -113,13 +112,38 @@ export default {
   .menu-logo .logo-image{
     width: 60px;
     height: 60px;
-
+  }
+  .menu-logo {
+    text-align: center;
+    margin: 20px auto 67px ;
+  }
+  .menu-items .menu-items-list .menu-item{
+    list-style: none;
+    margin-bottom:16px !important;
+    text-align: center;
+  }
+  .menu-items .menu-item .fi{
+    color: #b1ccee;
+    font-size: 23px;
   }
 }
 @media screen and (max-width: 990px){
   .menu-logo .logo-image{
     width: 50px;
     height: 50px;
+  }
+  .menu-logo {
+    text-align: center;
+    margin: 20px auto 58px ;
+  }
+  .menu-items .menu-items-list .menu-item{
+    list-style: none;
+    margin-bottom:10px !important;
+    text-align: center;
+  }
+  .menu-items .menu-item .fi{
+    color: #b1ccee;
+    font-size: 23px;
   }
 }
 
@@ -167,10 +191,10 @@ export default {
   margin-top:144px;
 }
 
-.power-item a{
+.menu-items .power-item a{
   text-decoration: none;
 }
-.power-item .fi{
+.menu-items .power-item .fi{
   color: #b1ccee;
   font-size: 26px;
 }
