@@ -1,8 +1,8 @@
 <template>
+  <!--  :color=" selected ? '#f2f5ff' : 'transparent'"-->
   <v-card
     width="100%"
     class="rounded-0 transparent"
-    :color=" selected ? '#f2f5ff' : 'transparent'"
     flat
   >
     <div
@@ -11,41 +11,40 @@
     >
       <div class="right-content">
         <v-card
-          v-if="content.lesson"
+          v-if="false"
           height="22"
           class="mb-2 rounded-pill text-center text-caption"
           flat
           dark
           color="#009498"
         >
-          {{ content.lesson }}
+          {{ content }}
         </v-card>
         <div class="contentListItem-box">
           <v-card
-            v-if="content.type === 8"
+            v-if="type === 'video'"
             flat
             class="rounded-card"
           >
             <v-img
-              v-if="content.type === 8"
               :src="content.photo"
             />
           </v-card>
           <div
-            v-if="data[0].seen"
+            v-if="false"
             class="d-flex seen justify-center align-center"
           >
             <i class="fi fi-rr-check icon" />
           </div>
           <v-img
-            v-if="content.type === 1"
+            v-if="type === 'pamphlet'"
             src="../assets/pdf.png"
           />
         </div>
       </div>
       <div class="left-content">
         <v-sheet
-          v-if="true"
+          v-if="false"
           text-color="#3e5480"
           depressed
           height="22"
@@ -55,26 +54,25 @@
         >
           <i class="fi fi-rr-clock ml-2" />
           <div>
-            <span>{{ data[0].time1 }}</span>
+            <span />
             <span> الی </span>
-            <span>{{ data[0].time2 }}</span>
+            <span />
           </div>
         </v-sheet>
         <v-sheet
-          v-else
+          v-if="false"
           class="mb-2"
           color="transparent"
           height="22"
         />
         <div class="d-flex flex-column justify-center title-box">
           <p class="contentListItem-title ">
-            {{ content.title }}
+            {{ content.short_title }}
           </p>
           <p
-            v-if="content.description"
-            class="contentListItem-description "
+            class="contentListItem-description"
           >
-            {{ content.description }}
+            {{ content.title }}
           </p>
         </div>
       </div>
@@ -86,54 +84,34 @@
 export default {
   name: "ContentListItem",
   props: {
-    data: {
-      type: Array,
+    content: {
+      type: Object,
       default: () => {
-        return [
-          {
-            // eslint-disable-next-line vue/max-len
-            title: 'جلسه فیلان - فرسنگ هشتم جلسه فیلان - فرسنگ هشتم جلسه فیلان - فرسنگ هشتم ',
-            // eslint-disable-next-line vue/max-len
-            description: '(قسمت بیست و سوم)، فصل سوم',
-            seen: true,
-            time1: '12',
-            time2: '19'
-          },
-        ]
-      }
+        return {}
+      },
     },
-    selected: {
+    type: {
       type: Boolean,
-      default: true
+      default: false
     },
     length: {
       type: Number,
       default: 0
     },
-    content: {
-      type: Object,
-      default: () => {
-        return {
-          type: 8,
-          title: ' جلسه فیلان - ',
-          seen: true,
-          time1: '12',
-          time2: '19',
-          photo: 'https://cdn.alaatv.com/media/thumbnails/906/906000.jpg',
-          description: 'gvvvbvbnn',
-          lesson:'a',
-        }
-      },
+  },
+  methods: {},
+  data(){
+    return {
     }
   },
-  methods: {}
+
 }
 </script>
-
 <style scoped>
 .v-application p {
   margin-bottom: 0;
 }
+
 /*::-webkit-scrollbar {*/
 /*  width: 20px;*/
 /*}*/
@@ -149,12 +127,15 @@ export default {
 .contentListItem-main-box {
   margin: 0 32px 21px 32px;
 }
+
 .list-border-bottom {
   border-bottom: solid 1px rgba(159, 165, 192, 0.58);
 }
+
 .contentListItem-box {
   position: relative;
 }
+
 .contentListItem-box .seen {
   height: 54px;
   width: 96px;
@@ -192,30 +173,37 @@ export default {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
+
 .contentListItem-main-box .left-content .time-sheet {
   font-size: 12px;
 }
+
 .contentListItem-box .rounded-card {
   width: 96px;
   height: 54px;
   border-radius: 10px;
 }
+
 .right-content {
   margin-bottom: 21px;
 }
+
 .left-content {
   margin-right: 15px;
   width: 100%;
   height: 100%;
 }
+
 .left-content .title-box {
   height: 100%;
   width: 100%;
 }
+
 @media screen and (max-width: 1200px) {
   .contentListItem-box {
     position: relative;
   }
+
   .contentListItem-main-box {
     width: 100%;
     margin: 0 11px 21px 11px;
@@ -241,6 +229,7 @@ export default {
   .left-content {
     margin-right: 10px;
   }
+
   .contentListItem-main-box .left-content .time-sheet {
     font-size: 12px;
   }

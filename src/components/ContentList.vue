@@ -24,9 +24,11 @@
     <div class="content-list-items-box">
       <div class="content-box">
         <content-list-item
-          v-for="i in listLength"
-          :key="i"
-          :length="listLength"
+          v-for="(i , index) in listData"
+          :key="index"
+          :length="listData.length"
+          :content="i"
+          :type="type"
         />
       </div>
     </div>
@@ -35,16 +37,41 @@
 
 <script>
 import ContentListItem from '../components/ContentListItem'
+import {Content} from "../Models/Content";
 export default {
   name: "ContentList",
   components : {
     ContentListItem
   },
+  props:{
+    contents:{
+      type:Content,
+      default :() => {
+        return {}
+      }
+    },
+    type:{
+      type:String,
+      default:''
+    }
+  },
   data(){
     return {
       items: ['تست1', 'تست2', 'تست3', 'تست4'],
       listLength:8,
+      listData:{},
+      dataType:''
     }
+  },
+  created() {
+    this.listData = this.contents.list.filter( item => {
+      if( this.type === 'video'){
+          return item.type === 8
+      }
+      if(this.type === 'pamphlet'){
+        return item.type === 1
+      }
+    })
   }
 }
 </script>
