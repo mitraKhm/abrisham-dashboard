@@ -17,45 +17,7 @@
     <v-main>
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
-        <v-card width="200px">
-          <template>
-            <v-expansion-panels
-              flat
-            >
-              <v-expansion-panel>
-                <v-expansion-panel-header
-                  flat
-                >
-                  <i class="fi fi-rr-calendar" />
-
-                  <p>
-                    برنامه
-                  </p>
-                </v-expansion-panel-header>
-                <v-expansion-panel-content>
-                  <v-list>
-                    <v-divider />
-                    <v-list-item>
-                      <v-list-item-title> شهاب عبادی </v-list-item-title>
-                    </v-list-item>
-                    <v-divider />
-                    <v-list-item>
-                      <v-list-item-content>
-                        <v-list-item-title> شهاب عبادی</v-list-item-title>
-                      </v-list-item-content>
-                    </v-list-item>
-                    <v-divider />
-                    <v-list-item>
-                      <v-list-item-content>
-                        <v-list-item-title> شهاب عبادی</v-list-item-title>
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-list>
-                </v-expansion-panel-content>
-              </v-expansion-panel>
-            </v-expansion-panels>
-          </template>
-        </v-card>
+        <expansion-menu />
         <!-- If using vue-router -->
         <router-view />
       </v-container>
@@ -72,17 +34,11 @@ import "./assets/Fonts/Flaticons/css/uicons-regular-rounded.css"
 import "./assets/Fonts/IRANSans/css/font.scss"
 import AppBar  from "./components/AppBar";
 import SideMenu from "./components/SideMenu";
+import ExpansionMenu from "./components/ExpansionMenu";
 export default {
-  components: {SideMenu , AppBar},
+  components: {SideMenu , AppBar , ExpansionMenu},
   data(){
     return {
-      date: null,
-      trip: {
-        name: '',
-        location: null,
-        start: null,
-        end: null,
-      },
     }
   },
   computed: {
