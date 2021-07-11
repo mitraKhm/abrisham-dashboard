@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="side-menu">
     <div class="menu-logo">
       <img
         src="../assets/image/logo.png"
@@ -22,22 +22,26 @@
             :to="{name: item.routeName} "
           >
             <i
-              class="fi activeMaryam"
+              class="fi"
               :class="['fi-rr-' + item.icon , $route.name===item.routeName ? 'activate' :'']"
             />
           </router-link>
         </li>
       </ul>
-      <div class="power-item">
-        <router-link
-          :to="{name: powerItem.routeName}"
-        >
-          <i
-            class="fi"
-            :class="('fi-rr-' + powerItem[0].icon)"
-          />
-        </router-link>
-      </div>
+    </div>
+    <div class="power-item">
+      <div
+        v-if="$route.name==='Home'"
+        class="menu-indicator"
+      />
+      <router-link
+        :to="{name: 'Home'}"
+      >
+        <i
+          class="fi fi-rr-power"
+          :class="[$route.name==='Home' ? 'activate' :'']"
+        />
+      </router-link>
     </div>
   </div>
 </template>
@@ -82,13 +86,7 @@ export default {
           icon: 'world',
           routeName: 'Home',
         },
-      ],
-      powerItem: [
-        {
-          icon: 'power',
-          routeName: 'Home',
-        }
-      ],
+      ]
     }
   },
   methods:{
@@ -101,26 +99,33 @@ export default {
 
 .menu-logo {
   text-align: center;
-  margin: 30px auto 122px ;
+  margin: 30px auto 130px ;
+  height: 70px;
+  line-height: 70px;
 }
 .menu-logo .logo-image{
   width: 70px;
   height: 70px;
+  line-height: 70px;
 
 }
 @media screen and (max-width: 1200px){
+  .menu-logo {
+    text-align: center;
+    margin: 20px auto 76px ;
+    height: 60px;
+    line-height: 60px;
+  }
   .menu-logo .logo-image{
     width: 60px;
     height: 60px;
   }
-  .menu-logo {
-    text-align: center;
-    margin: 20px auto 67px ;
-  }
+
   .menu-items .menu-items-list .menu-item{
     list-style: none;
     margin-bottom:16px !important;
     text-align: center;
+    vertical-align: middle
   }
   .menu-items .menu-item .fi{
     color: #b1ccee;
@@ -128,18 +133,23 @@ export default {
   }
 }
 @media screen and (max-width: 990px){
+  .menu-logo {
+    text-align: center;
+    margin: 20px auto 66px ;
+    height: 50px;
+    line-height: 50px;
+  }
   .menu-logo .logo-image{
     width: 50px;
     height: 50px;
   }
-  .menu-logo {
-    text-align: center;
-    margin: 20px auto 58px ;
-  }
+
   .menu-items .menu-items-list .menu-item{
     list-style: none;
     margin-bottom:10px !important;
     text-align: center;
+
+
   }
   .menu-items .menu-item .fi{
     color: #b1ccee;
@@ -162,12 +172,12 @@ export default {
   text-align: center;
 
 }
-.menu-items .menu-items-list .menu-item .activate{
-  color: #ff8f00;
+.menu-items .menu-items-list .menu-item .activate , .side-menu .power-item .activate{
+  color: #ff8f00 !important;
 }
 
 
-.menu-items .menu-items-list .menu-item .menu-indicator{
+ .side-menu .menu-indicator{
   position: absolute;
   height: 36px;
   width: 8px;
@@ -182,21 +192,26 @@ export default {
 .menu-items .menu-item .fi{
   color: #b1ccee;
   font-size: 26px;
+  position: relative;
+  top: 5px;
+
 }
-.menu-items .power-item{
+.side-menu .power-item{
   position: absolute;
   width: 100%;
   text-align: center;
-  align-items: center;
-  margin-top:144px;
+  bottom: 0;
 }
 
-.menu-items .power-item a{
+.side-menu .power-item a{
   text-decoration: none;
 }
-.menu-items .power-item .fi{
+.side-menu .power-item .fi{
   color: #b1ccee;
   font-size: 26px;
+  position: relative;
+  top: 5px;
+
 }
 
 </style>

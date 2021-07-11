@@ -10,15 +10,15 @@
       >
         <v-row>
           <v-col
-            xl="4"
-            md="4"
+            xl="6"
+            md="6"
             cols="12"
           >
             <chip-group v-model="majors" />
           </v-col>
           <v-col
-            xl="8"
-            md="8"
+            xl="6"
+            md="6"
             cols="12"
           >
             <chip-group
@@ -45,7 +45,7 @@
         />
       </v-col>
       <v-col md="3">
-        <content-list>
+        <content-list-component :contents="contents" type="video">
           <template v-slot:filter>
             <div class="d-flex justify-space-between v-select-box">
               <div class="ml-xm-2 ml-5">
@@ -71,7 +71,7 @@
               />
             </div>
           </template>
-        </content-list>
+        </content-list-component>
       </v-col>
     </v-row>
     <v-row>
@@ -79,7 +79,7 @@
         <comment-box />
       </v-col>
       <v-col md="3">
-        <content-list />
+        <content-list-component :contents="contents" type="pamphlet" />
       </v-col>
     </v-row>
     <v-row>
@@ -91,9 +91,9 @@
 </template>
 <script>
 
-import {Content} from "../Models/Content";
+import { Content, ContentList } from "../Models/Content";
 import CommentBox from "../components/CommentBox";
-import ContentList from "../components/ContentList";
+import ContentListComponent from "../components/ContentList";
 import chipGroup from "../components/chipGroup";
 import videoBox from "../components/videoBox";
 import StudyPlan from "../components/StudyPlan";
@@ -102,17 +102,38 @@ import axios from "axios";
 
 export default {
   name: 'UserAbrishamProgress',
-  components: {StudyPlan, ContentList, CommentBox, chipGroup, videoBox},
+  components: {StudyPlan, ContentListComponent, CommentBox, chipGroup, videoBox},
   data() {
     return {
       majors: [],
+      contents: new ContentList(),
       currentContent: new Content(),
       studyPlans: new StudyPlanList()
     }
   },
   computed: {
     lessons () {
-      return this.majors.filter( majorItem => majorItem.selected).map( item => item.lessons )[0]
+      let lessons = this.majors.filter( majorItem => majorItem.selected).map( item => item.lessons )[0]
+      lessons.map( item => {
+        item.color = 'blue'
+        return item
+      } )
+
+      const hasSelected = lessons.find( item => item.selected )
+
+      if (!hasSelected && lessons.length > 0) {
+        lessons[0].selected = true
+      }
+
+      return lessons
+    },
+    selectedLesson () {
+      return this.lessons.filter( item => item.selected )
+    }
+  },
+  watch : {
+    selectedLesson (newValue) {
+      this.getSets(newValue.id)
     }
   },
   created() {
@@ -131,7 +152,7 @@ export default {
             title: item.title,
             lessons: item.lessons,
             selected: false,
-            color: '#ffffff'
+            color: 'red'
           })
         })
         this.setMajorSelected()
@@ -149,6 +170,9 @@ export default {
     getSets (productId) {
       axios.get('/api/v2/product/' + productId + '/sets')
       .then( response => {
+        if (response.data.data.length > 0) {
+          this.getContents(response.data.data[0].id)
+        }
         console.log('getSets', response)
       })
     },
@@ -157,6 +181,7 @@ export default {
       .then( response => {
         console.log('getContents', response)
         console.log('getContents', response.data.data.contents)
+        this.contents = new ContentList(response.data.data.contents)
       })
     },
     setComment () {
