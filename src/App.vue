@@ -10,13 +10,52 @@
     >
       <side-menu />
     </v-navigation-drawer>
-      <app-bar
+    <app-bar
       :width="windowSize"
-      />
+    />
     <!-- Sizes your content based upon application components -->
     <v-main>
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
+        <v-card width="200px">
+          <template>
+            <v-expansion-panels
+              flat
+            >
+              <v-expansion-panel>
+                <v-expansion-panel-header
+                  flat
+                >
+                  <i class="fi fi-rr-calendar" />
+
+                  <p>
+                    برنامه
+                  </p>
+                </v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  <v-list>
+                    <v-divider />
+                    <v-list-item>
+                      <v-list-item-title> شهاب عبادی </v-list-item-title>
+                    </v-list-item>
+                    <v-divider />
+                    <v-list-item>
+                      <v-list-item-content>
+                        <v-list-item-title> شهاب عبادی</v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
+                    <v-divider />
+                    <v-list-item>
+                      <v-list-item-content>
+                        <v-list-item-title> شهاب عبادی</v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-list>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+            </v-expansion-panels>
+          </template>
+        </v-card>
         <!-- If using vue-router -->
         <router-view />
       </v-container>
@@ -25,9 +64,7 @@
     <v-footer app>
       <!-- -->
     </v-footer>
-
   </v-app>
-
 </template>
 
 <script>
@@ -38,9 +75,19 @@ import SideMenu from "./components/SideMenu";
 import axios from "axios";
 export default {
   components: {SideMenu , AppBar},
+  data(){
+    return {
+      date: null,
+      trip: {
+        name: '',
+        location: null,
+        start: null,
+        end: null,
+      },
+    }
+  },
   computed: {
     windowSize () {
-      console.log('size :' ,this.$store.getters['windowSize'])
       return this.$store.getters['windowSize']
     },
     drawerSize () {
