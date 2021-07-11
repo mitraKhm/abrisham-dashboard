@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-card
-        class="study-plan"
-        elevation="0"
+      class="study-plan"
+      elevation="0"
     >
       <v-card-title class="study-plan-header-title">
         جدول برنامه مطالعاتی راه ابریشم آلاء
@@ -12,24 +12,26 @@
           رشته:
         </p>
         <v-select
-            items="تجربی"
-            solo
-            flat
-        ></v-select>
-        <!--        append-icon="chevron-down"-->
+          v-model="selectedMajor"
+          :items="majorOptions"
+          :item-value=" (item) => item"
+          item-text="name"
+          solo
+          flat
+        />
       </div>
       <v-row>
-      <v-expansion-panels
-          v-for="(item, index) in 5"
+        <v-expansion-panels
+          v-for="(item, index) in studyPlanList.list"
           :key="index"
           flat
           class="study-plan-expansion"
-      >
-
-          <v-col>
-        <study-plan />
-          </v-col>
-      </v-expansion-panels>
+        >
+          <study-plan
+            :study-plan="item"
+            :selected-major="selectedMajor"
+          />
+        </v-expansion-panels>
       </v-row>
     </v-card>
   </div>
@@ -37,8 +39,51 @@
 
 <script>
 import StudyPlan from "../components/StudyPlan";
+import {StudyPlanList} from '@/Models/StudyPlan.js'
+import Major from "@/Models/Major";
 export default {
-  components: {StudyPlan}
+  props: {
+    studyPlanList : {
+      type: StudyPlanList,
+      default() {
+        return new StudyPlanList([{"studyPlan_id":169,"id":"2021-03-21","date":"2021-03-21","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":144,"id":"2021-03-22","date":"2021-03-22","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":145,"id":"2021-03-23","date":"2021-03-23","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":146,"id":"2021-03-24","date":"2021-03-24","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":147,"id":"2021-03-25","date":"2021-03-25","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":148,"id":"2021-03-26","date":"2021-03-26","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":149,"id":"2021-03-27","date":"2021-03-27","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":150,"id":"2021-03-28","date":"2021-03-28","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":151,"id":"2021-03-29","date":"2021-03-29","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":152,"id":"2021-03-30","date":"2021-03-30","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":153,"id":"2021-03-31","date":"2021-03-31","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":154,"id":"2021-04-01","date":"2021-04-01","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":155,"id":"2021-04-02","date":"2021-04-02","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":156,"id":"2021-04-03","date":"2021-04-03","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":157,"id":"2021-04-04","date":"2021-04-04","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":158,"id":"2021-04-05","date":"2021-04-05","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":159,"id":"2021-04-06","date":"2021-04-06","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":160,"id":"2021-04-07","date":"2021-04-07","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":161,"id":"2021-04-08","date":"2021-04-08","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":162,"id":"2021-04-09","date":"2021-04-09","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":163,"id":"2021-04-10","date":"2021-04-10","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":164,"id":"2021-04-11","date":"2021-04-11","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":165,"id":"2021-04-12","date":"2021-04-12","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":166,"id":"2021-04-13","date":"2021-04-13","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":167,"id":"2021-04-14","date":"2021-04-14","voice":null,"body":null,"title":null,"contents":null},{"studyPlan_id":168,"id":"2021-04-15","date":"2021-04-15","voice":null,"body":null,"title":null,"contents":null}])
+      }
+    },
+  },
+  components: {StudyPlan},
+  created() {
+    this.doesSelectedMajorExist()
+    console.log(this.StudyPlanList)
+    console.log(this.selectedMajor)
+  },
+  data(){
+    return {
+      majorOptions : [
+        new Major({
+        id: 1,
+        name: 'ریاضی',
+        }),
+        new Major({
+          id: 2,
+          name: 'تجربی',
+        }),
+        new Major({
+          id: 3,
+          name: 'انسانی',
+        })
+      ],
+      major : '',
+      selectedMajor : new Major()
+
+    }
+  },
+  methods :{
+    doesSelectedMajorExist(){
+      if (this.selectedMajor.id ===null) {
+        this.selectedMajor = this.majorOptions[0]
+      }
+    }
+  }
 }
 
 </script>
