@@ -2,7 +2,7 @@
   <div class="d-flex list-box align-center">
     <v-chip
       v-if="chipTitle"
-      class="list-section transparent text-lg-h6 text-center"
+      class="list-section "
       text-color="#3e5480"
     >
       {{ chipTitle }}
@@ -12,7 +12,7 @@
         v-for="(i , index) in chipData"
         :key="index"
         :color="i.selected ? i.color: 'transparent'"
-        class="text-lg-h6 text-center"
+        class="chip-box"
         :text-color="i.selected ? 'white': '#9fa5c0'"
         @click="changeSelectedChip(index)"
       >
@@ -80,12 +80,21 @@ export default {
 </script>
 
 <style scoped>
+
+.list-box{
+  align-0: center;
+}
 .list-section{
   font-size: 16px;
   font-weight: bold;
   color: #3e5480
 }
-.list-box{
-  align-0: center;
+.chip-box{
+  font-size: 16px;
+  font-weight: 500;
+  height: 42px;
+  border-radius: 25px;
+  line-height: 2.13;
+  padding: 8px 20px 9px;
 }
 </style>
