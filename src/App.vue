@@ -17,21 +17,23 @@
       color="white"
       class="d-flex justify-center align-center app-bar"
     >
-    <div class="d-flex header-box justify-center align-center">
-       <v-img src="./assets/logotype.png" class="header-logo-img">
-        </v-img>
+      <div class="d-flex header-box justify-center align-center">
+        <v-img
+          src="./assets/logotype.png"
+          class="header-logo-img"
+        />
       </div>
       <div class="d-flex justify-center align-center profile-box ">
-          <span class="name">
+        <span class="name">
           شهاب عبادی
         </span>
         <v-avatar class="avatar">
           <img
-              src="https://cdn.vuetifyjs.com/images/john.jpg"
-              alt="John"
+            src="https://cdn.vuetifyjs.com/images/john.jpg"
+            alt="John"
           >
         </v-avatar>
-        <i class="fi fi-rr-bell icon"></i>
+        <i class="fi fi-rr-bell icon" />
       </div>
     </v-app-bar>
 
@@ -39,7 +41,6 @@
     <v-main>
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
-
         <!-- If using vue-router -->
         <router-view />
       </v-container>
@@ -48,9 +49,7 @@
     <v-footer app>
       <!-- -->
     </v-footer>
-
   </v-app>
-
 </template>
 
 <script>
