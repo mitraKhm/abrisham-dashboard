@@ -26,6 +26,7 @@ class Content extends Model {
             {key: 'isFree'},
             {key: 'is_favored'},
             {key: 'title'},
+            {key: 'short_title'},
             {key: 'type'}, // 1=> pamphlet, 8=> video
             {key: 'photo'},
             {key: 'nextApiUrl'},
