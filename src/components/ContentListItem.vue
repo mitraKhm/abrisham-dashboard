@@ -91,7 +91,8 @@ export default {
     length: {
       type: Number,
       default: 0
-    }
+    },
+
   },
   methods: {}
 }

@@ -10,18 +10,21 @@
       >
         <v-row>
           <v-col
-            xl="4"
-            md="4"
+            xl="6"
+            md="6"
             cols="12"
           >
             <chip-group v-model="majors" />
           </v-col>
           <v-col
-            xl="8"
-            md="8"
+            xl="6"
+            md="6"
             cols="12"
           >
-            <chip-group v-model="lessons" title="درس" />
+            <chip-group
+              v-model="lessons"
+              title="درس"
+            />
           </v-col>
         </v-row>
       </v-col>
@@ -109,7 +112,13 @@ export default {
   },
   computed: {
     lessons () {
-      return this.majors.filter( majorItem => majorItem.selected).map( item => item.lessons )[0]
+      let lessons = this.majors.filter( majorItem => majorItem.selected).map( item => item.lessons )[0]
+      lessons.map( item => {
+        item.color = 'blue'
+        return item
+      } )
+
+      return lessons
     }
   },
   created() {
@@ -128,7 +137,7 @@ export default {
             title: item.title,
             lessons: item.lessons,
             selected: false,
-            color: '#ffffff'
+            color: 'red'
           })
         })
         this.setMajorSelected()
