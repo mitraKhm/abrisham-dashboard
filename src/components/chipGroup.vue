@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex list-box">
+  <div class="d-flex list-box align-center">
     <v-chip
       v-if="chipTitle"
       class="list-section transparent text-lg-h6 text-center"
@@ -46,7 +46,7 @@ export default {
     },
     chipTitle: {
       type: String,
-      default: 'رشته :'
+      default:''
     }
 
   },
