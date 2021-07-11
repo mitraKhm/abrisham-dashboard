@@ -45,12 +45,6 @@
         </v-col>
       </v-row>
     </div>
-    <div class="d-flex">
-      <p class="video-box-title">
-        درسنامه فرسنگ هشتم (قسمت بیست و سوم)، فصل سوم شیمی یازدهم (قسمت
-        بیست و سوم)
-      </p>
-    </div>
   </div>
 </template>
 
@@ -158,7 +152,7 @@ export default {
     justify-content: space-between;
   }
   .video-box .video-description .title {
-    font-size: 16px;
+    font-size: 16px !important;
     text-align: right;
   }
   .video-box .video-description .subtitle .part{

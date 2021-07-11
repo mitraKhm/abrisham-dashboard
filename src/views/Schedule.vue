@@ -20,7 +20,7 @@
         نمایش محتوا بر اساس فعالیت شما
       </v-col>
     </v-row>
-    <v-row>
+    <v-row align-stretch>
       <v-col md="9">
         <video-box
           :content="currentContent"
@@ -32,6 +32,12 @@
     </v-row>
     <v-row>
       <v-col md="9">
+        <div class="d-flex">
+          <p class="video-box-title">
+            درسنامه فرسنگ هشتم (قسمت بیست و سوم)، فصل سوم شیمی یازدهم (قسمت
+            بیست و سوم)
+          </p>
+        </div>
         <comment-box />
       </v-col>
       <v-col md="3">
@@ -83,6 +89,11 @@ export default {
 </script>
 
 <style lang="scss">
+.video-box-title {
+  color: #3e5480;
+  font-size: 20px;
+  font-weight: 500;
+}
 .schedule-page {
   @media screen and (max-width: 1920px) {
     & {
