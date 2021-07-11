@@ -2,16 +2,31 @@
   <div class="schedule-page">
     <v-row>
       <v-col
-        xl="7"
+        xl="9"
         md="6"
         cols="12"
         order-md="2"
         class="d-flex d-md-block justify-center"
       >
-        <chip-group />
+        <v-row>
+          <v-col
+            xl="4"
+            md="4"
+            cols="12"
+          >
+            <chip-group v-model="majors" />
+          </v-col>
+          <v-col
+            xl="8"
+            md="8"
+            cols="12"
+          >
+            <chip-group v-model="lessons" title="درس" />
+          </v-col>
+        </v-row>
       </v-col>
       <v-col
-        xl="5"
+        xl="3"
         md="6"
         cols="12"
         order-md="1"
@@ -87,14 +102,63 @@ export default {
   components: {StudyPlan, ContentList, CommentBox, chipGroup, videoBox},
   data() {
     return {
+      majors: [],
       currentContent: new Content(),
       studyPlans: new StudyPlanList()
     }
   },
+  computed: {
+    lessons () {
+      return this.majors.filter( majorItem => majorItem.selected).map( item => item.lessons )[0]
+    }
+  },
   created() {
-    // this.getStudyPlans()
+    this.getLessons()
+    this.getSets(443)
+    this.getContents(906)
   },
   methods: {
+    getLessons () {
+      axios.get('/api/v2/abrisham/lessons')
+      .then( response => {
+        console.log('getLessons', response)
+        response.data.forEach( (item, index) => {
+          this.majors.push({
+            id: index,
+            title: item.title,
+            lessons: item.lessons,
+            selected: false,
+            color: '#ffffff'
+          })
+        })
+        this.setMajorSelected()
+      })
+    },
+    setMajorSelected () {
+      this.majors.forEach( mejorItem => {
+        mejorItem.lessons.forEach( lessonItem => {
+          if (lessonItem.selected) {
+            mejorItem.selected = true
+          }
+        })
+      })
+    },
+    getSets (productId) {
+      axios.get('/api/v2/product/' + productId + '/sets')
+      .then( response => {
+        console.log('getSets', response)
+      })
+    },
+    getContents (setId) {
+      axios.get('/api/v2/set/' + setId)
+      .then( response => {
+        console.log('getContents', response)
+        console.log('getContents', response.data.data.contents)
+      })
+    },
+    setComment () {
+
+    },
     // getStudyPlans () {
     //   this.studyPlans.fetch({'studyPlan_id' : 1}, '/api/v2/plan')
     //   .then( (response) => {
