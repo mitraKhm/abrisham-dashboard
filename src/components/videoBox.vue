@@ -38,7 +38,49 @@
             دیده نشده
           </v-btn>
           <div class="video-box-icon">
-            <i class="fi fi-rr-download icon" />
+            <v-bottom-sheet
+              v-model="sheet"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  color="transparent"
+                  depressed
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <i class="fi fi-rr-download icon" />
+                </v-btn>
+              </template>
+              <v-row>
+                <v-col-md
+                  v-for="i in 3"
+                  :key="i"
+                  class="download-part"
+                  @click="sheet = false"
+                >
+                  <v-col>
+                    دانلود فایل با کیفیت
+                  </v-col>
+                  <v-col>
+                    <i class="fi fi-rr-download icon" />
+                  </v-col>
+                </v-col-md>
+              </v-row>
+            </v-bottom-sheet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <i class="fi fi-rr-share icon" />
             <i class="fi fi-rr-bookmark icon" />
           </div>
@@ -50,10 +92,20 @@
 
 <script>
 export default {
-  name: "VideoBox"
+  name: "VideoBox",
+  data: () => ({
+    sheet: false,
+  }),
 }
 </script>
 <style scoped>
+.download-part{
+margin: 20px;
+  background-color: #ff8f00;
+  display: flex;
+
+}
+
 .v-application p{
   margin-bottom: 0;
 }
