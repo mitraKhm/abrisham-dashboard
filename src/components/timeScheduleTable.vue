@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!--    timeTable-header-->
     <div class="timeTable">
       <div class="timeTable-header">
         <div class="timeTable-header-number-boxes">
@@ -29,6 +28,14 @@
         v-if="!loading"
         class="timeTable-body"
       >
+        <div
+          v-for="i in timeArray"
+          :key="i"
+          :style="{ flex: ('0 0 ' + headerWidth + 'px') }"
+        >
+          <div class="timeTable-main-line" />
+          <div class="timeTable-line" />
+        </div>
         <div
           v-for="p in plansOfSelectedMajor"
           :key="p.id"
@@ -174,6 +181,7 @@ export default {
 .timeTable {
     position: relative;
     overflow-x: scroll;
+    overflow-y: hidden;
     background-color: white;
 }
 
@@ -211,7 +219,20 @@ export default {
     background-color: white;
     height: 70px;
 }
-
+.timeTable-main-line{
+  position: relative;
+  border-left: solid 2px #e1f0ff;
+  height: 70px;
+  right: -147px;
+}
+.timeTable-line{
+  display: inline-block;
+  position: relative;
+  border-left: solid 1px #e1f0ff;
+  height: 70px;
+  right: -49px;
+  bottom: 70px;
+}
 @media only screen and (max-width: 767px) {
     .timeTable {
         border-radius: 0;
