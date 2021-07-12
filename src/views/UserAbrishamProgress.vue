@@ -90,7 +90,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <study-plan />
+        <study-plan-group />
       </v-col>
     </v-row>
   </div>
@@ -102,13 +102,13 @@ import CommentBox from "../components/CommentBox";
 import ContentListComponent from "../components/ContentList";
 import chipGroup from "../components/chipGroup";
 import videoBox from "../components/videoBox";
-import StudyPlan from "../components/StudyPlan";
 import {StudyPlanList} from "../Models/StudyPlan";
 import axios from "axios";
+import StudyPlanGroup from "@/components/StudyPlanGroup";
 
 export default {
   name: 'UserAbrishamProgress',
-  components: {StudyPlan, ContentListComponent, CommentBox, chipGroup, videoBox},
+  components: {StudyPlanGroup, ContentListComponent, CommentBox, chipGroup, videoBox},
   data() {
     return {
       majors: [],

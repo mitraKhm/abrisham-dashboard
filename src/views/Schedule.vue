@@ -21,17 +21,17 @@
       </v-col>
     </v-row>
     <v-row align-stretch>
-      <v-col md="9">
+      <v-col md="8">
         <video-box
           :content="currentContent"
         />
       </v-col>
-      <v-col md="3">
+      <v-col md="4">
         <content-list />
       </v-col>
     </v-row>
     <v-row>
-      <v-col md="9">
+      <v-col md="8">
         <div class="d-flex">
           <p class="video-box-title">
             درسنامه فرسنگ هشتم (قسمت بیست و سوم)، فصل سوم شیمی یازدهم (قسمت
@@ -40,17 +40,18 @@
         </div>
         <comment-box />
       </v-col>
-      <v-col md="3">
+      <v-col md="4">
         <content-list />
       </v-col>
     </v-row>
     <v-row>
       <v-col>
-        <study-plan />
+        <study-plan-group />
       </v-col>
     </v-row>
   </div>
 </template>
+
 <script>
 
 import {Content} from "../Models/Content";
@@ -58,13 +59,13 @@ import CommentBox from "../components/CommentBox";
 import ContentList from "../components/ContentList";
 import chipGroup from "../components/chipGroup";
 import videoBox from "../components/videoBox";
-import StudyPlan from "../components/StudyPlan";
+import StudyPlanGroup from "../components/StudyPlanGroup";
 import {StudyPlanList} from "../Models/StudyPlan";
 import axios from "axios";
 
 export default {
   name: 'Schedule',
-  components: {StudyPlan, ContentList, CommentBox, chipGroup, videoBox},
+  components: {StudyPlanGroup, ContentList, CommentBox, chipGroup, videoBox},
   data() {
     return {
       currentContent: new Content(),
