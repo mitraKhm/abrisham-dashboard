@@ -183,6 +183,7 @@ export default {
     overflow-x: scroll;
     overflow-y: hidden;
     background-color: white;
+  top: 3px;
 }
 
 .timeTable-header-number-boxes,
@@ -190,11 +191,20 @@ export default {
     display: flex;
 }
 
+.timeTable-header{
+  position: relative;
+  right: 0.4px;
+}
+
 .timeTableHeader {
     padding: 5px 0;
     text-align: center;
     line-height: 48px;
     background-color: rgba(225, 240, 255, 1);
+}
+
+.timeTableHeader:last-child {
+  padding-left: 20px;
 }
 
 .timeTableHeaderNumber {
@@ -223,7 +233,7 @@ export default {
   position: relative;
   border-left: solid 2px #e1f0ff;
   height: 70px;
-  right: -147px;
+  right: -146px;
 }
 .timeTable-line{
   display: inline-block;
