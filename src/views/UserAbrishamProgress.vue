@@ -45,7 +45,10 @@
         />
       </v-col>
       <v-col md="3">
-        <content-list-component :contents="contents" type="video">
+        <content-list-component
+          :contents="contents"
+          type="video"
+        >
           <template v-slot:filter>
             <div class="d-flex justify-space-between v-select-box">
               <div class="ml-xm-2 ml-5">
@@ -79,7 +82,10 @@
         <comment-box />
       </v-col>
       <v-col md="3">
-        <content-list-component :contents="contents" type="pamphlet" />
+        <content-list-component
+          :contents="contents"
+          type="pamphlet"
+        />
       </v-col>
     </v-row>
     <v-row>
