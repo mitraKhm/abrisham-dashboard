@@ -113,7 +113,7 @@ import videoBox from '../components/videoBox';
 import {StudyPlanList} from '../Models/StudyPlan';
 import axios from 'axios';
 import {SetList, Set} from '@/Models/Set';
-import StudyPlanGroup from '@/components/StudyPlanGroup';
+import StudyPlanGroup from '@/components/studyPlanGroup/StudyPlanGroup';
 
 export default {
   name: 'UserAbrishamProgress',
