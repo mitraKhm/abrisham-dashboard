@@ -78,7 +78,7 @@ export default {
     login () {
       const access_token = window.localStorage.getItem('access_token')
       if (!access_token) {
-        axios.post('/api/v2/login', {mobile: '09358745928', password: '0014258269'})
+        axios.post('/api/v2/login', {mobile: '09358745928', password: '0000000000'})
             .then(response => {
               window.localStorage.setItem('access_token', response.data.data.access_token)
               axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.data.access_token
