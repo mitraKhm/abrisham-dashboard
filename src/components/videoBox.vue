@@ -37,6 +37,12 @@
           >
             دیده نشده
           </v-btn>
+
+
+
+
+
+
           <div class="video-box-icon">
             <v-bottom-sheet
               v-model="sheet"
@@ -45,27 +51,51 @@
                 <v-btn
                   color="transparent"
                   depressed
+                  dark
                   v-bind="attrs"
                   v-on="on"
                 >
                   <i class="fi fi-rr-download icon" />
                 </v-btn>
               </template>
-              <v-row>
-                <v-col-md
-                  v-for="i in 3"
-                  :key="i"
-                  class="download-part"
-                  @click="sheet = false"
-                >
-                  <v-col>
-                    دانلود فایل با کیفیت
-                  </v-col>
-                  <v-col>
-                    <i class="fi fi-rr-download icon" />
-                  </v-col>
-                </v-col-md>
-              </v-row>
+              <v-list class="align-center sheet-background">
+                <v-row justify="center">
+                  <v-card
+                    v-for="file in downloadFiles"
+                    :key="file"
+                    class=" download-part"
+                    flat
+                    @click="sheet = false"
+                  >
+                    <v-card-actions
+                      class="download-title"
+                    >
+                      <a href="#"><i class="fi fi-rr-download icon" />
+                        {{ file.title }}</a>
+                    </v-card-actions>
+                    <v-col-md>
+                      <v-btn
+                        class="details red"
+                        depressed
+                      >
+                        {{ file.videoQuality }}
+                      </v-btn>
+                      <v-btn
+                        class="details green"
+                        depressed
+                      >
+                        {{ file.format }}
+                      </v-btn>
+                      <v-btn
+                        class="details blue"
+                        depressed
+                      >
+                        {{ file.videoVolume }}
+                      </v-btn>
+                    </v-col-md>
+                  </v-card>
+                </v-row>
+              </v-list>
             </v-bottom-sheet>
 
 
@@ -74,6 +104,7 @@
 
 
 
+        
 
 
 
@@ -81,8 +112,14 @@
 
 
 
-            <i class="fi fi-rr-share icon" />
+
+
+
+
+
+
             <i class="fi fi-rr-bookmark icon" />
+            <i class="fi fi-rr-share icon" />
           </div>
         </v-col>
       </v-row>
@@ -95,16 +132,65 @@ export default {
   name: "VideoBox",
   data: () => ({
     sheet: false,
+    downloadFiles:[
+      {
+        title:'دانلود فایل کیفیت عالی',
+        videoQuality:'720',
+        format:'MP4',
+        videoVolume:'93MB',
+      },
+      {
+        title:'دانلود فایل کیفیت عالی',
+        videoQuality:'720',
+        format:'MP4',
+        videoVolume:'93MB',
+      },
+      {
+        title:'دانلود فایل کیفیت عالی',
+        videoQuality:'720',
+        format:'MP4',
+        videoVolume:'93MB',
+      },
+
+    ]
   }),
 }
 </script>
 <style scoped>
+
 .download-part{
-margin: 20px;
-  background-color: #ff8f00;
+  margin: 20px;
   display: flex;
+  flex-direction: column;
+  border-radius: 20px ;
+  border: #ff8f00 1px solid;
+
 
 }
+.download-part .download-title{
+  margin:20px auto;
+  height: 42px;
+  text-align: center;
+
+
+}
+.download-part .download-title a{
+  text-decoration: none;
+  color:#FFFFFF;
+  background-color:#ff8f00 ;
+  padding: 15px;
+  border-radius: 20px;
+}
+.download-part .details{
+  border-radius: 20px;
+  margin: 20px;
+  color: #FFFFFF;
+}
+
+
+
+
+
 
 .v-application p{
   margin-bottom: 0;
@@ -240,3 +326,43 @@ margin: 20px;
   }
 }
 </style>
+
+<!--<div class="video-box-icon">-->
+<!--<v-bottom-sheet-->
+<!--    v-model="sheet"-->
+<!--&gt;-->
+<!--  <template v-slot:activator="{ on, attrs }">-->
+<!--    <v-btn-->
+<!--        color="transparent"-->
+<!--        depressed-->
+<!--        v-bind="attrs"-->
+<!--        v-on="on"-->
+<!--    >-->
+<!--      <i class="fi fi-rr-download icon" />-->
+<!--    </v-btn>-->
+<!--  </template>-->
+<!--  <v-row>-->
+<!--    <v-col-md-->
+<!--        v-for="file in downloadFiles"-->
+<!--        :key="file"-->
+<!--        class="download-part"-->
+<!--        @click="sheet = false"-->
+<!--    >-->
+<!--      <v-col-md class="download-title">-->
+<!--        <a href="#"><i class="fi fi-rr-download icon" />-->
+<!--          {{ file.title }}</a>-->
+<!--      </v-col-md>-->
+<!--      <v-col-md>-->
+<!--        <v-btn class="details">-->
+<!--          {{ file.videoQuality }}-->
+<!--        </v-btn>-->
+<!--        <v-btn class="details">-->
+<!--          {{ file.format }}-->
+<!--        </v-btn>-->
+<!--        <v-btn class="details">-->
+<!--          {{ file.videoVolume }}-->
+<!--        </v-btn>-->
+<!--      </v-col-md>-->
+<!--    </v-col-md>-->
+<!--  </v-row>-->
+<!--</v-bottom-sheet>-->
