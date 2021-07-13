@@ -33,7 +33,7 @@
         md="6"
         cols="12"
         order-md="1"
-        class="text-md-right text-center"
+        class="text-md-right text-center d-flex flex-column justify-center"
       >
         نمایش محتوا بر اساس فعالیت شما
       </v-col>
