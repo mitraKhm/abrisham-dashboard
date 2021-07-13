@@ -24,7 +24,7 @@
       </v-container>
     </v-main>
 
-    <v-footer app>
+    <v-footer app v-if="false">
       <!-- -->
     </v-footer>
   </v-app>
