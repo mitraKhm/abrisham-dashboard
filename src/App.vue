@@ -2,6 +2,7 @@
   <!-- App.vue -->
   <v-app v-resize="onResize">
     <v-navigation-drawer
+        class="side-menu"
       app
       right
       permanent
@@ -23,7 +24,7 @@
       </v-container>
     </v-main>
 
-    <v-footer app>
+    <v-footer app v-if="false">
       <!-- -->
     </v-footer>
   </v-app>
@@ -102,5 +103,11 @@ export default {
 }
 @media screen and (max-width: 320px){
 
+}
+</style>
+
+<style>
+.v-navigation-drawer.side-menu {
+  min-height: 100%;
 }
 </style>
