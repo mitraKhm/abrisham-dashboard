@@ -16,7 +16,7 @@
           color="transparent"
           class="slot-header-box-days"
         >
-          رفتن به روزهای دیگر
+          روزهای دیگر
         </v-chip>
       </div>
     </slot>
@@ -37,7 +37,7 @@
 
 <script>
 import ContentListItem from '../components/ContentListItem'
-import {Content, ContentList} from "../Models/Content";
+import {ContentList} from "../Models/Content";
 export default {
   name: "ContentList",
   components : {
@@ -45,7 +45,7 @@ export default {
   },
   props:{
     contents:{
-      type:Content,
+      type:ContentList,
       default :() => {
         return new ContentList();
       }

@@ -27,7 +27,7 @@
             class="rounded-card"
           >
             <v-img
-              :src="content.photo"
+              :src=" content.photo "
             />
           </v-card>
           <div
@@ -81,18 +81,20 @@
 </template>
 <script>
 
+import {Content} from "../Models/Content";
+
 export default {
   name: "ContentListItem",
   props: {
     content: {
-      type: Object,
+      type: Content,
       default: () => {
-        return {}
+        return new Content();
       },
     },
     type: {
-      type: Boolean,
-      default: false
+      type:String,
+      default: ''
     },
     length: {
       type: Number,
