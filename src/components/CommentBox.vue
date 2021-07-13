@@ -1,6 +1,7 @@
 <template>
   <div class="comment-box">
     <v-textarea
+      v-model="note"
       class="rounded-xl  comment-main"
       background-color="#eff3ff"
       placeholder="یادداشت این جلسه"
@@ -8,13 +9,39 @@
       auto-grow
       solo
       flat
+      @input="inputEvent"
+      @blur="blur"
     />
   </div>
 </template>
 
 <script>
 export default {
-  name: "CommentBox"
+  name: 'CommentBox',
+  props: {
+    value: {
+      type: String,
+      default: ''
+    }
+  },
+  data () {
+    return {
+      note: null
+    }
+  },
+  watch: {
+    value (newValue) {
+      this.note = newValue
+    }
+  },
+  methods: {
+    blur () {
+      this.$emit('blur', this.note)
+    },
+    inputEvent () {
+      this.$emit('input', this.note)
+    }
+  }
 }
 </script>
 

@@ -1,7 +1,7 @@
 import {Model, Collection} from 'js-abstract-model'
 import {ContentList} from './Content'
 import Url from './Url'
-import {SetSectionList} from "@/Models/SetSection";
+import {SetSectionList} from '@/Models/SetSection';
 
 class Set extends Model {
 

@@ -56,7 +56,7 @@
 
 <script>
 export default {
-  name: "ExpansionMenu",
+  name: 'ExpansionMenu',
   data() {
     return {
       menuItems: [
