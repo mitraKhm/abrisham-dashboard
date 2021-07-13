@@ -91,7 +91,6 @@ export default {
   },
   methods:{
     }
-
 }
 </script>
 
@@ -156,8 +155,6 @@ export default {
     list-style: none;
     margin-bottom:10px !important;
     text-align: center;
-
-
   }
   .menu-items .menu-item .fi{
     color: #b1ccee;
@@ -182,7 +179,6 @@ export default {
 .menu-items .menu-items-list .menu-item .activate , .side-menu .power-item .activate{
   color: #ff8f00 !important;
 }
-
 
  .side-menu .menu-indicator{
   position: absolute;
@@ -209,7 +205,6 @@ export default {
   text-align: center;
   bottom: 0;
   margin-bottom: 30px;
-
 }
 
 .side-menu .power-item a{
@@ -219,7 +214,6 @@ export default {
   color: #b1ccee;
   font-size: 26px;
   top: 5px;
-
 }
 
 </style>
