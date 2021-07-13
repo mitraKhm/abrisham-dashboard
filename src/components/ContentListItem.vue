@@ -46,7 +46,7 @@
           depressed
           height="22"
           width="78"
-          class="d-flex justify-center mb-2 rounded-pill time-sheet "
+          class="d-flex justify-center mb-2 rounded-pill time-sheet"
           color="#eff3ff"
         >
           <i class="fi fi-rr-clock ml-2" />

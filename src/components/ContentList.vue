@@ -151,7 +151,6 @@ export default {
 }
 .content-list-box .slot-header-box .slot-header-box-movie{
   color:#3e5480;
-
   font-size: 20px;
   font-weight: 500;
 }

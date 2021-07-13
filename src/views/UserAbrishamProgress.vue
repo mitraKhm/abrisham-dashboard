@@ -3,7 +3,7 @@
     <v-row>
       <v-col
         lg="9"
-        md="6"
+        md="7"
         cols="12"
         order-md="2"
         class="d-flex d-md-block justify-center"
@@ -18,7 +18,7 @@
           </v-col>
           <v-col
             lg="6"
-            md="6"
+            md="5"
             cols="12"
           >
             <chip-group
