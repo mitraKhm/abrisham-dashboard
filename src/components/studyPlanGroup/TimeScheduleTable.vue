@@ -2,24 +2,26 @@
   <div>
     <div class="timeTable">
       <div class="timeTable-header">
-        <div
-          v-if="canShowTimeTableHeader(startTime)"
-          class="timeTableHeader"
-          :style="{ flex: ('0 0 ' + customizedHeaderWidth() + 'px') }"
-        />
-        <div
-          v-for="i in timeArray"
-          :key="i"
-          class="timeTableHeader"
-          :style="{ flex: ('0 0 ' + headerWidth + 'px') }"
-        >
-          <v-row>
-            <v-col>
-              <div class="timeTableHeaderNumber">
-                {{ i }}
-              </div>
-            </v-col>
-          </v-row>
+        <div class="timeTable-header-number-boxes">
+          <div
+            v-if="canShowTimeTableHeader(startTime)"
+            class="timeTableHeader"
+            :style="{ flex: ('0 0 ' + customizedHeaderWidth() + 'px') }"
+          />
+          <div
+            v-for="i in timeArray"
+            :key="i"
+            class="timeTableHeader"
+            :style="{ flex: ('0 0 ' + headerWidth + 'px') }"
+          >
+            <v-row>
+              <v-col>
+                <div class="timeTableHeaderNumber">
+                  {{ i }}
+                </div>
+              </v-col>
+            </v-row>
+          </div>
         </div>
       </div>
       <div
@@ -27,19 +29,35 @@
         class="timeTable-body"
       >
         <div
+          v-for="i in timeArray"
+          :key="i"
+          :style="{ flex: ('0 0 ' + headerWidth + 'px') }"
+        >
+          <div class="timeTable-main-line" />
+          <div class="timeTable-line" />
+        </div>
+        <div
           v-for="p in plansOfSelectedMajor"
           :key="p.id"
           class="plan"
           :style="{
             right: calcPosition(p.start, p.end).right,
-            width: calcPosition(p.start, p.end).width,
-            backgroundColor: p.backgroundColor,
-            // borderColor: p.borderColor,
-            color: p.textColor
+            width: calcPosition(p.start, p.end).width
           }"
           @click="showPlanDetails(p.id)"
         >
-          {{ p.title }}
+          <div
+            class="plan-within-box"
+            :style="{
+              right: calcPosition(p.start, p.end).right,
+              width: calcPosition(p.start, p.end).width,
+              backgroundColor: p.backgroundColor,
+              borderColor: p.borderColor,
+              color: p.textColor
+            }"
+          >
+            {{ p.title }}
+          </div>
         </div>
       </div>
     </div>
@@ -161,23 +179,35 @@ export default {
 
 .plan {
     position: absolute;
-    border: 1px solid;
+    /*border: 1px solid;*/
     cursor: pointer;
     border-radius: 10px;
-    top: 50%;
     text-align: center;
+  top: 0;
+  height: 100%;
+  padding-top: 64px;
+}
+
+.plan-within-box{
+  border-radius: 10px;
 }
 
 .timeTable {
     position: relative;
     overflow-x: scroll;
+    overflow-y: hidden;
     background-color: white;
-    border-radius: 30px;
+  top: 3px;
 }
 
-.timeTable-header,
+.timeTable-header-number-boxes,
 .timeTable-body {
     display: flex;
+}
+
+.timeTable-header{
+  position: relative;
+  right: 0.4px;
 }
 
 .timeTableHeader {
@@ -187,21 +217,46 @@ export default {
     background-color: rgba(225, 240, 255, 1);
 }
 
+.timeTableHeader:last-child {
+  padding-left: 20px;
+}
+
 .timeTableHeaderNumber {
-    position: relative;
-    background-color: white;
-    width: 40px;
-    height: 40px;
-    right: 38px;
-    border-radius: 50%;
-    font-size: 1rem;
+  position: relative;
+  background-color: white;
+  width: 30px;
+  height: 30px;
+  right: 38px;
+  border-radius: 50%;
+  padding: 5px 7px 1px;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #333333;
 }
 
 .timeTable-body {
-    background: white;
+    background-color: white;
     height: 70px;
 }
-
+.timeTable-main-line{
+  position: relative;
+  border-left: solid 2px #e1f0ff;
+  height: 70px;
+  right: -146px;
+}
+.timeTable-line{
+  display: inline-block;
+  position: relative;
+  border-left: solid 1px #e1f0ff;
+  height: 70px;
+  right: -49px;
+  bottom: 70px;
+}
 @media only screen and (max-width: 767px) {
     .timeTable {
         border-radius: 0;
