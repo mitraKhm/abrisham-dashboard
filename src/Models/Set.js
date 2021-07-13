@@ -1,6 +1,7 @@
 import {Model, Collection} from 'js-abstract-model'
 import {ContentList} from './Content'
 import Url from './Url'
+import {SetSectionList} from '@/Models/SetSection';
 
 class Set extends Model {
 
@@ -36,7 +37,11 @@ class Set extends Model {
             {key: 'favor_url'},
             {key: 'unfavor_url'},
             {key: 'created_at'},
-            {key: 'updated_at'}
+            {key: 'updated_at'},
+            {
+                key: 'sections',
+                relatedModel: SetSectionList
+            }
         ]);
     }
 

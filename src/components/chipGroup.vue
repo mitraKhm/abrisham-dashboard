@@ -23,7 +23,7 @@
 </template>
 <script>
 export default {
-  name: "ChipGroup",
+  name: 'ChipGroup',
   props: {
     value: {
       type: Array,

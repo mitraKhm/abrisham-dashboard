@@ -55,11 +55,11 @@
 </template>
 
 <script>
-import timeScheduleTable from "./TimeScheduleTable";
+import timeScheduleTable from './TimeScheduleTable'
 import { StudyPlan } from '@/Models/StudyPlan.js'
 import { PlanList } from '@/Models/Plan.js'
-import Major from "@/Models/Major";
-import IndividualPlanDetails from "@/components/studyPlanGroup/IndividualPlanDetails";
+import Major from '@/Models/Major'
+import IndividualPlanDetails from '@/components/studyPlanGroup/IndividualPlanDetails'
 
 export default {
   props: {
@@ -67,13 +67,13 @@ export default {
       type: StudyPlan,
       default() {
         return new StudyPlan({
-          "studyPlan_id": 144,
-          "id": "2021-03-22",
-          "date": "2021-03-22",
-          "voice": null,
-          "body": null,
-          "title": null,
-          "contents": null
+          'studyPlan_id': 144,
+          'id': '2021-03-22',
+          'date': '2021-03-22',
+          'voice': null,
+          'body': null,
+          'title': null,
+          'contents': null
         })
       }
     },
@@ -99,417 +99,417 @@ export default {
     return {
       planList : new PlanList([
         {
-          "id": 2096,
-          "title": "ریاضی پایه جلسه 1و2 دنباله ها",
-          "description": null,
-          "long_description": null,
-          "date": "2021-03-22",
-          "resourceId": "2021-03-22",
-          "start": "07:30:00",
-          "end": "08:45:00",
-          "reshte": "riazi",
-          "major": {
-            "id": 1,
-            "name": "ریاضی",
-            "title": "ریاضی"
+          'id': 2096,
+          'title': 'ریاضی پایه جلسه 1و2 دنباله ها',
+          'description': null,
+          'long_description': null,
+          'date': '2021-03-22',
+          'resourceId': '2021-03-22',
+          'start': '07:30:00',
+          'end': '08:45:00',
+          'reshte': 'riazi',
+          'major': {
+            'id': 1,
+            'name': 'ریاضی',
+            'title': 'ریاضی'
           },
-          "backgroundColor": '#3e5480',
-          "borderColor": '#3e5480',
-          "textColor": '#ffffff',
-          "url": null,
-          "voice": null,
-          "video": null,
-          "contents": []
+          'backgroundColor': '#3e5480',
+          'borderColor': '#3e5480',
+          'textColor': '#ffffff',
+          'url': null,
+          'voice': null,
+          'video': null,
+          'contents': []
         },
         {
-          "id": 2097,
-          "title": "ریاضی پایه جلسه3 و4 عبارت های جبری،معادله و نامعادله",
-          "description": null,
-          "long_description": null,
-          "date": "2021-03-22",
-          "resourceId": "2021-03-22",
-          "start": "09:00:00",
-          "end": "10:15:00",
-          "reshte": "riazi",
-          "major": {
-            "id": 1,
-            "name": "ریاضی",
-            "title": "ریاضی"
+          'id': 2097,
+          'title': 'ریاضی پایه جلسه3 و4 عبارت های جبری،معادله و نامعادله',
+          'description': null,
+          'long_description': null,
+          'date': '2021-03-22',
+          'resourceId': '2021-03-22',
+          'start': '09:00:00',
+          'end': '10:15:00',
+          'reshte': 'riazi',
+          'major': {
+            'id': 1,
+            'name': 'ریاضی',
+            'title': 'ریاضی'
           },
-          "backgroundColor": '#3e5480',
-          "borderColor": '#3e5480',
-          "textColor": '#ffffff',
-          "url": null,
-          "voice": null,
-          "video": null,
-          "contents": []
+          'backgroundColor': '#3e5480',
+          'borderColor': '#3e5480',
+          'textColor': '#ffffff',
+          'url': null,
+          'voice': null,
+          'video': null,
+          'contents': []
         },
         {
-          "id": 2098,
-          "title": "فیزیک دهم جلسه 1",
-          "description": null,
-          "long_description": null,
-          "date": "2021-03-22",
-          "resourceId": "2021-03-22",
-          "start": "10:30:00",
-          "end": "11:45:00",
-          "reshte": "riazi",
-          "major": {
-            "id": 1,
-            "name": "ریاضی",
-            "title": "ریاضی"
+          'id': 2098,
+          'title': 'فیزیک دهم جلسه 1',
+          'description': null,
+          'long_description': null,
+          'date': '2021-03-22',
+          'resourceId': '2021-03-22',
+          'start': '10:30:00',
+          'end': '11:45:00',
+          'reshte': 'riazi',
+          'major': {
+            'id': 1,
+            'name': 'ریاضی',
+            'title': 'ریاضی'
           },
-          "backgroundColor": '#3e5480',
-          "borderColor": '#3e5480',
-          "textColor": '#ffffff',
-          "url": null,
-          "voice": null,
-          "video": null,
-          "contents": []
+          'backgroundColor': '#3e5480',
+          'borderColor': '#3e5480',
+          'textColor': '#ffffff',
+          'url': null,
+          'voice': null,
+          'video': null,
+          'contents': []
         },
         {
-          "id": 2099,
-          "title": "فارسی 1تا5 دهم مطالعه",
-          "description": null,
-          "long_description": null,
-          "date": "2021-03-22",
-          "resourceId": "2021-03-22",
-          "start": "12:00:00",
-          "end": "13:15:00",
-          "reshte": "riazi",
-          "major": {
-            "id": 1,
-            "name": "ریاضی",
-            "title": "ریاضی"
+          'id': 2099,
+          'title': 'فارسی 1تا5 دهم مطالعه',
+          'description': null,
+          'long_description': null,
+          'date': '2021-03-22',
+          'resourceId': '2021-03-22',
+          'start': '12:00:00',
+          'end': '13:15:00',
+          'reshte': 'riazi',
+          'major': {
+            'id': 1,
+            'name': 'ریاضی',
+            'title': 'ریاضی'
           },
-          "backgroundColor": '#3e5480',
-          "borderColor": '#3e5480',
-          "textColor": '#ffffff',
-          "url": null,
-          "voice": null,
-          "video": null,
-          "contents": []
+          'backgroundColor': '#3e5480',
+          'borderColor': '#3e5480',
+          'textColor': '#ffffff',
+          'url': null,
+          'voice': null,
+          'video': null,
+          'contents': []
         },
         {
-          "id": 2100,
-          "title": "آماراحتمال جلسه1و2",
-          "description": null,
-          "long_description": null,
-          "date": "2021-03-22",
-          "resourceId": "2021-03-22",
-          "start": "14:45:00",
-          "end": "16:00:00",
-          "reshte": "riazi",
-          "major": {
-            "id": 1,
-            "name": "ریاضی",
-            "title": "ریاضی"
+          'id': 2100,
+          'title': 'آماراحتمال جلسه1و2',
+          'description': null,
+          'long_description': null,
+          'date': '2021-03-22',
+          'resourceId': '2021-03-22',
+          'start': '14:45:00',
+          'end': '16:00:00',
+          'reshte': 'riazi',
+          'major': {
+            'id': 1,
+            'name': 'ریاضی',
+            'title': 'ریاضی'
           },
-          "backgroundColor": '#3e5480',
-          "borderColor": '#3e5480',
-          "textColor": '#ffffff',
-          "url": null,
-          "voice": null,
-          "video": null,
-          "contents": []
+          'backgroundColor': '#3e5480',
+          'borderColor': '#3e5480',
+          'textColor': '#ffffff',
+          'url': null,
+          'voice': null,
+          'video': null,
+          'contents': []
         },
         {
-          "id": 2101,
-          "title": "فیزیک دهم جلسه 2",
-          "description": null,
-          "long_description": null,
-          "date": "2021-03-22",
-          "resourceId": "2021-03-22",
-          "start": "16:15:00",
-          "end": "17:30:00",
-          "reshte": "riazi",
-          "major": {
-            "id": 1,
-            "name": "ریاضی",
-            "title": "ریاضی"
+          'id': 2101,
+          'title': 'فیزیک دهم جلسه 2',
+          'description': null,
+          'long_description': null,
+          'date': '2021-03-22',
+          'resourceId': '2021-03-22',
+          'start': '16:15:00',
+          'end': '17:30:00',
+          'reshte': 'riazi',
+          'major': {
+            'id': 1,
+            'name': 'ریاضی',
+            'title': 'ریاضی'
           },
-          "backgroundColor": '#3e5480',
-          "borderColor": '#3e5480',
-          "textColor": '#ffffff',
-          "url": null,
-          "voice": null,
-          "video": null,
-          "contents": []
+          'backgroundColor': '#3e5480',
+          'borderColor': '#3e5480',
+          'textColor': '#ffffff',
+          'url': null,
+          'voice': null,
+          'video': null,
+          'contents': []
         },
         {
-          "id": 2102,
-          "title": "فارسی جلسه 1و2",
-          "description": null,
-          "long_description": null,
-          "date": "2021-03-22",
-          "resourceId": "2021-03-22",
-          "start": "17:45:00",
-          "end": "19:00:00",
-          "reshte": "riazi",
-          "major": {
-            "id": 1,
-            "name": "ریاضی",
-            "title": "ریاضی"
+          'id': 2102,
+          'title': 'فارسی جلسه 1و2',
+          'description': null,
+          'long_description': null,
+          'date': '2021-03-22',
+          'resourceId': '2021-03-22',
+          'start': '17:45:00',
+          'end': '19:00:00',
+          'reshte': 'riazi',
+          'major': {
+            'id': 1,
+            'name': 'ریاضی',
+            'title': 'ریاضی'
           },
-          "backgroundColor": '#3e5480',
-          "borderColor": '#3e5480',
-          "textColor": '#ffffff',
-          "url": null,
-          "voice": null,
-          "video": null,
-          "contents": []
+          'backgroundColor': '#3e5480',
+          'borderColor': '#3e5480',
+          'textColor': '#ffffff',
+          'url': null,
+          'voice': null,
+          'video': null,
+          'contents': []
         },
         {
-          "id": 2103,
-          "title": "دینی جلسه1 (درس1و2دهم)+تست 1تا28",
-          "description": null,
-          "long_description": null,
-          "date": "2021-03-22",
-          "resourceId": "2021-03-22",
-          "start": "19:45:00",
-          "end": "21:00:00",
-          "reshte": "riazi",
-          "major": {
-            "id": 1,
-            "name": "ریاضی",
-            "title": "ریاضی"
+          'id': 2103,
+          'title': 'دینی جلسه1 (درس1و2دهم)+تست 1تا28',
+          'description': null,
+          'long_description': null,
+          'date': '2021-03-22',
+          'resourceId': '2021-03-22',
+          'start': '19:45:00',
+          'end': '21:00:00',
+          'reshte': 'riazi',
+          'major': {
+            'id': 1,
+            'name': 'ریاضی',
+            'title': 'ریاضی'
           },
-          "backgroundColor": '#3e5480',
-          "borderColor": '#3e5480',
-          "textColor": '#ffffff',
-          "url": null,
-          "voice": null,
-          "video": null,
-          "contents": []
+          'backgroundColor': '#3e5480',
+          'borderColor': '#3e5480',
+          'textColor': '#ffffff',
+          'url': null,
+          'voice': null,
+          'video': null,
+          'contents': []
         },
         {
-          "id": 2272,
-          "title": "زیست دهم فصل اول جلسه1+تست1تا10",
-          "description": null,
-          "long_description": null,
-          "date": "2021-03-22",
-          "resourceId": "2021-03-22",
-          "start": "07:30:00",
-          "end": "08:45:00",
-          "reshte": "tajrobi",
-          "major": {
-            "id": 2,
-            "name": "تجربی",
-            "title": "تجربی"
+          'id': 2272,
+          'title': 'زیست دهم فصل اول جلسه1+تست1تا10',
+          'description': null,
+          'long_description': null,
+          'date': '2021-03-22',
+          'resourceId': '2021-03-22',
+          'start': '07:30:00',
+          'end': '08:45:00',
+          'reshte': 'tajrobi',
+          'major': {
+            'id': 2,
+            'name': 'تجربی',
+            'title': 'تجربی'
           },
-          "backgroundColor": '#3e5480',
-          "borderColor": '#3e5480',
-          "textColor": '#ffffff',
-          "url": null,
-          "voice": null,
-          "video": null,
-          "contents": []
+          'backgroundColor': '#3e5480',
+          'borderColor': '#3e5480',
+          'textColor': '#ffffff',
+          'url': null,
+          'voice': null,
+          'video': null,
+          'contents': []
         },
         {
-          "id": 2273,
-          "title": "زیست دهم فصل دوم جلسه2",
-          "description": null,
-          "long_description": null,
-          "date": "2021-03-22",
-          "resourceId": "2021-03-22",
-          "start": "09:00:00",
-          "end": "10:15:00",
-          "reshte": "tajrobi",
-          "major": {
-            "id": 2,
-            "name": "تجربی",
-            "title": "تجربی"
+          'id': 2273,
+          'title': 'زیست دهم فصل دوم جلسه2',
+          'description': null,
+          'long_description': null,
+          'date': '2021-03-22',
+          'resourceId': '2021-03-22',
+          'start': '09:00:00',
+          'end': '10:15:00',
+          'reshte': 'tajrobi',
+          'major': {
+            'id': 2,
+            'name': 'تجربی',
+            'title': 'تجربی'
           },
-          "backgroundColor": '#3e5480',
-          "borderColor": '#3e5480',
-          "textColor": '#ffffff',
-          "url": null,
-          "voice": null,
-          "video": null,
-          "contents": []
+          'backgroundColor': '#3e5480',
+          'borderColor': '#3e5480',
+          'textColor': '#ffffff',
+          'url': null,
+          'voice': null,
+          'video': null,
+          'contents': []
         },
         {
-          "id": 2274,
-          "title": "فیزیک دهم جلسه 1",
-          "description": null,
-          "long_description": null,
-          "date": "2021-03-22",
-          "resourceId": "2021-03-22",
-          "start": "10:30:00",
-          "end": "11:45:00",
-          "reshte": "tajrobi",
-          "major": {
-            "id": 2,
-            "name": "تجربی",
-            "title": "تجربی"
+          'id': 2274,
+          'title': 'فیزیک دهم جلسه 1',
+          'description': null,
+          'long_description': null,
+          'date': '2021-03-22',
+          'resourceId': '2021-03-22',
+          'start': '10:30:00',
+          'end': '11:45:00',
+          'reshte': 'tajrobi',
+          'major': {
+            'id': 2,
+            'name': 'تجربی',
+            'title': 'تجربی'
           },
-          "backgroundColor": '#3e5480',
-          "borderColor": '#3e5480',
-          "textColor": '#ffffff',
-          "url": null,
-          "voice": null,
-          "video": null,
-          "contents": []
+          'backgroundColor': '#3e5480',
+          'borderColor': '#3e5480',
+          'textColor': '#ffffff',
+          'url': null,
+          'voice': null,
+          'video': null,
+          'contents': []
         },
         {
-          "id": 2275,
-          "title": "فارسی 1تا5 دهم",
-          "description": null,
-          "long_description": null,
-          "date": "2021-03-22",
-          "resourceId": "2021-03-22",
-          "start": "12:00:00",
-          "end": "13:15:00",
-          "reshte": "tajrobi",
-          "major": {
-            "id": 2,
-            "name": "تجربی",
-            "title": "تجربی"
+          'id': 2275,
+          'title': 'فارسی 1تا5 دهم',
+          'description': null,
+          'long_description': null,
+          'date': '2021-03-22',
+          'resourceId': '2021-03-22',
+          'start': '12:00:00',
+          'end': '13:15:00',
+          'reshte': 'tajrobi',
+          'major': {
+            'id': 2,
+            'name': 'تجربی',
+            'title': 'تجربی'
           },
-          "backgroundColor": '#3e5480',
-          "borderColor": '#3e5480',
-          "textColor": '#ffffff',
-          "url": null,
-          "voice": null,
-          "video": null,
-          "contents": []
+          'backgroundColor': '#3e5480',
+          'borderColor': '#3e5480',
+          'textColor': '#ffffff',
+          'url': null,
+          'voice': null,
+          'video': null,
+          'contents': []
         },
         {
-          "id": 2276,
-          "title": "ریاضی جلسه1و2 معادله و تابع درجه2",
-          "description": null,
-          "long_description": null,
-          "date": "2021-03-22",
-          "resourceId": "2021-03-22",
-          "start": "14:45:00",
-          "end": "16:00:00",
-          "reshte": "tajrobi",
-          "major": {
-            "id": 2,
-            "name": "تجربی",
-            "title": "تجربی"
+          'id': 2276,
+          'title': 'ریاضی جلسه1و2 معادله و تابع درجه2',
+          'description': null,
+          'long_description': null,
+          'date': '2021-03-22',
+          'resourceId': '2021-03-22',
+          'start': '14:45:00',
+          'end': '16:00:00',
+          'reshte': 'tajrobi',
+          'major': {
+            'id': 2,
+            'name': 'تجربی',
+            'title': 'تجربی'
           },
-          "backgroundColor": '#3e5480',
-          "borderColor": '#3e5480',
-          "textColor": '#ffffff',
-          "url": null,
-          "voice": null,
-          "video": null,
-          "contents": []
+          'backgroundColor': '#3e5480',
+          'borderColor': '#3e5480',
+          'textColor': '#ffffff',
+          'url': null,
+          'voice': null,
+          'video': null,
+          'contents': []
         },
         {
-          "id": 2277,
-          "title": "فیزیک دهم جلسه 2",
-          "description": null,
-          "long_description": null,
-          "date": "2021-03-22",
-          "resourceId": "2021-03-22",
-          "start": "16:15:00",
-          "end": "17:30:00",
-          "reshte": "tajrobi",
-          "major": {
-            "id": 2,
-            "name": "تجربی",
-            "title": "تجربی"
+          'id': 2277,
+          'title': 'فیزیک دهم جلسه 2',
+          'description': null,
+          'long_description': null,
+          'date': '2021-03-22',
+          'resourceId': '2021-03-22',
+          'start': '16:15:00',
+          'end': '17:30:00',
+          'reshte': 'tajrobi',
+          'major': {
+            'id': 2,
+            'name': 'تجربی',
+            'title': 'تجربی'
           },
-          "backgroundColor": '#3e5480',
-          "borderColor": '#3e5480',
-          "textColor": '#ffffff',
-          "url": null,
-          "voice": null,
-          "video": null,
-          "contents": []
+          'backgroundColor': '#3e5480',
+          'borderColor': '#3e5480',
+          'textColor': '#ffffff',
+          'url': null,
+          'voice': null,
+          'video': null,
+          'contents': []
         },
         {
-          "id": 2278,
-          "title": "فارسی جلسه 1و2",
-          "description": null,
-          "long_description": null,
-          "date": "2021-03-22",
-          "resourceId": "2021-03-22",
-          "start": "17:45:00",
-          "end": "19:00:00",
-          "reshte": "tajrobi",
-          "major": {
-            "id": 2,
-            "name": "تجربی",
-            "title": "تجربی"
+          'id': 2278,
+          'title': 'فارسی جلسه 1و2',
+          'description': null,
+          'long_description': null,
+          'date': '2021-03-22',
+          'resourceId': '2021-03-22',
+          'start': '17:45:00',
+          'end': '19:00:00',
+          'reshte': 'tajrobi',
+          'major': {
+            'id': 2,
+            'name': 'تجربی',
+            'title': 'تجربی'
           },
-          "backgroundColor": '#3e5480',
-          "borderColor": '#3e5480',
-          "textColor": '#ffffff',
-          "url": null,
-          "voice": null,
-          "video": null,
-          "contents": []
+          'backgroundColor': '#3e5480',
+          'borderColor': '#3e5480',
+          'textColor': '#ffffff',
+          'url': null,
+          'voice': null,
+          'video': null,
+          'contents': []
         },
         {
-          "id": 2279,
-          "title": "دینی جلسه1 (درس1و2دهم)+تست 1تا28",
-          "description": null,
-          "long_description": null,
-          "date": "2021-03-22",
-          "resourceId": "2021-03-22",
-          "start": "19:45:00",
-          "end": "21:00:00",
-          "reshte": "tajrobi",
-          "major": {
-            "id": 2,
-            "name": "تجربی",
-            "title": "تجربی"
+          'id': 2279,
+          'title': 'دینی جلسه1 (درس1و2دهم)+تست 1تا28',
+          'description': null,
+          'long_description': null,
+          'date': '2021-03-22',
+          'resourceId': '2021-03-22',
+          'start': '19:45:00',
+          'end': '21:00:00',
+          'reshte': 'tajrobi',
+          'major': {
+            'id': 2,
+            'name': 'تجربی',
+            'title': 'تجربی'
           },
-          "backgroundColor": '#3e5480',
-          "borderColor": '#3e5480',
-          "textColor": '#ffffff',
-          "url": null,
-          "voice": null,
-          "video": null,
-          "contents": []
+          'backgroundColor': '#3e5480',
+          'borderColor': '#3e5480',
+          'textColor': '#ffffff',
+          'url': null,
+          'voice': null,
+          'video': null,
+          'contents': []
         },
         {
-          "id": 2460,
-          "title": "مشاوره",
-          "description": null,
-          "long_description": null,
-          "date": "2021-03-22",
-          "resourceId": "2021-03-22",
-          "start": "07:15:08",
-          "end": "07:29:08",
-          "reshte": "riazi",
-          "major": {
-            "id": 1,
-            "name": "ریاضی",
-            "title": "ریاضی"
+          'id': 2460,
+          'title': 'مشاوره',
+          'description': null,
+          'long_description': null,
+          'date': '2021-03-22',
+          'resourceId': '2021-03-22',
+          'start': '07:15:08',
+          'end': '07:29:08',
+          'reshte': 'riazi',
+          'major': {
+            'id': 1,
+            'name': 'ریاضی',
+            'title': 'ریاضی'
           },
-          "backgroundColor": '#3e5480',
-          "borderColor": '#3e5480',
-          "textColor": '#ffffff',
-          "url": null,
-          "voice": null,
-          "video": null,
-          "contents": [
+          'backgroundColor': '#3e5480',
+          'borderColor': '#3e5480',
+          'textColor': '#ffffff',
+          'url': null,
+          'voice': null,
+          'video': null,
+          'contents': [
             {
-              "id": 26125,
-              "redirect_url": null,
-              "type": {
-                "id": 1,
-                "title": "moshavere_voice",
-                "display_name": "ویس مشاوره"
+              'id': 26125,
+              'redirect_url': null,
+              'type': {
+                'id': 1,
+                'title': 'moshavere_voice',
+                'display_name': 'ویس مشاوره'
               },
-              "title": "روز اول",
-              "url": {
-                "web": "https://alaatv.com/c/26125",
-                "api": "https://alaatv.com/api/v2/c/26125"
+              'title': 'روز اول',
+              'url': {
+                'web': 'https://alaatv.com/c/26125',
+                'api': 'https://alaatv.com/api/v2/c/26125'
               },
-              "file": {
-                "video": null,
-                "pamphlet": null,
-                "voice": [
+              'file': {
+                'video': null,
+                'pamphlet': null,
+                'voice': [
                   {
-                    "link": "https://paid.alaatv.com/public/c/voice/Taftan1400_moshavere_roz1.mp3",
-                    "ext": "mp3",
-                    "size": null,
-                    "caption": "صوت"
+                    'link': 'https://paid.alaatv.com/public/c/voice/Taftan1400_moshavere_roz1.mp3',
+                    'ext': 'mp3',
+                    'size': null,
+                    'caption': 'صوت'
                   }
                 ]
               }

@@ -1,42 +1,50 @@
 <template>
+  <!--  :color=" selected ? '#f2f5ff' : 'transparent'"-->
   <v-card
+    width="100%"
     class="rounded-0 transparent"
-    :color=" selected ? '#f2f5ff' : 'transparent'"
     flat
   >
     <div
-      class="contentListItem-main-box"
-      :class=" $vnode.key === length ? '' : 'list-border-bottom'"
+      class="d-flex contentListItem-main-box"
+      :class=" $vnode.key === length-1 ? '' : 'list-border-bottom'"
     >
       <div class="right-content">
         <v-card
+          v-if="false"
           height="22"
           class="mb-2 rounded-pill text-center text-caption"
           flat
           dark
           color="#009498"
         >
-          تلت
+          {{ content }}
         </v-card>
         <div class="contentListItem-box">
           <v-card
+            v-if="type === 'video'"
             flat
             class="rounded-card"
           >
             <v-img
-              src="../assets/hendese.jpg"
+              :src="content.photo"
             />
           </v-card>
           <div
-            v-if="data[0].seen"
+            v-if="false"
             class="d-flex seen justify-center align-center"
           >
             <i class="fi fi-rr-check icon" />
           </div>
+          <v-img
+            v-if="type === 'pamphlet'"
+            src="../assets/pdf.png"
+          />
         </div>
       </div>
       <div class="left-content">
         <v-sheet
+          v-if="false"
           text-color="#3e5480"
           depressed
           height="22"
@@ -46,17 +54,25 @@
         >
           <i class="fi fi-rr-clock ml-2" />
           <div>
-            <span>{{ data[0].time1 }}</span>
+            <span />
             <span> الی </span>
-            <span>{{ data[0].time2 }}</span>
+            <span />
           </div>
         </v-sheet>
-        <div class="title-box">
+        <v-sheet
+          v-if="false"
+          class="mb-2"
+          color="transparent"
+          height="22"
+        />
+        <div class="d-flex flex-column justify-center title-box">
           <p class="contentListItem-title ">
-            {{ data[0].title }}
+            {{ content.short_title }}
           </p>
-          <p class="contentListItem-description ">
-            {{ data[0].description }}
+          <p
+            class="contentListItem-description"
+          >
+            {{ content.title }}
           </p>
         </div>
       </div>
@@ -66,46 +82,50 @@
 <script>
 
 export default {
-  name: "ContentListItem",
+  name: 'ContentListItem',
   props: {
-    data: {
-      type: Array,
+    content: {
+      type: Object,
       default: () => {
-        return [
-          {
-            // eslint-disable-next-line vue/max-len
-            title: 'جلسه فیلان - فرسنگ هشتم جلسه فیلان - فرسنگ هشتم جلسه فیلان - فرسنگ هشتم ',
-            // eslint-disable-next-line vue/max-len
-            description: '(قسمت بیست و سوم)، فصل سوم',
-            seen: true,
-            time1: '12',
-            time2: '19'
-          },
-        ]
-      }
+        return {}
+      },
     },
-    selected: {
+    type: {
       type: Boolean,
-      default: true
+      default: false
     },
     length: {
       type: Number,
       default: 0
     },
-
   },
-  methods: {}
+  methods: {},
+  data(){
+    return {
+    }
+  },
+
 }
 </script>
-
 <style scoped>
 .v-application p {
   margin-bottom: 0;
 }
 
+/*::-webkit-scrollbar {*/
+/*  width: 20px;*/
+/*}*/
+/*::-webkit-scrollbar-track {*/
+/*  background: red;*/
+/*}*/
+/*::-webkit-scrollbar-thumb {*/
+/*  background: blue;*/
+/*}*/
+/*::-webkit-scrollbar-thumb:hover {*/
+/*background: #555*/
+/*}*/
 .contentListItem-main-box {
   margin: 0 32px 21px 32px;
-  display: flex
 }
 
 .list-border-bottom {
@@ -170,6 +190,13 @@ export default {
 
 .left-content {
   margin-right: 15px;
+  width: 100%;
+  height: 100%;
+}
+
+.left-content .title-box {
+  height: 100%;
+  width: 100%;
 }
 
 @media screen and (max-width: 1200px) {
@@ -178,6 +205,7 @@ export default {
   }
 
   .contentListItem-main-box {
+    width: 100%;
     margin: 0 11px 21px 11px;
   }
 
@@ -200,7 +228,6 @@ export default {
 
   .left-content {
     margin-right: 10px;
-
   }
 
   .contentListItem-main-box .left-content .time-sheet {

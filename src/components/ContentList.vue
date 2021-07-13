@@ -24,9 +24,11 @@
     <div class="content-list-items-box">
       <div class="content-box">
         <content-list-item
-          v-for="i in listLength"
-          :key="i"
-          :length="listLength"
+          v-for="(i , index) in filteredList"
+          :key="index"
+          :length="filteredList.length"
+          :content="i"
+          :type="type"
         />
       </div>
     </div>
@@ -35,16 +37,46 @@
 
 <script>
 import ContentListItem from '../components/ContentListItem'
+import {ContentList} from "../Models/Content";
+
 export default {
-  name: "ContentList",
+  name: 'ContentList',
   components : {
     ContentListItem
+  },
+  props:{
+    contents:{
+      type:ContentList,
+      default :() => {
+        return new ContentList();
+      }
+    },
+    type:{
+      type: String,
+      default:''
+    }
   },
   data(){
     return {
       items: ['تست1', 'تست2', 'تست3', 'تست4'],
       listLength:8,
+
+      dataType:''
     }
+  },
+ computed :{
+    filteredList () {
+    return this.contents.list.filter(item => {
+      var typeId = 0
+       if (this.type === 'video') {
+         typeId = 1
+       }
+       if (this.type === 'pamphlet') {
+         typeId = 8
+       }
+       return item.type === typeId
+     })
+   }
   }
 }
 </script>
@@ -58,6 +90,7 @@ export default {
   position: absolute;
   overflow: auto;
   height: 100%;
+  width: 100%;
 }
 .content-list-box .v-select-box .v-select--is-menu-active .v-input__control .v-input__slot{
   border:solid;
@@ -70,6 +103,8 @@ export default {
   margin-right: 0!important;
 }
 .content-list-box {
+  display: flex;
+  flex-direction: column;
   border-radius: 30px;
   border: solid 6px #eff3ff;
   height: 100%;
