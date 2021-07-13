@@ -37,21 +37,22 @@
 
 <script>
 import ContentListItem from '../components/ContentListItem'
-import {Content, ContentList} from "../Models/Content";
+import {ContentList} from "../Models/Content";
+
 export default {
-  name: "ContentList",
+  name: 'ContentList',
   components : {
     ContentListItem
   },
   props:{
     contents:{
-      type:Content,
+      type:ContentList,
       default :() => {
         return new ContentList();
       }
     },
     type:{
-      type:String,
+      type: String,
       default:''
     }
   },
@@ -65,10 +66,10 @@ export default {
   },
  computed :{
     filteredList () {
-    return  this.contents.list.filter(item => {
+    return this.contents.list.filter(item => {
       var typeId = 0
        if (this.type === 'video') {
-         typeId = 8
+         typeId = 1
        }
        if (this.type === 'pamphlet') {
          typeId = 8

@@ -82,7 +82,7 @@
 <script>
 
 export default {
-  name: "ContentListItem",
+  name: 'ContentListItem',
   props: {
     content: {
       type: Object,
