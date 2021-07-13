@@ -120,7 +120,7 @@ import {StudyPlanList} from '../Models/StudyPlan';
 import axios from 'axios';
 import {SetList, Set} from '@/Models/Set';
 import StudyPlanGroup from '@/components/studyPlanGroup/StudyPlanGroup';
-import {SetSection} from "@/Models/SetSection";
+import {SetSection} from '@/Models/SetSection';
 
 export default {
   name: 'UserAbrishamProgress',
