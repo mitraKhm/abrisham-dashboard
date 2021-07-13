@@ -45,11 +45,12 @@
         />
       </v-col>
       <v-col md="4">
-        <content-list>
+        <content-list-component>
           <template v-slot:filter>
             <div class="d-flex justify-space-between v-select-box">
               <div class="ml-xm-2 ml-5">
                 <v-select
+                  v-model="setFilterId"
                   value="all"
                   :items="sets.list"
                   item-text="short_title"
@@ -65,7 +66,9 @@
               </div>
               <v-select
                 :disabled="setFilterId === 'all'"
-                :items="filteredSets.section"
+                :items="filteredSets[0].sections.list"
+                item-text="title"
+                item-value="title"
                 :menu-props="{ bottom: true, offsetY: true }"
                 solo
                 append-icon="mdi-chevron-down"
