@@ -46,7 +46,7 @@
       </v-col>
       <v-col md="4">
         <content-list-component
-          :contents="contents"
+          :contents="filteredContents"
           type="video"
         >
           <template v-slot:filter>
@@ -68,10 +68,12 @@
                 />
               </div>
               <v-select
+                v-model="sectionFilterId"
                 :disabled="setFilterId === 'all'"
-                :items="filteredSets[0].sections.list"
+                :items="filteredSets[0] ? filteredSets[0].sections.list : []"
                 item-text="title"
-                item-value="title"
+                item-value="id"
+                value="all"
                 :menu-props="{ bottom: true, offsetY: true }"
                 solo
                 append-icon="mdi-chevron-down"
@@ -91,7 +93,7 @@
       </v-col>
       <v-col md="4">
         <content-list-component
-          :contents="contents"
+          :contents="filteredContents"
           type="pamphlet"
         />
       </v-col>
@@ -125,12 +127,16 @@ export default {
       currentContent: new Content(),
       studyPlans: new StudyPlanList(),
       sets: new SetList(),
-      setFilterId: 'all'
+      setFilterId: "all",
+      sectionFilterId: 'all'
     }
   },
   computed: {
     lessons () {
       let lessons = this.majors.filter( majorItem => majorItem.selected).map( item => item.lessons )[0]
+      if (!lessons) {
+        return []
+      }
       lessons.map( item => {
         item.color = 'blue'
         return item
@@ -149,6 +155,12 @@ export default {
     },
     selectedLesson () {
       return this.lessons.filter( item => item.selected )
+    },
+    filteredContents () {
+      if (this.setFilterId === 'all') {
+        return this.contents
+      }
+      return new ContentList(this.contents.list.filter(content => content.section.name === this.sectionFilterId))
     }
   },
   watch : {
