@@ -55,7 +55,6 @@
             <div class="d-flex justify-space-between v-select-box">
               <div class="ml-xm-2 ml-5">
                 <v-select
-
                   v-model="setFilterId"
                   value="all"
                   :items="sets.list"
@@ -91,7 +90,7 @@
       </v-col>
       <v-col md="4">
         <content-list-component
-            :header="{ title: 'جزوه ها' }"
+          :header="{ title: 'جزوه ها' }"
           :loading="contentListLoading"
           :contents="filteredContents"
           type="pamphlet"

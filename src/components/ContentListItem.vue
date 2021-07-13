@@ -1,6 +1,6 @@
 <template>
   <!--  :color=" selected ? '#f2f5ff' : 'transparent'"-->
-  <div >
+  <div>
     <div
       class="d-flex contentListItem-main-box"
       :class=" $vnode.key === length-1 ? '' : 'list-border-bottom'"
@@ -14,7 +14,7 @@
           dark
           color="#009498"
         >
-<!--          get lesson name
+          <!--          get lesson name
          {{ content }}-->
         </v-card>
         <div class="contentListItem-box">
@@ -172,11 +172,9 @@ export default {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
-
 .contentListItem-main-box .left-content .time-sheet {
   font-size: 12px;
 }
-
 .contentListItem-box .rounded-card {
   width: 96px;
   height: 54px;
@@ -198,42 +196,34 @@ export default {
   width: 100%;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1920px) {
   .contentListItem-box {
     position: relative;
     border-radius: 0;
   }
-
   .contentListItem-main-box {
-    width: 100%;
     margin: 0 11px 21px 11px;
   }
-
   .contentListItem-box .rounded-card {
     height: 40px;
     width: 71px;
     border-radius: 5px;
   }
-
   .contentListItem-box .seen {
     height: 40px;
     width: 71px;
     border-radius: 5px;
   }
-
   .title-box .contentListItem-description {
     font-size: 14px;
     color: #9fa5c0;
   }
-
   .left-content {
     margin-right: 10px;
   }
-
   .contentListItem-main-box .left-content .time-sheet {
     font-size: 12px;
   }
-
   .title-box .contentListItem-title {
     font-size: 18px;
     font-weight: 500;
