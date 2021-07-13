@@ -33,7 +33,7 @@
         md="6"
         cols="12"
         order-md="1"
-        class="text-md-right text-center"
+        class="text-md-right text-center d-flex flex-column justify-center"
       >
         نمایش محتوا بر اساس فعالیت شما
       </v-col>
@@ -48,6 +48,7 @@
         <content-list-component
           :loading="contentListLoading"
           :contents="filteredContents"
+          :header="{ title: 'لیست فیلم ها', button: { title: 'من کجام؟', event: 'whereAmI' } }"
           type="video"
         >
           <template v-slot:filter>
@@ -94,6 +95,7 @@
       </v-col>
       <v-col md="4">
         <content-list-component
+            :header="{ title: 'جزوه ها' }"
           :loading="contentListLoading"
           :contents="filteredContents"
           type="pamphlet"
@@ -161,10 +163,9 @@ export default {
       return this.lessons.find( item => item.selected )
     },
     filteredContents () {
-      if (this.setFilterId === 'all') {
-        return this.contents
-      }
-      return new ContentList(this.contents.list.filter(content => content.section.id === this.sectionFilterId))
+      return new ContentList(this.contents.list.filter(content =>  {
+        return this.sectionFilterId === 'all' || content.section.id === this.sectionFilterId
+      }))
     }
   },
   watch : {
