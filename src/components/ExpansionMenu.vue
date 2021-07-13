@@ -45,7 +45,6 @@
                     :key="index"
                   />
                 </v-list-item>
-
               </template>
             </v-list>
           </v-expansion-panel-content>
