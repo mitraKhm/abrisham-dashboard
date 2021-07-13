@@ -2,7 +2,7 @@
   <div class="schedule-page">
     <v-row>
       <v-col
-        xl="9"
+        lg="9"
         md="6"
         cols="12"
         order-md="2"
@@ -10,14 +10,14 @@
       >
         <v-row>
           <v-col
-            xl="6"
+            lg="6"
             md="6"
             cols="12"
           >
             <chip-group v-model="majors" />
           </v-col>
           <v-col
-            xl="6"
+            lg="6"
             md="6"
             cols="12"
           >
@@ -29,7 +29,7 @@
         </v-row>
       </v-col>
       <v-col
-        xl="3"
+        lg="3"
         md="6"
         cols="12"
         order-md="1"
@@ -46,6 +46,7 @@
       </v-col>
       <v-col md="4">
         <content-list-component
+          :loading="contentListLoading"
           :contents="filteredContents"
           type="video"
         >
@@ -93,6 +94,7 @@
       </v-col>
       <v-col md="4">
         <content-list-component
+          :loading="contentListLoading"
           :contents="filteredContents"
           type="pamphlet"
         />
@@ -116,6 +118,7 @@ import {StudyPlanList} from '../Models/StudyPlan';
 import axios from 'axios';
 import {SetList, Set} from '@/Models/Set';
 import StudyPlanGroup from '@/components/studyPlanGroup/StudyPlanGroup';
+import {SetSection} from "@/Models/SetSection";
 
 export default {
   name: 'UserAbrishamProgress',
@@ -127,8 +130,9 @@ export default {
       currentContent: new Content(),
       studyPlans: new StudyPlanList(),
       sets: new SetList(),
-      setFilterId: "all",
-      sectionFilterId: 'all'
+      setFilterId: 'all',
+      sectionFilterId: 'all',
+      contentListLoading: false
     }
   },
   computed: {
@@ -154,13 +158,13 @@ export default {
       return this.sets.list.filter(set => this.setFilterId === 'all' || this.setFilterId === set.id)
     },
     selectedLesson () {
-      return this.lessons.filter( item => item.selected )
+      return this.lessons.find( item => item.selected )
     },
     filteredContents () {
       if (this.setFilterId === 'all') {
         return this.contents
       }
-      return new ContentList(this.contents.list.filter(content => content.section.name === this.sectionFilterId))
+      return new ContentList(this.contents.list.filter(content => content.section.id === this.sectionFilterId))
     }
   },
   watch : {
@@ -200,14 +204,16 @@ export default {
       })
     },
     getSets (productId) {
+      this.contentListLoading = true
       axios.get('/api/v2/product/' + productId + '/sets')
       .then( response => {
         if (response.data.data.length > 0) {
           this.getContents(response.data.data[0].id)
         }
-        console.log('getSets', response)
         this.sets = new SetList(response.data.data)
         this.sets.list.unshift(new Set({id: 'all', short_title: 'همه'}))
+        this.sets.list.forEach(item => item.sections.list.unshift(new SetSection({ id: 'all', title: 'همه' })))
+        this.contentListLoading = false
       })
     },
     getContents (setId) {
