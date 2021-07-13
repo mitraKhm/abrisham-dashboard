@@ -54,14 +54,14 @@
 
 <script>
 
-import {Content} from "../Models/Content";
-import CommentBox from "../components/CommentBox";
-import ContentList from "../components/ContentList";
-import chipGroup from "../components/chipGroup";
-import videoBox from "../components/videoBox";
-import StudyPlanGroup from "../components/StudyPlanGroup";
-import {StudyPlanList} from "../Models/StudyPlan";
-import axios from "axios";
+import {Content} from '../Models/Content';
+import CommentBox from '../components/CommentBox';
+import ContentList from '../components/ContentList';
+import chipGroup from '../components/chipGroup';
+import videoBox from '../components/videoBox';
+import StudyPlanGroup from '../components/studyPlanGroup/StudyPlanGroup';
+import {StudyPlanList} from '../Models/StudyPlan';
+import axios from 'axios';
 
 export default {
   name: 'Schedule',

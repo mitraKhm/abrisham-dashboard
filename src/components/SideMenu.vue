@@ -48,7 +48,7 @@
 
 <script>
 export default {
-  name: "SideMenu",
+  name: 'SideMenu',
   data() {
     return {
       isActive:null,
@@ -91,11 +91,18 @@ export default {
   },
   methods:{
     }
-
 }
 </script>
 
 <style>
+.side-menu{
+  min-height: calc(100vh - 2px) ;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+}
 
 .menu-logo {
   text-align: center;
@@ -148,8 +155,6 @@ export default {
     list-style: none;
     margin-bottom:10px !important;
     text-align: center;
-
-
   }
   .menu-items .menu-item .fi{
     color: #b1ccee;
@@ -170,12 +175,10 @@ export default {
   list-style: none;
   margin-bottom: 26px;
   text-align: center;
-
 }
 .menu-items .menu-items-list .menu-item .activate , .side-menu .power-item .activate{
   color: #ff8f00 !important;
 }
-
 
  .side-menu .menu-indicator{
   position: absolute;
@@ -197,10 +200,11 @@ export default {
 
 }
 .side-menu .power-item{
-  position: absolute;
+
   width: 100%;
   text-align: center;
   bottom: 0;
+  margin-bottom: 30px;
 }
 
 .side-menu .power-item a{
@@ -209,9 +213,7 @@ export default {
 .side-menu .power-item .fi{
   color: #b1ccee;
   font-size: 26px;
-  position: relative;
   top: 5px;
-
 }
 
 </style>

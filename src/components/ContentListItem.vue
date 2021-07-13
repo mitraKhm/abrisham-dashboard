@@ -84,7 +84,7 @@
 import {Content} from "../Models/Content";
 
 export default {
-  name: "ContentListItem",
+  name: 'ContentListItem',
   props: {
     content: {
       type: Content,

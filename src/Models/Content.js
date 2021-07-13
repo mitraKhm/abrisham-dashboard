@@ -1,6 +1,6 @@
 import {Model, Collection} from 'js-abstract-model'
-import {SetList} from "./Set";
-import Url from "./Url";
+import {SetList} from './Set';
+import Url from './Url';
 import {ContentTimePointList} from './ContentTimePoint'
 import ContentSection from './ContentSection'
 
@@ -19,6 +19,7 @@ class Content extends Model {
             {key: 'author'},
             {key: 'contenttype_id'},
             {key: 'context'},
+            {key: 'comment'},
             {key: 'description'},
             {key: 'display'},
             {key: 'duration'},
