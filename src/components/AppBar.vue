@@ -62,7 +62,7 @@
 
 <script>
 export default {
-  name: "AppBar",
+  name: 'AppBar',
   props:{
     width: {
       type:Object,

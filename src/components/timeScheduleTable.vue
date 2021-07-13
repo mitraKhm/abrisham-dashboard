@@ -47,8 +47,8 @@
 </template>
 
 <script>
-import Major from "@/Models/Major";
-import {PlanList} from "@/Models/Plan";
+import Major from '@/Models/Major';
+import {PlanList} from '@/Models/Plan';
 
 export default {
     name: 'TimeScheduleTable',

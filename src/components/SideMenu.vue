@@ -48,7 +48,7 @@
 
 <script>
 export default {
-  name: "SideMenu",
+  name: 'SideMenu',
   data() {
     return {
       isActive:null,

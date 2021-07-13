@@ -1,6 +1,6 @@
 import { Model, Collection} from 'js-abstract-model'
 import { PlanList } from './Plan'
-import * as PersianDate from "persian-date";
+import * as PersianDate from 'persian-date';
 
 class StudyPlan extends Model {
     constructor(data) {

@@ -37,9 +37,9 @@
 
 <script>
 import ContentListItem from '../components/ContentListItem'
-import {Content, ContentList} from "../Models/Content";
+import {Content, ContentList} from '../Models/Content';
 export default {
-  name: "ContentList",
+  name: 'ContentList',
   components : {
     ContentListItem
   },
