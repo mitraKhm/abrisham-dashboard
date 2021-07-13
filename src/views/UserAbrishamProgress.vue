@@ -39,37 +39,45 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col md="9">
+      <v-col md="8">
         <video-box
           :content="currentContent"
         />
       </v-col>
-      <v-col md="3">
+      <v-col md="4">
         <content-list-component
-          :contents="contents"
+        :contents="contents"
           type="video"
         >
           <template v-slot:filter>
             <div class="d-flex justify-space-between v-select-box">
               <div class="ml-xm-2 ml-5">
                 <v-select
-                  :items="items"
+                  v-model="setFilterId"
+                  value="all"
+                  :items="sets.list"
+                  item-text="short_title"
+                  item-value="id"
                   :menu-props="{ bottom: true, offsetY: true }"
                   solo
                   append-icon="mdi-chevron-down"
                   dense
                   background-color="#eff3ff"
                   flat
-                  placeholder="gtrh"
+                  placeholder="انتخاب فرسنگ ها"
                 />
               </div>
               <v-select
-                :items="items"
+                :disabled="setFilterId === 'all'"
+                :items="filteredSets[0].sections.list"
+                item-text="title"
+                item-value="title"
                 :menu-props="{ bottom: true, offsetY: true }"
                 solo
                 append-icon="mdi-chevron-down"
                 dense
                 background-color="#eff3ff"
+                placeholder="همه"
                 flat
               />
             </div>
@@ -78,12 +86,12 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col md="9">
+      <v-col md="8">
         <comment-box />
       </v-col>
-      <v-col md="3">
+      <v-col md="4">
         <content-list-component
-          :contents="contents"
+        :contents="contents"
           type="pamphlet"
         />
       </v-col>
@@ -104,6 +112,7 @@ import chipGroup from "../components/chipGroup";
 import videoBox from "../components/videoBox";
 import {StudyPlanList} from "../Models/StudyPlan";
 import axios from "axios";
+import {SetList, Set} from "@/Models/Set";
 import StudyPlanGroup from "@/components/StudyPlanGroup";
 
 export default {
@@ -114,7 +123,9 @@ export default {
       majors: [],
       contents: new ContentList(),
       currentContent: new Content(),
-      studyPlans: new StudyPlanList()
+      studyPlans: new StudyPlanList(),
+      sets: new SetList(),
+      setFilterId: "all"
     }
   },
   computed: {
@@ -132,6 +143,9 @@ export default {
       }
 
       return lessons
+    },
+    filteredSets () {
+      return this.sets.list.filter(set => this.setFilterId === 'all' || this.setFilterId === set.id)
     },
     selectedLesson () {
       return this.lessons.filter( item => item.selected )
@@ -180,6 +194,8 @@ export default {
           this.getContents(response.data.data[0].id)
         }
         console.log('getSets', response)
+        this.sets = new SetList(response.data.data)
+        this.sets.list.unshift(new Set({id: "all", short_title: "همه"}))
       })
     },
     getContents (setId) {
