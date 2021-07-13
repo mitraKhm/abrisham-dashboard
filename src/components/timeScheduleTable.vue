@@ -42,14 +42,22 @@
           class="plan"
           :style="{
             right: calcPosition(p.start, p.end).right,
-            width: calcPosition(p.start, p.end).width,
-            backgroundColor: p.backgroundColor,
-            borderColor: p.borderColor,
-            color: p.textColor
+            width: calcPosition(p.start, p.end).width
           }"
           @click="showPlanDetails(p.id)"
         >
-          {{ p.title }}
+          <div
+            class="plan-within-box"
+            :style="{
+              right: calcPosition(p.start, p.end).right,
+              width: calcPosition(p.start, p.end).width,
+              backgroundColor: p.backgroundColor,
+              borderColor: p.borderColor,
+              color: p.textColor
+            }"
+          >
+            {{ p.title }}
+          </div>
         </div>
       </div>
     </div>
@@ -171,11 +179,17 @@ export default {
 
 .plan {
     position: absolute;
-    border: 1px solid;
+    /*border: 1px solid;*/
     cursor: pointer;
     border-radius: 10px;
-    top: 50%;
     text-align: center;
+  top: 0;
+  height: 100%;
+  padding-top: 64px;
+}
+
+.plan-within-box{
+  border-radius: 10px;
 }
 
 .timeTable {

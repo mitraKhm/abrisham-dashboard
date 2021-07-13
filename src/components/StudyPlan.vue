@@ -48,6 +48,7 @@
             </v-card-text>
           </v-card>
         </v-expansion-panel-content>
+        <individual-plan-details />
       </v-card>
     </v-expansion-panel-content>
   </v-expansion-panel>
@@ -58,6 +59,7 @@ import timeScheduleTable from "../components/timeScheduleTable";
 import { StudyPlan } from '@/Models/StudyPlan.js'
 import { PlanList } from '@/Models/Plan.js'
 import Major from "@/Models/Major";
+import IndividualPlanDetails from "@/components/IndividualPlanDetails";
 
 export default {
   props: {
@@ -86,7 +88,9 @@ export default {
     }
   },
   components :{
-    timeScheduleTable
+    IndividualPlanDetails,
+    timeScheduleTable,
+
   },
   created() {
     this.loadPlans()

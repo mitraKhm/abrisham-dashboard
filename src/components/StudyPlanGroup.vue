@@ -18,7 +18,13 @@
           item-text="name"
           solo
           flat
-        />
+        >
+          <!--          <template v-slot:actions>-->
+          <!--            <v-icon color="teal">-->
+          <!--              mdi-check-->
+          <!--            </v-icon>-->
+          <!--          </template>-->
+        </v-select>
       </div>
       <v-row>
         <v-expansion-panels
