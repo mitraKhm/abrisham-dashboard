@@ -50,7 +50,7 @@
 
 <script>
 export default {
-  name: "VideoBox"
+  name: 'VideoBox'
 }
 </script>
 <style scoped>

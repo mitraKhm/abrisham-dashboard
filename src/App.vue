@@ -30,12 +30,12 @@
 </template>
 
 <script>
-import "./assets/Fonts/Flaticons/css/uicons-regular-rounded.css"
-import "./assets/Fonts/IRANSans/css/font.scss"
-import AppBar  from "./components/AppBar";
-import SideMenu from "./components/SideMenu";
-import ExpansionMenu from "./components/ExpansionMenu";
-import axios from "axios";
+import './assets/Fonts/Flaticons/css/uicons-regular-rounded.css'
+import './assets/Fonts/IRANSans/css/font.scss'
+import AppBar  from './components/AppBar';
+import SideMenu from './components/SideMenu';
+import ExpansionMenu from './components/ExpansionMenu';
+import axios from 'axios';
 export default {
   components: {SideMenu , AppBar , ExpansionMenu},
   data(){
