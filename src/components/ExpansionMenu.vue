@@ -24,7 +24,7 @@
                 v-for="(i , index) in listData"
               >
                 <v-divider
-                    :key="index"
+                  :key="index"
                 />
                 <v-list-item
                   :key="index"
@@ -45,7 +45,6 @@
                     :key="index"
                   />
                 </v-list-item>
-
               </template>
             </v-list>
           </v-expansion-panel-content>
