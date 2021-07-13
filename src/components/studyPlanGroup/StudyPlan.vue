@@ -55,11 +55,11 @@
 </template>
 
 <script>
-import timeScheduleTable from "../components/timeScheduleTable";
+import timeScheduleTable from "./TimeScheduleTable";
 import { StudyPlan } from '@/Models/StudyPlan.js'
 import { PlanList } from '@/Models/Plan.js'
 import Major from "@/Models/Major";
-import IndividualPlanDetails from "@/components/IndividualPlanDetails";
+import IndividualPlanDetails from "@/components/studyPlanGroup/IndividualPlanDetails";
 
 export default {
   props: {

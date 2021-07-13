@@ -59,7 +59,7 @@ import CommentBox from "../components/CommentBox";
 import ContentList from "../components/ContentList";
 import chipGroup from "../components/chipGroup";
 import videoBox from "../components/videoBox";
-import StudyPlanGroup from "../components/StudyPlanGroup";
+import StudyPlanGroup from "../components/studyPlanGroup/StudyPlanGroup";
 import {StudyPlanList} from "../Models/StudyPlan";
 import axios from "axios";
 

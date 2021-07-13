@@ -19,11 +19,11 @@
           solo
           flat
         >
-          <!--          <template v-slot:actions>-->
-          <!--            <v-icon color="teal">-->
-          <!--              mdi-check-->
-          <!--            </v-icon>-->
-          <!--          </template>-->
+          <template v-slot:actions>
+            <v-icon color="teal">
+              mdi-chevron-down
+            </v-icon>
+          </template>
         </v-select>
       </div>
       <v-row>
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import StudyPlan from "../components/StudyPlan";
+import StudyPlan from "./StudyPlan";
 import {StudyPlanList} from '@/Models/StudyPlan.js'
 import Major from "@/Models/Major";
 export default {
