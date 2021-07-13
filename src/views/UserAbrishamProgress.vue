@@ -45,7 +45,10 @@
         />
       </v-col>
       <v-col md="4">
-        <content-list-component>
+        <content-list-component
+        :contents="contents"
+          type="video"
+        >
           <template v-slot:filter>
             <div class="d-flex justify-space-between v-select-box">
               <div class="ml-xm-2 ml-5">
@@ -87,12 +90,15 @@
         <comment-box />
       </v-col>
       <v-col md="4">
-        <content-list-component :contents="contents" type="pamphlet" />
+        <content-list-component
+        :contents="contents"
+          type="pamphlet"
+        />
       </v-col>
     </v-row>
     <v-row>
       <v-col>
-        <study-plan />
+        <study-plan-group />
       </v-col>
     </v-row>
   </div>
@@ -104,14 +110,14 @@ import CommentBox from "../components/CommentBox";
 import ContentListComponent from "../components/ContentList";
 import chipGroup from "../components/chipGroup";
 import videoBox from "../components/videoBox";
-import StudyPlan from "../components/StudyPlan";
 import {StudyPlanList} from "../Models/StudyPlan";
 import axios from "axios";
 import {SetList, Set} from "@/Models/Set";
+import StudyPlanGroup from "@/components/StudyPlanGroup";
 
 export default {
   name: 'UserAbrishamProgress',
-  components: {StudyPlan, ContentListComponent, CommentBox, chipGroup, videoBox},
+  components: {StudyPlanGroup, ContentListComponent, CommentBox, chipGroup, videoBox},
   data() {
     return {
       majors: [],

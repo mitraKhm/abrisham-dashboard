@@ -4,8 +4,8 @@
     <v-navigation-drawer
       app
       right
-      disable-resize-watcher
       permanent
+      disable-resize-watcher
       :width="drawerSize"
     >
       <side-menu />
@@ -40,13 +40,25 @@ export default {
   components: {SideMenu , AppBar , ExpansionMenu},
   data(){
     return {
+      drawer: true
     }
+  },
+  watch: {
+    // 'windowSize.x' : function (newValue) {
+    //   this.drawer = newValue > 576;
+    // }
   },
   computed: {
     windowSize () {
       return this.$store.getters['windowSize']
     },
     drawerSize () {
+      if (this.windowSize.x <= 576) {
+        return 0
+      } else
+      if (this.windowSize.x <= 768) {
+        return 60
+      } else
       if (this.windowSize.x <= 990) {
         return 80
       } else
