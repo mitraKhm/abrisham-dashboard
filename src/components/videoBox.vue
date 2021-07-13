@@ -129,7 +129,7 @@
 
 <script>
 export default {
-  name: "VideoBox",
+  name: 'VideoBox',
   data: () => ({
     sheet: false,
     downloadFiles:[

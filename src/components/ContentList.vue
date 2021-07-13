@@ -23,13 +23,15 @@
     <slot name="filter" />
     <div class="content-list-items-box">
       <div class="content-box">
-        <content-list-item
-          v-for="(i , index) in filteredList"
-          :key="index"
-          :length="filteredList.length"
-          :content="i"
-          :type="type"
-        />
+        <template v-for="(i , index) in filteredList">
+          <content-list-item
+            :key="index"
+            :length="filteredList.length"
+            :content="i"
+            :type="type"
+          >
+          </content-list-item>
+        </template>
       </div>
     </div>
   </div>
@@ -54,6 +56,10 @@ export default {
     type:{
       type: String,
       default:''
+    },
+    loading:{
+      type: Boolean,
+      default: false
     }
   },
   data(){

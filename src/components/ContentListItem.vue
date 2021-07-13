@@ -1,10 +1,6 @@
 <template>
   <!--  :color=" selected ? '#f2f5ff' : 'transparent'"-->
-  <v-card
-    width="100%"
-    class="rounded-0 transparent"
-    flat
-  >
+  <div >
     <div
       class="d-flex contentListItem-main-box"
       :class=" $vnode.key === length-1 ? '' : 'list-border-bottom'"
@@ -18,7 +14,8 @@
           dark
           color="#009498"
         >
-          {{ content }}
+<!--          get lesson name
+         {{ content }}-->
         </v-card>
         <div class="contentListItem-box">
           <v-card
@@ -77,11 +74,11 @@
         </div>
       </div>
     </div>
-  </v-card>
+  </div>
 </template>
 <script>
 
-import {Content} from "../Models/Content";
+import {Content} from '../Models/Content';
 
 export default {
   name: 'ContentListItem',
@@ -204,6 +201,7 @@ export default {
 @media screen and (max-width: 1200px) {
   .contentListItem-box {
     position: relative;
+    border-radius: 0;
   }
 
   .contentListItem-main-box {

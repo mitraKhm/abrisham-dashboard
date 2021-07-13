@@ -38,7 +38,10 @@
           <v-col class="text-right plan-sheet-details-video">
             <v-row>
               <v-col>
-                <v-card elevation="0" class="plan-sheet-details-video-thumbnail"></v-card>
+                <v-card
+                  elevation="0"
+                  class="plan-sheet-details-video-thumbnail"
+                />
               </v-col>
               <v-col>
                 فیلم جلسه 5 - حل تست فرسنگ ششم (قسمت فیلا...
@@ -46,7 +49,7 @@
             </v-row>
           </v-col>
           <v-col class="text-right">
-            <v-card class="plan-sheet-details-voice"></v-card>
+            <v-card class="plan-sheet-details-voice" />
           </v-col>
         </v-row>
       </v-card>
