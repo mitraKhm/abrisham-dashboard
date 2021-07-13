@@ -24,7 +24,7 @@
                 v-for="(i , index) in listData"
               >
                 <v-divider
-                    :key="index"
+                  :key="index"
                 />
                 <v-list-item
                   :key="index"
@@ -122,6 +122,11 @@ export default {
       listData: {}
     }
   },
+  // computed : {
+  //   updateHeaderData (){
+  //     return
+  //   }
+  // },
   created() {
     this.updateHeaderData()
     this.updateList()
@@ -173,8 +178,11 @@ export default {
 .expansion-panel-menu .v-expansion-panel-header__icon .v-icon{
   color: #3e5480;
 }
-.expansion-panel-menu  .theme--light .v-expansion-panels .v-expansion-panel-header .v-expansion-panel-header__icon .v-icon{
-  color: #3e5480;
+.expansion-panel-menu .v-item-group .v-expansion-panel .v-expansion-panel-header .v-expansion-panel-header__icon .v-icon{
+  color: red;
+}
+.theme--light.v-expansion-panels .v-expansion-panel-header .v-expansion-panel-header__icon .v-icon {
+  color: rgb(221, 34, 34) !important;
 }
 .expansion-panel-menu .menu-header-text{
   margin-bottom: 0;
