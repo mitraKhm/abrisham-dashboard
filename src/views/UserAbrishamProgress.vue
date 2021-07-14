@@ -52,11 +52,12 @@
           type="video"
         >
           <template v-slot:filter>
-            <div class="d-flex justify-space-between v-select-box">
-              <div class="ml-xm-2 ml-5">
+            <div class="d-flex  v-select-box">
+              <div class="ml-xm-2 ml-5 ">
                 <v-select
                   v-model="setFilterId"
                   value="all"
+                  color="#3e5480"
                   :items="sets.list"
                   item-text="short_title"
                   item-value="id"
@@ -66,19 +67,21 @@
                   dense
                   background-color="#eff3ff"
                   flat
-                  placeholder="انتخاب فرسنگ ها"
+                  label="انتخاب فرسنگ "
                 />
               </div>
-              <v-select
-
-                :menu-props="{ bottom: true, offsetY: true }"
-                solo
-                append-icon="mdi-chevron-down"
-                dense
-                background-color="#eff3ff"
-                placeholder="همه"
-                flat
-              />
+              <div class="left-select-box">
+                <v-select
+                  color="#3e5480"
+                  :menu-props="{ bottom: true, offsetY: true }"
+                  solo
+                  append-icon="mdi-chevron-down"
+                  dense
+                  background-color="#eff3ff"
+                  label="همه"
+                  flat
+                />
+              </div>
             </div>
           </template>
         </content-list-component>
@@ -237,10 +240,28 @@ export default {
 </script>
 
 <style lang="scss">
+.left-select-box{
+  width: 75%;
+}
+.v-select-box {
+  .theme--light.v-label{
+    color:#3e5480;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+.v-select-box {
+  .theme--light.v-icon{
+    color:#3e5480;
+  }
+}
 .schedule-page {
   @media screen and (max-width: 1920px) {
     & {
       margin: 0 58px;
+    }
+    .content-list-box  .v-select-box{
+      margin: 0 15px;
     }
   }
   @media screen and (max-width: 1200px) {

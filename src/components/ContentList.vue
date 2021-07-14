@@ -164,10 +164,11 @@ export default {
 }
 @media screen and (max-width: 1920px){
   .content-list-box .v-select-box{
-    margin: 0 26px;
+    margin: 0 10px;
   }
   .content-list-box .slot-header-box .slot-header-box-movie{
-    order:2
+    order:2;
+    padding: 0 10px 0  0;
   }
   .content-list-box .slot-header-box{
     flex-direction: column;
@@ -176,6 +177,25 @@ export default {
 }
 @media screen and (max-width: 1200px) {
 
+}
+@media screen and (max-width: 990px) {
+  .content-list-box .slot-header-box {
+    flex-direction: row;
+  }
+
+  .content-list-box .slot-header-box .slot-header-box-movie {
+    order: 0;
+    padding: 0 10px 0 0;
+  }
+
+}
+@media screen and (max-width: 768px) {
+  .content-list-box .slot-header-box .slot-header-box-movie {
+    font-size: 16px;
+  }
+  .content-list-box  .slot-header-box .slot-header-box-days{
+    font-size: 12px;
+  }
 }
 @media screen and (max-width: 576px) {
 
@@ -191,6 +211,7 @@ export default {
   }
   .content-list-box .slot-header-box .slot-header-box-movie {
     font-size:16px;
+    padding:0;
   }
   .content-list-box .slot-header-box .slot-header-box-days{
     font-size: 12px;
