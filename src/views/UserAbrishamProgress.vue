@@ -54,6 +54,7 @@
         sm="12"
       >
         <content-list-component
+          v-model="currentContent.id"
           :loading="contentListLoading"
           :contents="filteredContents"
           :header="{ title: 'لیست فیلم ها', button: { title: 'من کجام؟', event: 'whereAmI' } }"
@@ -78,18 +79,16 @@
                   label="انتخاب فرسنگ "
                 />
               </div>
-              <div class="left-select-box">
-                <v-select
-                  color="#3e5480"
-                  :menu-props="{ bottom: true, offsetY: true }"
-                  solo
-                  append-icon="mdi-chevron-down"
-                  dense
-                  background-color="#eff3ff"
-                  label="همه"
-                  flat
-                />
-              </div>
+              <v-select
+                color="#3e5480"
+                :menu-props="{ bottom: true, offsetY: true }"
+                solo
+                append-icon="mdi-chevron-down"
+                dense
+                background-color="#eff3ff"
+                label="همه"
+                flat
+              />
             </div>
           </template>
         </content-list-component>
@@ -255,9 +254,6 @@ export default {
 </script>
 
 <style lang="scss">
-.left-select-box{
-  width: 75%;
-}
 .v-select-box {
   .theme--light.v-label{
     color:#3e5480;

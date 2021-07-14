@@ -1,6 +1,9 @@
 <template>
   <!--  :color=" selected ? '#f2f5ff' : 'transparent'"-->
-  <div>
+  <div
+    class="red"
+    @click="changeSelectedItem"
+  >
     <div
       class="d-flex contentListItem-main-box"
       :class=" $vnode.key === length-1 ? '' : 'list-border-bottom'"
@@ -89,6 +92,10 @@ export default {
         return new Content();
       },
     },
+    selected:{
+      type:Boolean,
+      default:false
+    },
     type: {
       type:String,
       default: ''
@@ -98,7 +105,11 @@ export default {
       default: 0
     },
   },
-  methods: {},
+  methods: {
+    changeSelectedItem(){
+      this.$emit('itemClicked',this.content.id)
+    }
+  },
   data(){
     return {
     }

@@ -13,6 +13,7 @@
     "js-abstract-model": "^0.1.27",
     "persian-date": "^1.1.0",
     "vue": "^2.6.11",
+    "vue-lottie": "^0.2.1",
     "vue-router": "^3.2.0",
     "vue-share-buttons": "^1.1.0",
     "vue-social-sharing": "^3.0.8",

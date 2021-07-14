@@ -33,11 +33,13 @@
     <div class="content-list-items-box">
       <div class="content-box">
         <content-list-item
-          v-for="(i , index) in filteredList"
+          v-for="(item , index) in filteredList"
           :key="index"
           :length="filteredList.length"
-          :content="i"
+          :content="item"
           :type="type"
+          :selected="value === item.id"
+          @itemClicked="changeSelectedId"
         />
       </div>
     </div>
@@ -59,6 +61,10 @@ export default {
       default :() => {
         return new ContentList();
       }
+    },
+    value:{
+      type:String,
+      default:''
     },
     type:{
       type: String,
@@ -102,10 +108,14 @@ export default {
      })
    }
   },
+
   methods:{
     btnClicked( eventName) {
       console.log(eventName)
       this.$emit(eventName)
+    },
+    changeSelectedId(id){
+      this.$emit('input',id)
     }
   }
 }
