@@ -92,8 +92,8 @@ export default {
       },
     },
     selected:{
-      type:Number,
-      default:0
+      type:Boolean,
+      default:false
     },
     type: {
       type:String,
@@ -106,7 +106,7 @@ export default {
   },
   methods: {
     changeSelectedItem(){
-      this.$emit('itemClicked',this.content.id)
+      this.$emit('itemClicked')
     }
   },
   data(){

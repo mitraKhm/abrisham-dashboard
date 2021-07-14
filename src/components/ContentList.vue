@@ -38,8 +38,8 @@
           :length="filteredList.length"
           :content="item"
           :type="type"
-          :selected="selectedItemId"
-          @itemClicked="changeSelectedId"
+          :selected="selectedItemId === item.id"
+          @itemClicked="changeSelectedId(item.id)"
         />
       </div>
     </div>
