@@ -1,5 +1,6 @@
 <template>
   <div class="schedule-page">
+    <!--   --------------------------------- chip group ------------------------- -->
     <v-row>
       <v-col
         lg="9"
@@ -38,13 +39,20 @@
         نمایش محتوا بر اساس فعالیت شما
       </v-col>
     </v-row>
+    <!--   --------------------------------- video box &&  content list item ------------------------- -->
     <v-row>
-      <v-col md="8">
+      <v-col
+        md="8"
+        sm="12"
+      >
         <video-box
           :content="currentContent"
         />
       </v-col>
-      <v-col md="4">
+      <v-col
+        md="4"
+        sm="12"
+      >
         <content-list-component
           :loading="contentListLoading"
           :contents="filteredContents"
@@ -87,11 +95,18 @@
         </content-list-component>
       </v-col>
     </v-row>
+    <!--   --------------------------------- comment box &&  content list item ------------------------- -->
     <v-row>
-      <v-col md="8">
+      <v-col
+        md="8"
+        sm="12"
+      >
         <comment-box />
       </v-col>
-      <v-col md="4">
+      <v-col
+        md="4"
+        sm="12"
+      >
         <content-list-component
           :header="{ title: 'جزوه ها' }"
           :loading="contentListLoading"
