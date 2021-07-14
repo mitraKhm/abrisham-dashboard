@@ -2,7 +2,7 @@
   <!-- App.vue -->
   <v-app v-resize="onResize">
     <v-navigation-drawer
-        class="side-menu"
+      class="side-menu"
       app
       right
       permanent
@@ -18,13 +18,16 @@
     <v-main>
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
-        <expansion-menu v-if=" windowSize.x <=350" />
+        <expansion-menu v-if=" windowSize.x <= 768" />
         <!-- If using vue-router -->
         <router-view />
       </v-container>
     </v-main>
 
-    <v-footer app v-if="false">
+    <v-footer
+      v-if="false"
+      app
+    >
       <!-- -->
     </v-footer>
   </v-app>
