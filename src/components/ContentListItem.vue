@@ -91,8 +91,8 @@ export default {
       },
     },
     type: {
-      type: Boolean,
-      default: false
+      type: String,
+      default: 'video'
     },
     length: {
       type: Number,

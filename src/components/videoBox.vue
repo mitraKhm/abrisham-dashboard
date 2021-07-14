@@ -5,7 +5,26 @@
       color="#eff3ff"
       class="rounded-xl video-main"
     >
-      <v-responsive :aspect-ratio="16/9" />
+      <v-responsive :aspect-ratio="16/9">
+        <vue-plyr
+          v-if="content.file"
+          :emit="['progress']"
+          @progress="test"
+        >
+          <video
+            :poster="content.photo"
+            :src="content.file.video[0].link"
+          >
+            <source
+              v-for="(video, index) in content.file.video"
+              :key="index"
+              :src="video.link"
+              type="video/mp4"
+              :size="video.res.slice(0, -1)"
+            >
+          </video>
+        </vue-plyr>
+      </v-responsive>
     </v-card>
     <div class="video-description">
       <v-row no-gutters>
@@ -17,7 +36,7 @@
           </div>
           <div class="d-flex subtitle">
             <div class="d-flex part align-start">
-              <v-img 
+              <v-img
                 src="../assets/ic_alaa.png"
                 class="alaa-logo icon"
               />
@@ -37,12 +56,6 @@
           >
             دیده نشده
           </v-btn>
-
-
-
-
-
-
           <div class="video-box-icon">
             <v-bottom-sheet
               v-model="sheet"
@@ -61,8 +74,8 @@
               <v-list class="align-center sheet-background">
                 <v-row justify="center">
                   <v-card
-                    v-for="file in downloadFiles"
-                    :key="file"
+                    v-for="(file, index) in downloadFiles"
+                    :key="index"
                     class=" download-part"
                     flat
                     @click="sheet = false"
@@ -101,23 +114,6 @@
 
 
 
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
             <i class="fi fi-rr-bookmark icon" />
             <i class="fi fi-rr-share icon" />
           </div>
@@ -128,8 +124,25 @@
 </template>
 
 <script>
+
+import {Content} from '@/Models/Content';
+
 export default {
-  name: "VideoBox",
+
+
+  name: 'VideoBox',
+  components: {
+
+  },
+  computed: {
+
+  },
+  props: {
+    content: {
+      type: Content,
+      default: new Content()
+    }
+  },
   data: () => ({
     sheet: false,
     downloadFiles:[
@@ -154,6 +167,13 @@ export default {
 
     ]
   }),
+  methods: {
+    test (event) {
+      console.log('test', event)
+    }
+  },
+  mounted () {
+  }
 }
 </script>
 <style scoped>
@@ -324,5 +344,17 @@ export default {
   .video-description{
     margin-bottom:10px;
   }
+}
+</style>
+
+<style>
+.video-box .video-js {
+  height: 100%;
+  width: 100%;
+}
+
+.video-box .video-js .vjs-big-play-button {
+  left: calc(50% - 43px);
+  top: calc(50% - 20px);
 }
 </style>

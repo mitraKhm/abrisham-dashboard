@@ -12,7 +12,9 @@
     "core-js": "^3.6.5",
     "js-abstract-model": "^0.1.27",
     "persian-date": "^1.1.0",
+    "videojs-resolution-switcher": "^0.4.2",
     "vue": "^2.6.11",
+    "vue-plyr": "^6.0.4",
     "vue-router": "^3.2.0",
     "vuetify": "^2.4.0",
     "vuex": "^3.4.0"
@@ -59,7 +61,10 @@
       "vue/no-irregular-whitespace": "error",
       "vue/no-reserved-component-names": "error",
       "vue/valid-v-slot": "error",
-      "quotes": [2, "single"]
+      "quotes": [
+        2,
+        "single"
+      ]
     }
   },
   "browserslist": [

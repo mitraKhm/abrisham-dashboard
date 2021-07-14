@@ -41,7 +41,7 @@
     <v-row>
       <v-col md="8">
         <video-box
-          :content="currentContent"
+          :content="contents.list[0]"
         />
       </v-col>
       <v-col md="4">
@@ -56,7 +56,6 @@
               <div class="ml-xm-2 ml-5">
                 <v-select
                   v-model="setFilterId"
-                  value="all"
                   :items="sets.list"
                   item-text="short_title"
                   item-value="id"
@@ -71,7 +70,6 @@
               </div>
               <v-select
                 v-model="sectionFilterId"
-                :disabled="setFilterId === 'all'"
                 :items="filteredSets[0] ? filteredSets[0].sections.list : []"
                 item-text="title"
                 item-value="id"
@@ -95,7 +93,7 @@
       </v-col>
       <v-col md="4">
         <content-list-component
-            :header="{ title: 'جزوه ها' }"
+          :header="{ title: 'جزوه ها' }"
           :loading="contentListLoading"
           :contents="filteredContents"
           type="pamphlet"
@@ -118,9 +116,9 @@ import chipGroup from '../components/chipGroup';
 import videoBox from '../components/videoBox';
 import {StudyPlanList} from '../Models/StudyPlan';
 import axios from 'axios';
-import {SetList, Set} from '@/Models/Set';
+import {SetList} from '@/Models/Set';
 import StudyPlanGroup from '@/components/studyPlanGroup/StudyPlanGroup';
-import {SetSection} from "@/Models/SetSection";
+import {SetSection} from '@/Models/SetSection';
 
 export default {
   name: 'UserAbrishamProgress',
@@ -132,7 +130,7 @@ export default {
       currentContent: new Content(),
       studyPlans: new StudyPlanList(),
       sets: new SetList(),
-      setFilterId: 'all',
+      setFilterId: '',
       sectionFilterId: 'all',
       contentListLoading: false
     }
@@ -157,7 +155,7 @@ export default {
       return lessons
     },
     filteredSets () {
-      return this.sets.list.filter(set => this.setFilterId === 'all' || this.setFilterId === set.id)
+      return this.sets.list.filter(set => this.setFilterId === set.id)
     },
     selectedLesson () {
       return this.lessons.find( item => item.selected )
@@ -171,6 +169,9 @@ export default {
   watch : {
     selectedLesson (newValue) {
       this.getSets(newValue.id)
+    },
+    setFilterId (newValue) {
+      this.getContents(newValue)
     }
   },
   created() {
@@ -182,7 +183,6 @@ export default {
     getLessons () {
       axios.get('/api/v2/abrisham/lessons')
       .then( response => {
-        console.log('getLessons', response)
         response.data.forEach( (item, index) => {
           this.majors.push({
             id: index,
@@ -212,17 +212,14 @@ export default {
           this.getContents(response.data.data[0].id)
         }
         this.sets = new SetList(response.data.data)
-        this.sets.list.unshift(new Set({id: 'all', short_title: 'همه'}))
         this.sets.list.forEach(item => item.sections.list.unshift(new SetSection({ id: 'all', title: 'همه' })))
         this.contentListLoading = false
       })
     },
     getContents (setId) {
-      axios.get('/api/v2/set/' + setId)
+      axios.get('/api/v2/set/' + setId + '/contents')
       .then( response => {
-        console.log('getContents', response)
-        console.log('getContents', response.data.data.contents)
-        this.contents = new ContentList(response.data.data.contents)
+        this.contents = new ContentList(response.data.data)
       })
     },
     setComment () {
