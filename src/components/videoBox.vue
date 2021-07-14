@@ -31,18 +31,17 @@
         </v-col>
         <v-col class="icon-btn-box">
           <v-btn
-            color="#ff8f00"
             dark
-            class="video-btn"
+            :class="clickHandler ? 'seen-video-btn' : 'video-btn'"
+            @click="clickHandler"
           >
-            دیده نشده
+            <span
+              v-if="seen===true"
+            >
+              دیده شده
+              <i class="fi fi-rr-check" />
+            </span>
           </v-btn>
-
-
-
-
-
-
           <div class="video-box-icon">
             <v-bottom-sheet
               v-model="sheet"
@@ -63,7 +62,7 @@
                   <v-card
                     v-for="file in downloadFiles"
                     :key="file"
-                    class=" download-part"
+                    class="download-part"
                     flat
                     @click="sheet = false"
                   >
@@ -73,7 +72,7 @@
                       <a href="#"><i class="fi fi-rr-download icon" />
                         {{ file.title }}</a>
                     </v-card-actions>
-                    <v-col-md>
+                    <v-col>
                       <v-btn
                         class="details red"
                         depressed
@@ -92,7 +91,7 @@
                       >
                         {{ file.videoVolume }}
                       </v-btn>
-                    </v-col-md>
+                    </v-col>
                   </v-card>
                 </v-row>
               </v-list>
@@ -103,23 +102,33 @@
 
 
 
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <v-bottom-sheet>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  color="transparent"
+                  depressed
+                  dark
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <i class="fi fi-rr-share icon" />
+                </v-btn>
+              </template>
+              <v-list class="align-center sheet-background">
+                <v-row justify="center">
+                  <!--                  <ShareNetwork-->
+                  <!--                    v-for="icon in icons"-->
+                  <!--                    :key="icon"-->
+                  <!--                    network="Facebook"-->
+                  <!--                    url="icon.link"-->
+                  <!--                    class="social-share"-->
+                  <!--                  >-->
+                  <!--                    <i :class="'fi-rr-' + icon.icon" />-->
+                  <!--                  </ShareNetwork>-->
+                </v-row>
+              </v-list>
+            </v-bottom-sheet>
             <i class="fi fi-rr-bookmark icon" />
-            <i class="fi fi-rr-share icon" />
           </div>
         </v-col>
       </v-row>
@@ -127,10 +136,12 @@
   </div>
 </template>
 
+
 <script>
 export default {
   name: 'VideoBox',
   data: () => ({
+    seen:false,
     sheet: false,
     downloadFiles:[
       {
@@ -151,12 +162,49 @@ export default {
         format:'MP4',
         videoVolume:'93MB',
       },
-
+    ],
+    icons:[
+      {
+        name:'facebook',
+        icon:'power',
+        link:'https://news.vuejs.org/issues/180',
+      },
+      {
+        name:'facebook',
+        icon:'power',
+        link:'https://news.vuejs.org/issues/180',
+      },
+      {
+        name:'facebook',
+        icon:'power',
+        link:'https://news.vuejs.org/issues/180',
+      },
+      {
+        name:'facebook',
+        icon:'power',
+        link:'https://news.vuejs.org/issues/180',
+      },
     ]
   }),
+  methods:{
+    clickHandler(){
+      this.seen= !this.seen
+      return this.seen
+    }
+  }
+
 }
 </script>
 <style scoped>
+.social-share{
+  margin: 20px;
+  text-decoration: none;
+  background-color: green;
+  color: black;
+  border-radius: 50%;
+  padding: 20px;
+
+}
 
 .download-part{
   margin: 20px;
@@ -186,10 +234,6 @@ export default {
   margin: 20px;
   color: #FFFFFF;
 }
-
-
-
-
 
 
 .v-application p{
@@ -224,10 +268,22 @@ export default {
   line-height: 40px
 }
 .video-box .video-description .video-btn{
+  background-color: #ff8f00;
   width: 120px;
   height: 48px;
   border-radius: 10px;
   box-shadow: 0 5px 10px 0 rgba(62, 84, 128, 0.2);
+}
+.video-box .video-description .seen-video-btn{
+  background-color: #ffffff;
+  color: #ff8f00;
+  width: 120px;
+  height: 48px;
+  border-radius: 10px;
+  border: solid 2px #ff8f00;
+}
+.video-box .video-description  .fi {
+  font-size: 18px;
 }
 .video-box .video-description .video-btn-text {
   font-size: 16px;

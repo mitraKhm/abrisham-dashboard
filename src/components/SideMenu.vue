@@ -67,24 +67,24 @@ export default {
         },
         {
           icon: 'headphones',
-          routeName: 'Home',
+          routeName: 'consulting',
         },
         {
           icon: 'list-check',
-          routeName: 'Home',
+          routeName: 'my-performance',
 
         },
         {
           icon: 'stats',
-          routeName: 'Home',
+          routeName: 'assessment',
         },
         {
           icon: 'envelope',
-          routeName: 'Home',
+          routeName: 'news',
         },
        {
           icon: 'world',
-          routeName: 'Home',
+          routeName: 'map',
         },
       ]
     }
