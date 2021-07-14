@@ -1,6 +1,7 @@
 <template>
   <!--  :color=" selected ? '#f2f5ff' : 'transparent'"-->
   <div
+    :class="selected ? 'selected-content-list' : ''"
     @click="changeSelectedItem"
   >
     <div
@@ -83,7 +84,7 @@
 import {Content} from '../Models/Content';
 
 export default {
-  name: 'ContentListItem',
+  name:'ContentListItem',
   props: {
     content: {
       type: Content,
@@ -91,12 +92,12 @@ export default {
         return new Content();
       },
     },
-    selected:{
-      type:Boolean,
-      default:false
+    selected: {
+      type: Boolean,
+      default: false
     },
     type: {
-      type:String,
+      type: String,
       default: ''
     },
     length: {
@@ -117,6 +118,9 @@ export default {
 }
 </script>
 <style scoped>
+.selected-content-list{
+  background-color: #9fa5c0;
+}
 .v-application p {
   margin-bottom: 0;
 }

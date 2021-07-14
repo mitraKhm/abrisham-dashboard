@@ -232,8 +232,8 @@ export default {
     getContents (setId) {
       axios.get('/api/v2/set/' + setId)
       .then( response => {
-        console.log('getContents', response)
-        console.log('getContents', response.data.data.contents)
+        // console.log('getContents', response)
+        // console.log('getContents', response.data.data.contents)
         this.contents = new ContentList(response.data.data.contents)
       })
     },
