@@ -1,9 +1,7 @@
 <template>
   <!--  :color=" selected ? '#f2f5ff' : 'transparent'"-->
-  <v-card
-    width="100%"
-    class="rounded-0 transparent"
-    flat
+  <div
+    @click="changeSelectedItem"
   >
     <div
       class="d-flex contentListItem-main-box"
@@ -18,7 +16,8 @@
           dark
           color="#009498"
         >
-          {{ content }}
+          <!--          get lesson name
+         {{ content }}-->
         </v-card>
         <div class="contentListItem-box">
           <v-card
@@ -49,7 +48,7 @@
           depressed
           height="22"
           width="78"
-          class="d-flex justify-center mb-2 rounded-pill time-sheet "
+          class="d-flex justify-center mb-2 rounded-pill time-sheet"
           color="#eff3ff"
         >
           <i class="fi fi-rr-clock ml-2" />
@@ -77,29 +76,39 @@
         </div>
       </div>
     </div>
-  </v-card>
+  </div>
 </template>
 <script>
+
+import {Content} from '../Models/Content';
 
 export default {
   name: 'ContentListItem',
   props: {
     content: {
-      type: Object,
+      type: Content,
       default: () => {
-        return {}
+        return new Content();
       },
     },
+    selected:{
+      type:Number,
+      default:0
+    },
     type: {
-      type: String,
-      default: 'video'
+      type:String,
+      default: ''
     },
     length: {
       type: Number,
       default: 0
     },
   },
-  methods: {},
+  methods: {
+    changeSelectedItem(){
+      this.$emit('itemClicked',this.content.id)
+    }
+  },
   data(){
     return {
     }
@@ -199,41 +208,34 @@ export default {
   width: 100%;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1920px) {
   .contentListItem-box {
     position: relative;
+    border-radius: 0;
   }
-
   .contentListItem-main-box {
-    width: 100%;
     margin: 0 11px 21px 11px;
   }
-
   .contentListItem-box .rounded-card {
     height: 40px;
     width: 71px;
     border-radius: 5px;
   }
-
   .contentListItem-box .seen {
     height: 40px;
     width: 71px;
     border-radius: 5px;
   }
-
   .title-box .contentListItem-description {
     font-size: 14px;
     color: #9fa5c0;
   }
-
   .left-content {
     margin-right: 10px;
   }
-
   .contentListItem-main-box .left-content .time-sheet {
     font-size: 12px;
   }
-
   .title-box .contentListItem-title {
     font-size: 18px;
     font-weight: 500;

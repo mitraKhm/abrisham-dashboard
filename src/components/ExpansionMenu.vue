@@ -12,16 +12,21 @@
           >
             <i
               class="fi menu-header-icon"
-              :class="'fi-rr-' + headerData[0].icon"
+              :class="'fi-rr-' + updateHeaderData[0].icon"
             />
             <p class="menu-header-text">
-              {{ headerData[0].title }}
+              {{ updateHeaderData[0].title }}
             </p>
+            <template v-slot:actions>
+              <v-icon color="#3e5480">
+                $expand
+              </v-icon>
+            </template>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <v-list>
               <template
-                v-for="(i , index) in listData"
+                v-for="(i , index) in updateList"
               >
                 <v-divider
                   :key="index"
@@ -41,7 +46,7 @@
                     {{ i.title }}
                   </v-list-item-title>
                   <v-divider
-                    v-if="index < listData.length - 1"
+                    v-if="index < updateList.length - 1"
                     :key="index"
                   />
                 </v-list-item>
@@ -117,13 +122,18 @@ export default {
           selected: false
         },
       ],
-      headerData: {},
-      listData: {}
     }
   },
-  created() {
-    this.updateHeaderData()
-    this.updateList()
+  computed : {
+    updateHeaderData (){
+    return this.menuItems.filter(item => {
+        return item.selected  })
+    },
+    updateList () {
+      return  this.menuItems.filter(item => {
+        return !item.selected
+        })
+      }
   },
   methods: {
     changeSelectedItem(selected) {
@@ -134,20 +144,8 @@ export default {
         return i.selected = false
       })
       // this.$router.push( name : selected.routeName )
-      this.updateHeaderData()
-      this.updateList()
-    this.$route
+
     },
-    updateHeaderData() {
-      this.headerData = this.menuItems.filter(item => {
-        return item.selected
-      })
-    },
-    updateList() {
-      this.listData = this.menuItems.filter(item => {
-        return !item.selected
-      })
-    }
   }
 }
 </script>
@@ -170,9 +168,6 @@ export default {
   height: 33px;
 }
 .expansion-panel-menu .v-expansion-panel-header__icon .v-icon{
-  color: #3e5480;
-}
-.expansion-panel-menu  .theme--light .v-expansion-panels .v-expansion-panel-header .v-expansion-panel-header__icon .v-icon{
   color: #3e5480;
 }
 .expansion-panel-menu .menu-header-text{
