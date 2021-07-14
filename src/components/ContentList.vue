@@ -38,7 +38,7 @@
           :length="filteredList.length"
           :content="item"
           :type="type"
-          :selected="value === item.id"
+          :selected="selectedItemId"
           @itemClicked="changeSelectedId"
         />
       </div>
@@ -63,8 +63,8 @@ export default {
       }
     },
     value:{
-      type:String,
-      default:''
+      type:Number,
+      default:0
     },
     type:{
       type: String,
@@ -81,17 +81,15 @@ export default {
     header :{
       type: Object,
       default (){
-        return {}
+        return {
+        }
       }
     },
-
   },
   data(){
     return {
       items: ['تست1', 'تست2', 'تست3', 'تست4'],
-      listLength:8,
-
-      dataType:''
+      selectedItemId:0,
     }
   },
  computed :{
@@ -108,15 +106,21 @@ export default {
      })
    }
   },
-
+  watch:{
+    value: () => {
+      this.selectedItemId = this.value
+    },
+  },
   methods:{
     btnClicked( eventName) {
-      console.log(eventName)
       this.$emit(eventName)
     },
     changeSelectedId(id){
       this.$emit('input',id)
     }
+  },
+  created() {
+    this.selectedItemId = this.value
   }
 }
 </script>

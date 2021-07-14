@@ -5,7 +5,7 @@ module.exports = {
   devServer: {
     proxy: {
       '^/api': {
-        target: 'http://alaatv.test',
+        target: 'http://192.168.4.3:700',
         pathRewrite: {'^/api/': '/api/'},
         ws: true,
         xfwd: true

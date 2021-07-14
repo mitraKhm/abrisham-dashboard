@@ -1,12 +1,14 @@
 <template>
   <div>
-    coming soon
   </div>
 </template>
 
 <script>
+
 export default {
-  name: 'ComingSoon'
+  components: {
+  },
+  name: 'ComingSoon',
 }
 </script>
 

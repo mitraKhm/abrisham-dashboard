@@ -1,7 +1,6 @@
 <template>
   <!--  :color=" selected ? '#f2f5ff' : 'transparent'"-->
   <div
-    class="red"
     @click="changeSelectedItem"
   >
     <div
@@ -93,8 +92,8 @@ export default {
       },
     },
     selected:{
-      type:Boolean,
-      default:false
+      type:Number,
+      default:0
     },
     type: {
       type:String,
