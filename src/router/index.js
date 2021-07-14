@@ -27,7 +27,42 @@ const routes = [
         component: () => import(
             '../views/UserAbrishamProgress.vue'
             )
-    }
+    },
+    {
+        path: '/consulting',
+        name: 'consulting',
+        component: () => import(
+            '../components/comingSoon'
+            )
+    },
+    {
+        path: '/assessment',
+        name: 'assessment',
+        component: () => import(
+            '../components/comingSoon'
+            )
+    },
+    {
+        path: '/news',
+        name: 'news',
+        component: () => import(
+            '../components/comingSoon'
+            )
+    },
+    {
+        path: '/map',
+        name: 'map',
+        component: () => import(
+            '../components/comingSoon'
+            )
+    },
+    {
+        path: '/my-performance',
+        name: 'my-performance',
+        component: () => import(
+            '../components/comingSoon'
+            )
+    },
 ]
 
 const router = new VueRouter({
