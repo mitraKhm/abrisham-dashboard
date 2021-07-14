@@ -6,7 +6,7 @@ import store from './store'
 import VueSocialSharing from 'vue-social-sharing'
 
 Vue.config.productionTip = false
-Vue.use(VueSocialSharing);
+Vue.use(VueSocialSharing)
 
 new Vue({
   vuetify,
