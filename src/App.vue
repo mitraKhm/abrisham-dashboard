@@ -18,7 +18,7 @@
     <v-main>
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
-        <expansion-menu v-if=" windowSize.x <= 576" />
+        <expansion-menu v-if=" windowSize.x <= 768" />
         <!-- If using vue-router -->
         <router-view />
       </v-container>
