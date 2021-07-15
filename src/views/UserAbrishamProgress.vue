@@ -191,7 +191,14 @@ export default {
       }))
     },
     filteredSections () {
-      var selectedSet = this.sets.list.find( setItem => setItem.id === this.setFilterId )
+      if (this.sets.list.length === 0) {
+        return []
+      }
+      var setFilterId = this.setFilterId
+      if (this.setFilterId === null || this.setFilterId === '') {
+        setFilterId = this.sets.list[0].id
+      }
+      var selectedSet = this.sets.list.find( setItem => setItem.id === setFilterId )
       if (!selectedSet) {
         return []
       }
@@ -201,6 +208,9 @@ export default {
   },
   watch : {
     selectedLesson (newValue) {
+      if (!newValue) {
+        return
+      }
       this.getSets(newValue.id)
     },
     setFilterId (newValue) {

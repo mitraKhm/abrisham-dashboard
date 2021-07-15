@@ -114,16 +114,16 @@ export default {
   },
  computed :{
     filteredList () {
-    return this.contents.list.filter(item => {
-      var typeId = 0
-       if (this.type === 'video') {
-         typeId = 8
-       }
-       if (this.type === 'pamphlet') {
-         typeId = 1
-       }
-       return item.type === typeId
-     })
+      return this.contents.list.filter(item => {
+        var typeId = 0
+         if (item.type === 'video' || item.content_type.name === 'video') {
+           typeId = 8
+         }
+         if (this.type === 'pamphlet' || item.content_type.name === 'pamphlet') {
+           typeId = 1
+         }
+         return item.type === typeId || item.content_type.id === typeId
+       })
    }
   },
   watch:{
