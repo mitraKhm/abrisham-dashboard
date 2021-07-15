@@ -5,9 +5,12 @@
       color="#eff3ff"
       class="rounded-xl video-main"
     >
-      <v-responsive :aspect-ratio="16/9">
+      <v-responsive
+        :aspect-ratio="16/9"
+      >
         <vue-plyr
-          v-if="content.file"
+          v-if="content.file && content.file.video"
+          :key="content.id"
           :emit="['progress']"
           @progress="test"
         >
@@ -16,8 +19,8 @@
             :src="content.file.video[0].link"
           >
             <source
-              v-for="(video, index) in content.file.video"
-              :key="index"
+              v-for="video in content.file.video"
+              :key="video.link"
               :src="video.link"
               type="video/mp4"
               :size="video.res.slice(0, -1)"
@@ -89,7 +92,8 @@
                       class="download-title"
                     >
                       <a href="#"><i class="fi fi-rr-download icon" />
-                        {{ file.title }}</a>
+                        {{ file.title }}
+                      </a>
                     </v-card-actions>
                     <v-col>
                       <v-btn
@@ -110,7 +114,7 @@
                       >
                         {{ file.videoVolume }}
                       </v-btn>
-                    </v-col-md>
+                    </v-col>
                   </v-card>
                 </v-row>
               </v-list>

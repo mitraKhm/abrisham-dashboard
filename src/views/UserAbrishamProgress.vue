@@ -54,7 +54,7 @@
         sm="12"
       >
         <content-list-component
-          v-model="currentContent.id"
+          v-model="currentContent"
           :loading="contentListLoading"
           :contents="filteredContents"
           :header="{ title: 'لیست فیلم ها', button: { title: 'من کجام؟', event: 'whereAmI' } }"
@@ -137,6 +137,7 @@ import axios from 'axios';
 import {SetList} from '@/Models/Set';
 import StudyPlanGroup from '@/components/studyPlanGroup/StudyPlanGroup';
 import {SetSection} from '@/Models/SetSection';
+import Vue from 'vue'
 
 export default {
   name: 'UserAbrishamProgress',
@@ -198,6 +199,13 @@ export default {
     this.getContents(906)
   },
   methods: {
+    changeCurrentContent (id) {
+      console.log(this.contents.list.find(content => content.id === id).file.video[0].link)
+      console.log(this.contents.list.find(content => content.id === id).id)
+      console.log(this.contents.list.find(content => content.id === id).title)
+      Vue.set(this, 'currentContent', this.contents.list.find(content => content.id === id))
+      this.currentContent = this.contents.list.find(content => content.id === id)
+    },
     getLessons () {
       axios.get('/api/v2/abrisham/lessons')
       .then( response => {
