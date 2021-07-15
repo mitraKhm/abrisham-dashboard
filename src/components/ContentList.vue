@@ -257,7 +257,7 @@ export default {
   }
   .content-list-box .slot-header-box .slot-header-box-movie {
     font-size:16px;
-    padding:0;
+    padding:0 15px 0 0;
   }
   .content-list-box .slot-header-box .slot-header-box-days{
     font-size: 12px;
