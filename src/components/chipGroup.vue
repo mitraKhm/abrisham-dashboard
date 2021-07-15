@@ -25,7 +25,6 @@
       class="ma-5 d-flex d-xl-none d-lg-none d-sm-block d-xs-block"
     >
       <v-select
-
         v-model="selectedId"
         color="#3e5480"
         :items="chipData"
@@ -38,12 +37,13 @@
         dense
         background-color="#eff3ff"
         flat
-        label="رشته"
+        :label="chipTitle"
         @change="changeSelectedChip"
       />
     </div>
   </div>
 </template>
+
 <script>
 export default {
   name: 'ChipGroup',
@@ -69,16 +69,23 @@ export default {
    value: {
       handler() {
        this.chipData = this.value
+        this.setSelectedIdVariable()
       },
       immediate: true
-    },
-    chipData:{
-      handler(){
-        this.value = this.chipData
-      }
-    },
+    }
   },
   methods:{
+    getSelectedItem () {
+      return this.chipData.find(item => item.selected)
+    },
+    setSelectedIdVariable () {
+      const selectedItem = this.getSelectedItem()
+      if (!selectedItem) {
+        this.selectedId = null
+      } else {
+        this.selectedId = selectedItem.id
+      }
+    },
     changeSelectedChip(selectedId){
       this.chipData.forEach(item => {
         console.log(selectedId)
@@ -88,6 +95,7 @@ export default {
       return item.selected = false
       })
       this.$emit('input' , this.chipData)
+      this.setSelectedIdVariable()
     }
   }
 }
