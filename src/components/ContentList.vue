@@ -57,7 +57,6 @@
         <v-skeleton-loader
           v-if="loading"
           max-height="100"
-          v-bind="attrs"
           type="list-item-avatar-three-line"
         />
       </div>
