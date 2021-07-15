@@ -279,7 +279,7 @@ export default {
     getLessons () {
       axios.get('/api/v2/abrisham/lessons')
       .then( response => {
-        response.data.forEach( (item, index) => {
+        response.data.data.forEach( (item, index) => {
           this.majors.push({
             id: index,
             title: item.title,
