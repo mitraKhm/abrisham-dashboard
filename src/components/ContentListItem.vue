@@ -129,9 +129,9 @@ export default {
 
 .content-list-item:hover {
   cursor: pointer;
-  background-color: rgba(242, 245, 255, 0.21);
+  background-color: rgba(242, 245, 255, 0.31);
 }
-.content-list-item .selected-content-list {
+.content-list-item.selected-content-list {
   background-color: #f2f5ff;
 }
 .content-list-item .contentListItem-main-box {
