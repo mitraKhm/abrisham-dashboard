@@ -57,12 +57,14 @@
           :contents="filteredContents"
           :header="{ title: 'لیست فیلم ها', button: { title: 'من کجام؟', event: 'whereAmI' } }"
           type="video"
+          @whereAmI="whereAmI"
         >
           <template v-slot:filter>
             <div class="d-flex  v-select-box">
               <div class="ml-xm-2 ml-5 ">
                 <v-select
                   v-model="setFilterId"
+                  :loading="contentListLoading"
                   color="#3e5480"
                   :items="sets.list"
                   item-text="short_title"
@@ -79,6 +81,7 @@
               </div>
               <v-select
                 v-model="sectionFilterId"
+                :loading="contentListLoading"
                 value="all"
                 color="#3e5480"
                 :menu-props="{ bottom: true, offsetY: true }"
@@ -125,6 +128,7 @@
     </v-row>
   </div>
 </template>
+
 <script>
 
 import { Content, ContentList } from '../Models/Content';
@@ -207,6 +211,23 @@ export default {
     // this.getContents(906)
   },
   methods: {
+    whereAmI () {
+      let product = this.lessons.find(lesson => lesson.selected)
+      axios.get('/api/v2/product/' + product.id + '/toWatch')
+      .then(response => {
+        this.contentListLoading = true
+        axios.get('/api/v2/set/' + response.data.data.set.id + '/contents')
+            .then( response2 => {
+              this.contents = new ContentList(response2.data.data)
+              this.changeCurrentContent(response.data.data.id)
+              this.contentListLoading = false
+            })
+            .catch(() => {
+              this.contentListLoading = false
+            })
+        this.setFilterId = response.data.data.set.id
+      })
+    },
     changeCurrentContent (id) {
       Vue.set(this, 'currentContent', this.contents.list.find(content => content.id === id))
       this.currentContent = this.contents.list.find(content => content.id === id)
@@ -224,6 +245,7 @@ export default {
           })
         })
         this.setMajorSelected()
+        this.whereAmI()
       })
     },
     setMajorSelected () {
@@ -246,12 +268,18 @@ export default {
         this.sets.list.forEach(item => item.sections.list.unshift(new SetSection({ id: 'all', title: 'همه' })))
         this.contentListLoading = false
       })
+      .catch(() => {
+        this.contentListLoading = false
+      })
     },
     getContents (setId) {
       this.contentListLoading = true
       axios.get('/api/v2/set/' + setId + '/contents')
       .then( response => {
         this.contents = new ContentList(response.data.data)
+        this.contentListLoading = false
+      })
+      .catch(() => {
         this.contentListLoading = false
       })
     },
