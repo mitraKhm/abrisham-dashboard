@@ -113,13 +113,32 @@
               <v-list class="align-center sheet-background">
                 <v-row justify="center">
                   <ShareNetwork
-                    v-for="icon in icons"
-                    :key="icon"
-                    network="Facebook"
-                    url="icon.link"
+                    network="facebook"
+                    url="https://news.vuejs.org/issues/180"
                     class="social-share"
                   >
-                    <i :class="'fi-rr-' + icon.icon" />
+                    <i class="fi fi-rr-share icon " />
+                  </ShareNetwork>
+                  <ShareNetwork
+                    network="Facebook"
+                    url="https://https://github.com/"
+                    class="social-share"
+                  >
+                    <i class="fi fi-rr-share icon " />
+                  </ShareNetwork>
+                  <ShareNetwork
+                    network="Facebook"
+                    url="https://https://github.com/"
+                    class="social-share"
+                  >
+                    <i class="fi fi-rr-share icon " />
+                  </ShareNetwork>
+                  <ShareNetwork
+                    network="Facebook"
+                    url="https://https://github.com/"
+                    class="social-share"
+                  >
+                    <i class="fi fi-rr-share icon " />
                   </ShareNetwork>
                 </v-row>
               </v-list>
@@ -178,28 +197,6 @@ export default {
           videoVolume:'93MB',
         }
       ],
-      icons:[
-        {
-          name:'facebook',
-          icon:'power',
-          link:'https://news.vuejs.org/issues/180',
-        },
-        {
-          name:'facebook',
-          icon:'power',
-          link:'https://news.vuejs.org/issues/180',
-        },
-        {
-          name:'facebook',
-          icon:'power',
-          link:'https://news.vuejs.org/issues/180',
-        },
-        {
-          name:'facebook',
-          icon:'power',
-          link:'https://news.vuejs.org/issues/180',
-        },
-      ]
     }
   },
   methods: {
@@ -223,8 +220,8 @@ export default {
 .social-share{
   margin: 20px;
   text-decoration: none;
-  background-color: green;
-  color: black;
+  background-color:  #ff8f00;
+  color: white;
   border-radius: 50%;
   padding: 20px;
 
@@ -330,7 +327,7 @@ export default {
   font-size: 20px;
   font-weight: 500;
 }
-@media screen and (max-width: 1200px){
+@media screen and (min-width: 1200px){
   .video-box .video-box-icon {
     margin-right: 60px;
   }
