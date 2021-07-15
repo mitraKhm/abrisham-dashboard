@@ -5,7 +5,29 @@
       color="#eff3ff"
       class="rounded-xl video-main"
     >
-      <v-responsive :aspect-ratio="16/9" />
+      <v-responsive
+        :aspect-ratio="16/9"
+      >
+        <vue-plyr
+          v-if="content.file && content.file.video"
+          :key="content.id"
+          :emit="['progress']"
+          @progress="test"
+        >
+          <video
+            :poster="content.photo"
+            :src="content.file.video[0].link"
+          >
+            <source
+              v-for="video in content.file.video"
+              :key="video.link"
+              :src="video.link"
+              type="video/mp4"
+              :size="video.res.slice(0, -1)"
+            >
+          </video>
+        </vue-plyr>
+      </v-responsive>
     </v-card>
     <div class="video-description">
       <v-row no-gutters>
@@ -21,7 +43,7 @@
           </div>
           <div class="d-flex subtitle">
             <div class="d-flex part align-start">
-              <v-img 
+              <v-img
                 src="../assets/ic_alaa.png"
                 class="alaa-logo icon"
               />
@@ -72,8 +94,8 @@
               <v-list class="align-center">
                 <v-row justify="center">
                   <v-card
-                    v-for="file in downloadFiles"
-                    :key="file"
+                    v-for="(file , index) in downloadFiles"
+                    :key="index"
                     class="download-part"
                     flat
                     @click="sheet = false"
@@ -82,7 +104,8 @@
                       class="download-title"
                     >
                       <a href="#"><i class="fi fi-rr-download icon" />
-                        {{ file.title }}</a>
+                        {{ file.title }}
+                      </a>
                     </v-card-actions>
                     <v-col>
                       <v-btn
@@ -174,43 +197,76 @@
 
 
 <script>
+
+import {Content} from '@/Models/Content';
+
 export default {
   name: 'VideoBox',
+  components: {
+
+  },
+  computed: {
+
+  },
   props: {
-    value: {
-      type: Boolean ,
-      default: null
-    }
+    content: {
+      type: Content,
+      default: new Content()
+    },
   },
-  data(){
-    return {
-      loading:false,
-      seen:false,
-      myFavorite:false,
-      downloadFiles:[
-        {
-          title:'دانلود فایل کیفیت عالی',
-          videoQuality:'720',
-          format:'MP4',
-          videoVolume:'93MB',
-        },
-        {
-          title:'دانلود فایل کیفیت عالی',
-          videoQuality:'720',
-          format:'MP4',
-          videoVolume:'93MB',
-        },
-        {
-          title:'دانلود فایل کیفیت عالی',
-          videoQuality:'720',
-          format:'MP4',
-          videoVolume:'93MB',
-        }
-      ],
-    }
-  },
+  data: () => ({
+    myFavorite:false,
+    loading:false,
+    seen:false,
+    sheet: false,
+    downloadFiles:[
+      {
+        title:'دانلود فایل کیفیت عالی',
+        videoQuality:'720',
+        format:'MP4',
+        videoVolume:'93MB',
+      },
+      {
+        title:'دانلود فایل کیفیت عالی',
+        videoQuality:'720',
+        format:'MP4',
+        videoVolume:'93MB',
+      },
+      {
+        title:'دانلود فایل کیفیت عالی',
+        videoQuality:'720',
+        format:'MP4',
+        videoVolume:'93MB',
+      },
+    ],
+    icons:[
+      {
+        name:'facebook',
+        icon:'power',
+        link:'https://news.vuejs.org/issues/180',
+      },
+      {
+        name:'facebook',
+        icon:'power',
+        link:'https://news.vuejs.org/issues/180',
+      },
+      {
+        name:'facebook',
+        icon:'power',
+        link:'https://news.vuejs.org/issues/180',
+      },
+      {
+        name:'facebook',
+        icon:'power',
+        link:'https://news.vuejs.org/issues/180',
+      },
+    ]
+  }),
   methods: {
-    clickHandler() {
+    test (event) {
+      console.log('test', event)
+    },
+    clickHandler(){
       this.seen = !this.seen;
       this.loading = true;
     },
@@ -474,5 +530,17 @@ export default {
   .video-description{
     margin-bottom:10px;
   }
+}
+</style>
+
+<style>
+.video-box .video-js {
+  height: 100%;
+  width: 100%;
+}
+
+.video-box .video-js .vjs-big-play-button {
+  left: calc(50% - 43px);
+  top: calc(50% - 20px);
 }
 </style>

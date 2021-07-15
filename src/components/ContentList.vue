@@ -1,5 +1,11 @@
 <template>
   <div class="content-list-box">
+    <!--    <v-overlay-->
+    <!--      v-if="loading"-->
+    <!--      absolute-->
+    <!--    >-->
+    <!--      <v-progress-circular indeterminate />-->
+    <!--    </v-overlay>-->
     <slot name="header">
       <div>
         <div class="slot-header-box">
@@ -20,7 +26,7 @@
             >
               <div
 
-                @click="btnClicked(header.button.event)"
+                @click="btnClicked()"
               >
                 {{ header.button.title }}
               </div>
@@ -31,15 +37,27 @@
     </slot>
     <slot name="filter" />
     <div class="content-list-items-box">
-      <div class="content-box">
+      <div
+        v-if="!loading"
+        class="content-box"
+      >
         <content-list-item
           v-for="(item , index) in filteredList"
           :key="index"
-          :length="filteredList.length"
           :content="item"
           :type="type"
-          :selected="selectedItemId === item.id"
-          @itemClicked="changeSelectedId(item.id)"
+          :selected="selectedItem.id === item.id"
+          @itemClicked="changeSelectedId(item)"
+        />
+      </div>
+      <div
+        v-for="i in 6"
+        :key="i"
+      >
+        <v-skeleton-loader
+          v-if="loading"
+          max-height="100"
+          type="list-item-avatar-three-line"
         />
       </div>
     </div>
@@ -48,7 +66,7 @@
 
 <script>
 import ContentListItem from '../components/ContentListItem'
-import {ContentList} from '../Models/Content';
+import {Content, ContentList} from '../Models/Content';
 
 export default {
   name: 'ContentList',
@@ -62,9 +80,11 @@ export default {
         return new ContentList();
       }
     },
-    value:{
-      type:Number,
-      default:0
+    value: {
+      type: Content,
+      default () {
+        return new Content()
+      }
     },
     type:{
       type: String,
@@ -89,43 +109,47 @@ export default {
   data(){
     return {
       items: ['تست1', 'تست2', 'تست3', 'تست4'],
-      selectedItemId:0,
+      selectedItem: new Content(),
     }
   },
  computed :{
-    filteredList () {
-    return this.contents.list.filter(item => {
-      var typeId = 0
-       if (this.type === 'video') {
-         typeId = 1
-       }
-       if (this.type === 'pamphlet') {
-         typeId = 8
-       }
-       return item.type === typeId
-     })
+   // ----------------------------------Yadegari----------------------------------
+   //  filteredList () {
+   //    return this.contents.list.filter(item => {
+   //      var typeId = 0
+   //       if ( item.content_type.name === 'video') {
+   //         typeId = 8
+   //       }
+   //       if (item.content_type.name === 'pamphlet') {
+   //         typeId = 1
+   //       }
+   //       return  item.content_type.id === typeId
+   //     })
+   // },
+   filteredList () {
+      return this.contents.list.filter(item => item.content_type.name === this.type)
    }
   },
   watch:{
-    value: () => {
-      this.selectedItemId = this.value
+    value: function () {
+      this.selectedItem = this.value
     },
   },
   methods:{
-    btnClicked( eventName) {
-      this.$emit(eventName)
+    btnClicked () {
+      this.$emit('clicked')
     },
-    changeSelectedId(id){
-      this.$emit('input',id)
+    changeSelectedId(content){
+      this.$emit('input', content)
     }
   },
   created() {
-    this.selectedItemId = this.value
+    this.selectedItem = this.value
   }
 }
 </script>
 
-<style>
+<style >
 .content-list-items-box{
   position: relative;
   height: 100%;
@@ -147,6 +171,7 @@ export default {
   margin-right: 0!important;
 }
 .content-list-box {
+  position: relative;
   display: flex;
   flex-direction: column;
   border-radius: 30px;
@@ -189,6 +214,16 @@ export default {
     margin: 13px 11px
   }
 }
+@media screen and (max-width: 960px) {
+  .content-list-items-box .content-box {
+    position: absolute;
+    overflow: auto;
+    height: 100%;
+    max-height: 400px;
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 1200px) {
 
 }
