@@ -11,8 +11,12 @@
       <v-row no-gutters>
         <v-col>
           <div class="d-flex flex-wrap title">
-            <p>دین و زندگی</p>
-            <p>فرسنگ هشتم</p>
+            <p class="title-item">
+              دین و زندگی
+            </p>
+            <p class="title-item">
+              فرسنگ هشتم
+            </p>
             <p>جلسه 23</p>
           </div>
           <div class="d-flex subtitle">
@@ -54,6 +58,7 @@
                   depressed
                   dark
                   v-bind="attrs"
+                  class="video-box-icon-button"
                   v-on="on"
                 >
                   <i class="fi fi-rr-download icon" />
@@ -213,6 +218,11 @@ export default {
 </script>
 
 <style scoped>
+.video-box .video-description .title .title-item::after{
+  content: ")";
+  color: #ff8f00;
+  padding-left: 6px;
+}
 
 .video-box .video-description .fi.favorite-bookmark {
   color: #ff8f00;
@@ -268,7 +278,7 @@ export default {
 }
 .video-box .video-box-icon .icon{
   font-size: 24px;
-  margin-right: 40px;
+
   color:#3e5480;
 }
 .video-description{
