@@ -39,6 +39,7 @@ class Content extends Model {
             {key: 'redirectUrl'},
             {key: 'section_id'},
             {key: 'is_current'},
+            {key: 'has_watched'},
             {
                 key: 'timepoints',
                 relatedModel: ContentTimePointList,
