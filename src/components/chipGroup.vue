@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="d-flex list-box align-center d-xl-block d-xs-none d-lg-block d-sm-none">
+    <div class="d-flex list-box align-center ">
       <v-chip
         v-if="chipTitle"
         class="list-section"
@@ -15,13 +15,15 @@
           :color="item.selected ? item.color: 'transparent'"
           class="chip-box"
           :text-color="item.selected ? 'white': '#9fa5c0'"
-          @click="changeSelectedChip(item)"
+          @click="changeSelectedChip(item.id)"
         >
           {{ item.title }}
         </v-chip>
       </v-chip-group>
     </div>
-    <div class="d-flex d-xl-none d-lg-none d-sm-block d-xs-block">
+    <div
+      class="ma-5 d-flex d-xl-none d-lg-none d-sm-block d-xs-block"
+    >
       <v-select
         v-model="selectedId"
         color="#3e5480"
@@ -35,12 +37,13 @@
         dense
         background-color="#eff3ff"
         flat
-        label="رشته"
+        :label="chipTitle"
         @change="changeSelectedChip"
       />
     </div>
   </div>
 </template>
+
 <script>
 export default {
   name: 'ChipGroup',
@@ -66,24 +69,33 @@ export default {
    value: {
       handler() {
        this.chipData = this.value
+        this.setSelectedIdVariable()
       },
       immediate: true
-    },
-    chipData:{
-      handler(){
-        this.value = this.chipData
-      }
-    },
+    }
   },
   methods:{
+    getSelectedItem () {
+      return this.chipData.find(item => item.selected)
+    },
+    setSelectedIdVariable () {
+      const selectedItem = this.getSelectedItem()
+      if (!selectedItem) {
+        this.selectedId = null
+      } else {
+        this.selectedId = selectedItem.id
+      }
+    },
     changeSelectedChip(selectedId){
-      this.chipData.map(item => {
+      this.chipData.forEach(item => {
+        console.log(selectedId)
       if(item.id === selectedId){
         return item.selected = true
       }
       return item.selected = false
       })
       this.$emit('input' , this.chipData)
+      this.setSelectedIdVariable()
     }
   }
 }

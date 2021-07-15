@@ -6,19 +6,21 @@
         lg="9"
         md="7"
         cols="12"
-        order-md="2"
+        order-lg="2"
         class="d-flex d-md-block justify-center"
       >
         <v-row>
           <v-col
             lg="6"
             md="6"
+            cols="6"
           >
             <chip-group v-model="majors" />
           </v-col>
           <v-col
             lg="6"
             md="5"
+            cols="6"
           >
             <chip-group
               v-model="lessons"
@@ -31,7 +33,7 @@
         lg="3"
         md="6"
         cols="12"
-        order-md="1"
+        order-lg="-1"
         class="text-md-right text-center d-flex flex-column justify-center"
       >
         نمایش محتوا بر اساس فعالیت شما
@@ -41,7 +43,7 @@
     <v-row>
       <v-col
         md="8"
-        sm="12"
+        cols="12"
       >
         <video-box
           :content="currentContent"
@@ -49,7 +51,7 @@
       </v-col>
       <v-col
         md="4"
-        sm="12"
+        cols="12"
       >
         <content-list-component
           v-model="currentContent"
@@ -104,14 +106,14 @@
     <v-row>
       <v-col
         md="8"
-        sm="12"
+        cols="12"
       >
         <div v-text="currentContent.title" />
         <comment-box />
       </v-col>
       <v-col
         md="4"
-        sm="12"
+        cols="12"
       >
         <content-list-component
           :header="{ title: 'جزوه ها' }"
