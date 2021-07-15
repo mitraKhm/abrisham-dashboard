@@ -186,9 +186,11 @@ export default {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
+
 .contentListItem-main-box .left-content .time-sheet {
   font-size: 12px;
 }
+
 .contentListItem-box .rounded-card {
   width: 96px;
   height: 54px;

@@ -37,8 +37,8 @@
           :key="index"
           :content="item"
           :type="type"
-          :selected="selectedItemId === item.id"
-          @itemClicked="changeSelectedId(item.id)"
+          :selected="selectedItem.id === item.id"
+          @itemClicked="changeSelectedId(item)"
         />
       </div>
     </div>
@@ -47,7 +47,7 @@
 
 <script>
 import ContentListItem from '../components/ContentListItem'
-import {ContentList} from '../Models/Content';
+import {Content, ContentList} from '../Models/Content';
 
 export default {
   name: 'ContentList',
@@ -61,9 +61,11 @@ export default {
         return new ContentList();
       }
     },
-    value:{
-      type:Number,
-      default:0
+    value: {
+      type: Content,
+      default () {
+        return new Content()
+      }
     },
     type:{
       type: String,
@@ -87,7 +89,8 @@ export default {
   },
   data(){
     return {
-      selectedItemId:0,
+      items: ['تست1', 'تست2', 'تست3', 'تست4'],
+      selectedItem: new Content(),
     }
   },
  computed :{
@@ -95,30 +98,30 @@ export default {
     return this.contents.list.filter(item => {
       var typeId = 0
        if (this.type === 'video') {
-         typeId = 1
+         typeId = 8
        }
        if (this.type === 'pamphlet') {
-         typeId = 8
+         typeId = 1
        }
        return item.type === typeId
      })
    }
   },
   watch:{
-    value: () => {
-      this.selectedItemId = this.value
+    value: function () {
+      this.selectedItem = this.value
     },
   },
   methods:{
     btnClicked( eventName) {
       this.$emit(eventName)
     },
-    changeSelectedId(id){
-      this.$emit('input',id)
+    changeSelectedId(content){
+      this.$emit('input', content)
     }
   },
   created() {
-    this.selectedItemId = this.value
+    this.selectedItem = this.value
   }
 }
 </script>

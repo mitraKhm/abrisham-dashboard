@@ -54,7 +54,7 @@
         sm="12"
       >
         <content-list-component
-          v-model="currentContent.id"
+          v-model="currentContent"
           :loading="contentListLoading"
           :contents="filteredContents"
           :header="{ title: 'لیست فیلم ها', button: { title: 'من کجام؟', event: 'whereAmI' } }"
@@ -65,7 +65,6 @@
               <div class="ml-xm-2 ml-5 ">
                 <v-select
                   v-model="setFilterId"
-                  value="all"
                   color="#3e5480"
                   :items="sets.list"
                   item-text="short_title"
@@ -76,12 +75,13 @@
                   dense
                   background-color="#eff3ff"
                   flat
-                  label="انتخاب فرسنگ "
+                  placeholder="انتخاب فرسنگ ها"
                   @change="getContents(setFilterId)"
                 />
               </div>
               <v-select
                 v-model="sectionFilterId"
+                value="all"
                 color="#3e5480"
                 :menu-props="{ bottom: true, offsetY: true }"
                 :items="filteredSections"
@@ -91,7 +91,7 @@
                 append-icon="mdi-chevron-down"
                 dense
                 background-color="#eff3ff"
-                label="همه"
+                placeholder="همه"
                 flat
               />
             </div>
@@ -139,6 +139,7 @@ import axios from 'axios';
 import {SetList} from '@/Models/Set';
 import StudyPlanGroup from '@/components/studyPlanGroup/StudyPlanGroup';
 import {SetSection} from '@/Models/SetSection';
+import Vue from 'vue'
 
 export default {
   name: 'UserAbrishamProgress',
@@ -150,7 +151,7 @@ export default {
       currentContent: new Content(),
       studyPlans: new StudyPlanList(),
       sets: new SetList(),
-      setFilterId: 'all',
+      setFilterId: '',
       sectionFilterId: 'all',
       contentListLoading: false
     }
@@ -175,7 +176,7 @@ export default {
       return lessons
     },
     filteredSets () {
-      return this.sets.list.filter(set => this.setFilterId === 'all' || this.setFilterId === set.id)
+      return this.sets.list.filter(set => this.setFilterId === set.id)
     },
     selectedLesson () {
       return this.lessons.find( item => item.selected )
@@ -197,6 +198,9 @@ export default {
   watch : {
     selectedLesson (newValue) {
       this.getSets(newValue.id)
+    },
+    setFilterId (newValue) {
+      this.getContents(newValue)
     }
   },
   created() {
@@ -205,6 +209,10 @@ export default {
     // this.getContents(906)
   },
   methods: {
+    changeCurrentContent (id) {
+      Vue.set(this, 'currentContent', this.contents.list.find(content => content.id === id))
+      this.currentContent = this.contents.list.find(content => content.id === id)
+    },
     getLessons () {
       axios.get('/api/v2/abrisham/lessons')
       .then( response => {
@@ -242,11 +250,9 @@ export default {
       })
     },
     getContents (setId) {
-      axios.get('/api/v2/set/' + setId)
+      axios.get('/api/v2/set/' + setId + '/contents')
       .then( response => {
-        // console.log('getContents', response)
-        // console.log('getContents', response.data.data.contents)
-        this.contents = new ContentList(response.data.data.contents)
+        this.contents = new ContentList(response.data.data)
       })
     },
     setComment () {
