@@ -13,13 +13,13 @@
     </div>
     <div class="d-flex justify-center align-center profile-box ">
       <span
-        v-if="width.x > 350"
+        v-if="width.x > 768"
         class="name"
       >
         شهاب عبادی
       </span>
       <v-avatar
-        v-if="width.x > 350"
+        v-if="width.x > 768"
         class="avatar"
       >
         <img
@@ -30,7 +30,7 @@
       <i class="fi fi-rr-bell icon" />
 
       <div
-        v-if="width.x <= 350"
+        v-if="width.x <= 768"
         class="text-center"
       >
         <v-menu offset-y>
@@ -118,6 +118,7 @@ export default {
   font-size: 21px;
   color: #3e5480;
   font-weight: 500;
+  margin-right: 15px;
 }
 @media screen and (max-width: 1200px){
   .profile-box{

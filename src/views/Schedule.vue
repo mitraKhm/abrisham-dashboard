@@ -1,5 +1,6 @@
 <template>
   <div class="schedule-page">
+    <!--   --------------------------------- chip group ------------------------- -->
     <v-row>
       <v-col
         xl="7"
@@ -21,17 +22,28 @@
       </v-col>
     </v-row>
     <v-row align-stretch>
-      <v-col md="8">
+      <!--   --------------------------------- video box &&  content list item ------------------------- -->
+      <v-col
+        md="8"
+        sm="12"
+      >
         <video-box
           :content="currentContent"
         />
       </v-col>
-      <v-col md="4">
+      <v-col
+        md="4"
+        sm="12"
+      >
         <content-list />
       </v-col>
     </v-row>
+    <!--   --------------------------------- comment box &&  content list item ------------------------- -->
     <v-row>
-      <v-col md="8">
+      <v-col
+        md="8"
+        sm="12"
+      >
         <div class="d-flex">
           <p class="video-box-title">
             درسنامه فرسنگ هشتم (قسمت بیست و سوم)، فصل سوم شیمی یازدهم (قسمت
@@ -44,6 +56,7 @@
         <content-list />
       </v-col>
     </v-row>
+    <!--   --------------------------------- study plan ------------------------- -->
     <v-row>
       <v-col>
         <study-plan-group />

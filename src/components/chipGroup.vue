@@ -1,24 +1,45 @@
 <template>
-  <div class="d-flex list-box align-center">
-    <v-chip
-      v-if="chipTitle"
-      class="list-section "
-      text-color="#3e5480"
-    >
-      {{ chipTitle }}
-    </v-chip>
-    <v-chip-group>
+  <div>
+    <div class="d-flex list-box align-center  d-lg-block d-sm-none">
       <v-chip
-        v-for="(i , index) in chipData"
-        :key="index"
-        :color="i.selected ? i.color: 'transparent'"
-        class="chip-box"
-        :text-color="i.selected ? 'white': '#9fa5c0'"
-        @click="changeSelectedChip(index)"
+        v-if="chipTitle"
+        class="list-section"
+        text-color="#3e5480"
       >
-        {{ i.title }}
+        {{ chipTitle }}
       </v-chip>
-    </v-chip-group>
+      <v-chip-group>
+        <v-chip
+          v-for="(item , index) in chipData"
+          :key="index"
+          :color="item.selected ? item.color: 'transparent'"
+          class="chip-box"
+          :text-color="item.selected ? 'white': '#9fa5c0'"
+          @click="changeSelectedChip(index)"
+        >
+          {{ item.title }}
+        </v-chip>
+      </v-chip-group>
+    </div>
+    <div class="d-flex d-lg-none d-sm-block">
+      <v-select
+        v-model="selectedId"
+        value="all"
+        color="#3e5480"
+        :items="chipData"
+        item-text="title"
+        item-value="id"
+        class="col-sm-6"
+        :menu-props="{ bottom: true, offsetY: true }"
+        solo
+        append-icon="mdi-chevron-down"
+        dense
+        background-color="#eff3ff"
+        flat
+        label="رشته"
+        @change="changeSelectedChip"
+      />
+    </div>
   </div>
 </template>
 <script>
@@ -28,45 +49,32 @@ export default {
     value: {
       type: Array,
       default: () => {
-        return [
-          {
-            title: 'تجربی',
-            id: 1,
-            selected: false,
-            color: '#ff8f00',
-          },
-          {
-            title: 'ریاضی',
-            id: 2,
-            selected: false,
-            color: '#fe665a',
-          },
-        ]
+        return []
       },
     },
     chipTitle: {
       type: String,
       default:''
     }
-
   },
   data() {
     return {
       chipData: [],
+      selectedId : 0
     }
   },
   watch: {
    value: {
       handler() {
-       this.chipData=this.value
+       this.chipData = this.value
       },
       immediate: true
     },
     chipData:{
       handler(){
-        this.value=this.chipData
+        this.value = this.chipData
       }
-    }
+    },
   },
   methods:{
     changeSelectedChip(selected){
@@ -80,7 +88,17 @@ export default {
 </script>
 
 <style scoped>
-
+.theme--light.v-label{
+  color:#3e5480;
+  font-size: 14px;
+  font-weight: 500;
+}
+.v-select__slot .theme--light.v-select .v-select__selections{
+  color:red ;
+}
+ .theme--light.v-icon{
+  color:#3e5480;
+}
 .list-box{
   align-0: center;
 }
