@@ -81,7 +81,7 @@
                 />
               </div>
               <v-select
-                  v-model="sectionFilterId"
+                v-model="sectionFilterId"
                 color="#3e5480"
                 :menu-props="{ bottom: true, offsetY: true }"
                 :items="filteredSections"
