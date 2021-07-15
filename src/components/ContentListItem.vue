@@ -1,5 +1,4 @@
 <template>
-  <!--  :color=" selected ? '#f2f5ff' : 'transparent'"-->
   <div
     class="content-list-item"
     :class="selected ? 'selected-content-list' : ''"
@@ -114,27 +113,18 @@ export default {
 }
 </script>
 <style scoped>
-.selected-content-list{
-  background-color: rgba(159, 165, 192, 0.23);
-}
-.v-application p {
-  margin-bottom: 0;
-}
 
-/*::-webkit-scrollbar {*/
-/*  width: 20px;*/
-/*}*/
-/*::-webkit-scrollbar-track {*/
-/*  background: red;*/
-/*}*/
-/*::-webkit-scrollbar-thumb {*/
-/*  background: blue;*/
-/*}*/
-/*::-webkit-scrollbar-thumb:hover {*/
-/*background: #555*/
-/*}*/
-.contentListItem-main-box {
-  margin: 0 32px 21px 32px;
+
+.content-list-item:hover {
+  cursor: pointer;
+  background-color: rgba(242, 245, 255, 0.21);
+}
+.content-list-item .selected-content-list {
+  background-color: #f2f5ff;
+}
+.content-list-item .contentListItem-main-box {
+  margin:0 32px;
+  padding-top: 21px;
 }
 
 .content-list-item .contentListItem-main-box {
@@ -196,11 +186,9 @@ export default {
   height: 54px;
   border-radius: 10px;
 }
-
 .right-content {
   margin-bottom: 21px;
 }
-
 .left-content {
   margin-right: 15px;
   width: 100%;
@@ -218,7 +206,7 @@ export default {
     border-radius: 0;
   }
   .contentListItem-main-box {
-    margin: 0 11px 21px 11px;
+    margin: 0 11px;
   }
   .contentListItem-box .rounded-card {
     height: 40px;
@@ -259,7 +247,7 @@ export default {
   }
 
   .contentListItem-main-box {
-    margin-bottom: 15px;
+    padding-top: 15px;
   }
 }
 
