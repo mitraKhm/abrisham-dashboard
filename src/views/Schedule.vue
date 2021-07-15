@@ -35,7 +35,7 @@
         md="4"
         sm="12"
       >
-        <content-list />
+        <content-list-component />
       </v-col>
     </v-row>
     <!--   --------------------------------- comment box &&  content list item ------------------------- -->
@@ -53,7 +53,7 @@
         <comment-box />
       </v-col>
       <v-col md="4">
-        <content-list />
+        <content-list-component />
       </v-col>
     </v-row>
     <!--   --------------------------------- study plan ------------------------- -->
@@ -67,9 +67,9 @@
 
 <script>
 
-import {Content} from '../Models/Content';
+import {Content, ContentList} from '../Models/Content';
 import CommentBox from '../components/CommentBox';
-import ContentList from '../components/ContentList';
+import ContentListComponent from '../components/ContentList';
 import chipGroup from '../components/chipGroup';
 import videoBox from '../components/videoBox';
 import StudyPlanGroup from '../components/studyPlanGroup/StudyPlanGroup';
@@ -78,17 +78,25 @@ import axios from 'axios';
 
 export default {
   name: 'Schedule',
-  components: {StudyPlanGroup, ContentList, CommentBox, chipGroup, videoBox},
+  components: {StudyPlanGroup, ContentListComponent, CommentBox, chipGroup, videoBox},
   data() {
     return {
+      majors: [],
+      currents: new ContentList(),
       currentContent: new Content(),
       studyPlans: new StudyPlanList()
     }
   },
   created() {
-    // this.getStudyPlans()
+    this.getContents('2021-03-21')
   },
   methods: {
+    getContents (date) {
+      axios.get('/api/v2/abrisham/whereIsKarvan', { params: {'date': date, }})
+          .then( response => {
+            this.currents = new ContentList(response.data.data)
+          })
+    },
     // getStudyPlans () {
     //   this.studyPlans.fetch({'studyPlan_id' : 1}, '/api/v2/plan')
     //   .then( (response) => {
@@ -97,6 +105,12 @@ export default {
     // },
     loadPlansOfStudyPlan (studyPlanId) {
       axios.get('/api/v2/plan', { params: {'studyPlan_id': studyPlanId, }})
+    },
+    getMajors (studyPlanId) {
+      axios.get('/api/v2/plan', { params: {'studyPlan_id': studyPlanId, }})
+      .then( response => {
+        this.majors = response.data.data
+      })
     }
   }
 }

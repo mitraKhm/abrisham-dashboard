@@ -38,6 +38,7 @@ class Content extends Model {
             {key: 'previousUrl'},
             {key: 'redirectUrl'},
             {key: 'section_id'},
+            {key: 'is_current'},
             {
                 key: 'timepoints',
                 relatedModel: ContentTimePointList,
