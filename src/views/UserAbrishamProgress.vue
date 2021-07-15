@@ -17,7 +17,7 @@
           >
             <chip-group
               v-model="majors"
-              :has-slect-box="true"
+              :drop-down="true"
             />
           </v-col>
           <v-col
@@ -28,6 +28,7 @@
             <chip-group
               v-model="lessons"
               title="درس"
+              :drop-down="true"
             />
           </v-col>
         </v-row>
