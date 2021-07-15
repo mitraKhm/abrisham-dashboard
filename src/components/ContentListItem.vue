@@ -40,22 +40,25 @@
         </div>
       </div>
       <div class="left-content">
-        <v-sheet
-          v-if="content.inputData.start"
-          text-color="#3e5480"
-          depressed
-          height="22"
-          width="78"
-          class="d-flex justify-center mb-2 rounded-pill time-sheet"
-          color="#eff3ff"
-        >
-          <i class="fi fi-rr-clock ml-2" />
-          <div>
-            <span v-text="getClockTime().start" />
-            <span> الی </span>
-            <span v-text="getClockTime().end" />
-          </div>
-        </v-sheet>
+        <div class="d-flex">
+          <v-sheet
+            v-if="content.inputData.start"
+            text-color="#3e5480"
+            depressed
+            height="22"
+            class="d-flex justify-center mb-2 rounded-pill time-sheet"
+            color="#eff3ff"
+          >
+            <div class="d-flex align-center px-2">
+              <i class="fi fi-rr-clock ml-2 mt-1" />
+              <div>
+                <span v-text="getClockTime().start" />
+                <span> الی </span>
+                <span v-text="getClockTime().end" />
+              </div>
+            </div>
+          </v-sheet>
+        </div>
         <v-sheet
           v-if="false"
           class="mb-2"
@@ -63,9 +66,15 @@
           height="22"
         />
         <div class="d-flex flex-column justify-center title-box">
-          <p class="contentListItem-title ">
-            {{ content.short_title }}
-          </p>
+          <div class="d-flex justify-lg-space-between">
+            <p class="contentListItem-title ">
+              {{ content.short_title }}
+            </p>
+            <i
+              v-if="type === 'pamphlet'"
+              class="fi fi-rr-download download-icon"
+            />
+          </div>
           <p
             class="contentListItem-description"
           >
@@ -110,7 +119,8 @@ export default {
         return clock
       }
       var timeArray = clock.split(':')
-      timeArray.splice(1, 1)
+
+      timeArray.splice(2, 1)
       return  timeArray.join(':')
     },
     changeSelectedItem(){
@@ -125,14 +135,12 @@ export default {
 }
 </script>
 <style scoped>
-
-
+.selected-content-list {
+  background-color: #eff3ff;
+}
 .content-list-item:hover {
   cursor: pointer;
-  background-color: rgba(242, 245, 255, 0.21);
-}
-.content-list-item .selected-content-list {
-  background-color: #f2f5ff;
+  background-color: rgba(239, 243, 255, 0.32);
 }
 .content-list-item .contentListItem-main-box {
   margin:0 32px;
@@ -192,7 +200,12 @@ export default {
 .contentListItem-main-box .left-content .time-sheet {
   font-size: 12px;
 }
-
+.title-box .download-icon{
+  color: #3e5480;
+  font-weight: 500;
+  font-size: 20px;
+  margin-right: 5px;
+}
 .contentListItem-box .rounded-card {
   width: 96px;
   height: 54px;
