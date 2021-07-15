@@ -1,5 +1,11 @@
 <template>
   <div class="content-list-box">
+    <v-overlay
+      v-if="loading"
+      absolute
+    >
+      <v-progress-circular indeterminate />
+    </v-overlay>
     <slot name="header">
       <div>
         <div class="slot-header-box">
@@ -148,6 +154,7 @@ export default {
   margin-right: 0!important;
 }
 .content-list-box {
+  position: relative;
   display: flex;
   flex-direction: column;
   border-radius: 30px;

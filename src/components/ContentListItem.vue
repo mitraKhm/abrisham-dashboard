@@ -1,7 +1,7 @@
 <template>
   <!--  :color=" selected ? '#f2f5ff' : 'transparent'"-->
   <div
-      class="content-list-item"
+    class="content-list-item"
     :class="selected ? 'selected-content-list' : ''"
     @click="changeSelectedItem"
   >
