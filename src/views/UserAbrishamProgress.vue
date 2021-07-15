@@ -248,9 +248,11 @@ export default {
       })
     },
     getContents (setId) {
+      this.contentListLoading = true
       axios.get('/api/v2/set/' + setId + '/contents')
       .then( response => {
         this.contents = new ContentList(response.data.data)
+        this.contentListLoading = false
       })
     },
     setComment () {
