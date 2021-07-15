@@ -36,16 +36,21 @@
         <v-col class="icon-btn-box">
           <v-btn
             dark
+            class="seen-btn"
             :class="{ 'seen-video-btn': seen, 'video-btn': !seen }"
             :loading="false"
             @click="clickHandler"
           >
             <span
               v-if="seen===false "
+              class="video-btn-text"
             >
               دیده نشده
             </span>
-            <span v-else>
+            <span
+              v-else
+              class="video-btn-text"
+            >
               دیده شده
               <i class="fi fi-rr-check" />
             </span>
@@ -64,7 +69,7 @@
                   <i class="fi fi-rr-download icon" />
                 </v-btn>
               </template>
-              <v-list class="align-center sheet-background">
+              <v-list class="align-center">
                 <v-row justify="center">
                   <v-card
                     v-for="file in downloadFiles"
@@ -115,7 +120,7 @@
                   <i class="fi fi-rr-share icon" />
                 </v-btn>
               </template>
-              <v-list class="align-center sheet-background">
+              <v-list class="align-center">
                 <v-row justify="center">
                   <ShareNetwork
                     network="facebook"
@@ -218,12 +223,78 @@ export default {
 </script>
 
 <style scoped>
+.video-box-icon .v-btn:not(.v-btn--round).v-size--default{
+  padding:0;
+}
+
+.video-box .video-main {
+  margin-bottom: 25px;
+}
+.video-box .video-description{
+  align-items: flex-start;
+  margin-bottom: 42px;
+}
+.video-box .video-description .title {
+  color: #3e5480;
+  font-size: 20px;
+  line-height: 40px
+}
 .video-box .video-description .title .title-item::after{
   content: ")";
   color: #ff8f00;
   padding-left: 6px;
 }
+.video-box .video-description .subtitle {
+  font-size: 16px;
+  color: #9fa5c0;
+}
+.video-box .video-description .subtitle .part .alaa-logo{
+  width: 13px;
+}
+.video-box .video-description .subtitle .part{
+  margin-left: 46px;
+}
+.video-box .video-description .subtitle .part .icon{
+  margin-left: 10px;
+}
+.video-box .video-description .video-btn{
+  background-color:#ff8f00;
+  color: #ffffff;
+  width: 120px;
+  height: 48px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px 0 rgba(62, 84, 128, 0.2);
+}
+.video-box .video-description .seen-video-btn{
+  background-color: #ffffff;
+  color: #ff8f00;
+  width: 120px;
+  height: 48px;
+  border-radius: 10px;
+  border: solid 2px #ff8f00;
+  box-shadow: none;
+}
+.video-box .video-description .video-btn-text {
+  font-size: 16px;
+  font-weight: 500;
+}
 
+
+.video-box .video-description .video-box-icon {
+  margin-right: 20px;
+  padding-top: 10px;
+}
+.video-box .video-box-icon .icon{
+  font-size: 24px !important;
+  color:#3e5480;
+  padding: 6px 0;
+}
+
+.video-box  .video-description .icon-btn-box{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
 .video-box .video-description .fi.favorite-bookmark {
   color: #ff8f00;
 }
@@ -234,7 +305,6 @@ export default {
   color: white;
   border-radius: 50%;
   padding: 20px;
-
 }
 
 .download-part{
@@ -263,92 +333,86 @@ export default {
   color: #FFFFFF;
 }
 
-
 .v-application p{
   margin-bottom: 0;
-}
-.video-box .video-main {
-  margin-bottom: 25px;
-}
-.video-box .video-main {
-  margin-bottom: 25px;
-}
-.video-box .video-box-icon {
-  margin-right: 66px;
-}
-.video-box .video-box-icon .icon{
-  font-size: 24px;
-
-  color:#3e5480;
-}
-.video-description{
-  align-items: flex-start;
-  margin-bottom: 42px;
-}
-.video-description .icon-btn-box{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
-.video-box .video-description .title {
-  color: #3e5480;
-  font-size: 20px;
-  line-height: 40px
-}
-.video-box .video-description .video-btn{
-  background-color:#ff8f00;
-  color: #ffffff;
-  width: 120px;
-  height: 48px;
-  border-radius: 10px;
-  box-shadow: 0 5px 10px 0 rgba(62, 84, 128, 0.2);
-}
-.video-box .video-description .seen-video-btn{
-  background-color: #ffffff;
-  color: #ff8f00;
-  width: 120px;
-  height: 48px;
-  border-radius: 10px;
-  border: solid 2px #ff8f00;
-  box-shadow: none;
-}
-.video-box .video-description  .fi {
-  font-size: 18px;
-}
-.video-box .video-description .video-btn-text {
-  font-size: 16px;
-  font-weight: 500;
-}
-.video-box .video-description .subtitle {
-  font-size: 16px;
-  color: #9fa5c0;
-}
-.video-box .video-description .subtitle .part .alaa-logo{
-  width: 13px;
- }
-.video-box .video-description .subtitle .part{
-  margin-left: 46px;
-}
-.video-box .video-description .subtitle .part .icon{
-  margin-left: 10px;
 }
 .video-box-title {
   color: #3e5480;
   font-size: 20px;
   font-weight: 500;
 }
-@media screen and (min-width: 1200px){
-  .video-box .video-box-icon {
-    margin-right: 60px;
-  }
-  .video-description{
-    margin-bottom: 29px;
-  }
 
-  .video-box .video-main {
+
+
+
+@media screen and (max-width: 1200px){
+  /*.video-box-icon .v-btn:not(.v-btn--round).v-size--default{*/
+  /*  min-width: 57px !important;*/
+  /*}*/
+  /*.video-description .icon-btn-box{*/
+  /*  align-items: flex-start ;*/
+  /*}*/
+  /*.video-description{*/
+  /*  margin-bottom: 29px;*/
+  /*}*/
+  /*.video-description .video-box-icon{*/
+  /*  display: flex;*/
+  /*}*/
+  /*.video-box .video-main {*/
+  /*  margin-bottom: 16px;*/
+  /*}*/
+  .video-box .video-description .icon-btn-box {
+    display: flex;
+    flex-direction: column !important;
+    justify-content: flex-start;
+  }
+  .video-description .icon-btn-box {
+    align-items: end !important;
+  }
+  .seen-btn{
     margin-bottom: 15px;
   }
 }
+@media screen and (max-width: 990px){
+  .video-box-icon .v-btn:not(.v-btn--round).v-size--default {
+    min-width: 59px !important;
+  }
+  .video-box .video-description .icon-btn-box{
+    display: flex;
+    justify-content: center;
+    flex-direction:row !important; ;
+  }
+  .video-description .icon-btn-box {
+    align-items: start !important;
+  }
+  .video-description{
+    margin-bottom: 0;
+  }
+}
+@media screen and (max-width: 768px){
+  .video-box .video-box-icon .icon{
+    font-size: 16px !important;
+    color:#3e5480;
+    padding: 6px 0;
+  }
+  .video-box-icon .v-btn:not(.v-btn--round).v-size--default{
+    min-width: 36px !important;
+  }
+  .video-box .video-description .seen-video-btn{
+    width: 110px !important;
+    height: 36px !important;
+    border: solid 1px #ff8f00 !important;
+  }
+  .video-box .video-description .video-btn-text {
+    font-size: 14px !important;
+    font-weight: 500;
+  }
+  .video-box .video-description .video-btn{
+  width: 110px !important;
+  height: 36px !important;
+  }
+}
+
 @media screen and (max-width: 576px){
   .video-box .video-main {
     margin-bottom: 10px;
