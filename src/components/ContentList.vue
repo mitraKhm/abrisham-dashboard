@@ -26,7 +26,7 @@
             >
               <div
 
-                @click="btnClicked(header.button.event)"
+                @click="btnClicked()"
               >
                 {{ header.button.title }}
               </div>
@@ -132,8 +132,8 @@ export default {
     },
   },
   methods:{
-    btnClicked( eventName) {
-      this.$emit(eventName)
+    btnClicked () {
+      this.$emit('clicked')
     },
     changeSelectedId(content){
       this.$emit('input', content)

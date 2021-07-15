@@ -19,7 +19,10 @@ class Content extends Model {
             {key: 'author'},
             {key: 'contenttype_id'},
             {key: 'context'},
-            {key: 'comment'},
+            {
+                key: 'comments',
+                default: []
+            },
             {key: 'description'},
             {key: 'display'},
             {key: 'duration'},

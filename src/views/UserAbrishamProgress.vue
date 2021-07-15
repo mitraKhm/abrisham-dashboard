@@ -57,9 +57,9 @@
           v-model="currentContent"
           :loading="contentListLoading"
           :contents="filteredContents"
-          :header="{ title: 'لیست فیلم ها', button: { title: 'من کجام؟', event: 'whereAmI' } }"
+          :header="{ title: 'لیست فیلم ها', button: { title: 'من کجام؟' } }"
           type="video"
-          @whereAmI="whereAmI"
+          @clicked="whereAmI"
         >
           <template v-slot:filter>
             <div class="d-flex  v-select-box">
@@ -109,7 +109,10 @@
         sm="12"
       >
         <div v-text="currentContent.title" />
-        <comment-box />
+        <comment-box
+          v-model="comment"
+          @blur="saveComment"
+        />
       </v-col>
       <v-col
         md="4"
@@ -157,7 +160,8 @@ export default {
       sets: new SetList(),
       setFilterId: '',
       sectionFilterId: 'all',
-      contentListLoading: false
+      contentListLoading: false,
+      comment: ''
     }
   },
   computed: {
@@ -213,6 +217,28 @@ export default {
     // this.getContents(906)
   },
   methods: {
+    saveComment (comment) {
+      if (this.currentContent.comments[0]) {
+        axios.post('/api/v2/comment/' + this.currentContent.comments[0].id, {
+          comment: comment,
+          _method: 'PUT'
+        })
+        .then(response => {
+          this.currentContent.comments[0].comment = response.data.data.comment
+          this.comment = this.currentContent.comments[0].comment
+        })
+      } else {
+        axios.post('/api/v2/comment', {
+          commentable_id: this.currentContent.id,
+          commentable_type: 'content',
+          comment: comment
+        })
+        .then(response => {
+          this.currentContent.comments[0].comment = response.data.data.comment
+          this.comment = this.currentContent.comments[0].comment
+        })
+      }
+    },
     whereAmI () {
       let product = this.lessons.find(lesson => lesson.selected)
       axios.get('/api/v2/product/' + product.id + '/toWatch')
@@ -233,6 +259,9 @@ export default {
     changeCurrentContent (id) {
       Vue.set(this, 'currentContent', this.contents.list.find(content => content.id === id))
       this.currentContent = this.contents.list.find(content => content.id === id)
+      if (this.currentContent.comments[0]) {
+        this.comment = this.currentContent.comments[0].comment
+      }
     },
     getLessons () {
       axios.get('/api/v2/abrisham/lessons')
