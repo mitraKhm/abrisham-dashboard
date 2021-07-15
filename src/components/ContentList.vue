@@ -35,7 +35,6 @@
         <content-list-item
           v-for="(item , index) in filteredList"
           :key="index"
-          :length="filteredList.length"
           :content="item"
           :type="type"
           :selected="selectedItem.id === item.id"
@@ -74,8 +73,7 @@ export default {
     },
     loading:{
       type: Boolean,
-      default: false,
-      test: ''
+      default: false
     },
     contentTitle :{
       type:String,

@@ -76,16 +76,17 @@
                   background-color="#eff3ff"
                   flat
                   placeholder="انتخاب فرسنگ ها"
+                  @change="getContents(setFilterId)"
                 />
               </div>
               <v-select
                 v-model="sectionFilterId"
-                :items="filteredSets[0] ? filteredSets[0].sections.list : []"
-                item-text="title"
-                item-value="id"
                 value="all"
                 color="#3e5480"
                 :menu-props="{ bottom: true, offsetY: true }"
+                :items="filteredSections"
+                item-text="title"
+                item-value="id"
                 solo
                 append-icon="mdi-chevron-down"
                 dense
@@ -104,6 +105,7 @@
         md="8"
         sm="12"
       >
+        <div v-text="currentContent.title" />
         <comment-box />
       </v-col>
       <v-col
@@ -183,6 +185,14 @@ export default {
       return new ContentList(this.contents.list.filter(content =>  {
         return this.sectionFilterId === 'all' || content.section.id === this.sectionFilterId
       }))
+    },
+    filteredSections () {
+      var selectedSet = this.sets.list.find( setItem => setItem.id === this.setFilterId )
+      if (!selectedSet) {
+        return []
+      }
+
+      return selectedSet.sections.list
     }
   },
   watch : {
@@ -195,14 +205,11 @@ export default {
   },
   created() {
     this.getLessons()
-    this.getSets(443)
-    this.getContents(906)
+    // this.getSets(443)
+    // this.getContents(906)
   },
   methods: {
     changeCurrentContent (id) {
-      console.log(this.contents.list.find(content => content.id === id).file.video[0].link)
-      console.log(this.contents.list.find(content => content.id === id).id)
-      console.log(this.contents.list.find(content => content.id === id).title)
       Vue.set(this, 'currentContent', this.contents.list.find(content => content.id === id))
       this.currentContent = this.contents.list.find(content => content.id === id)
     },

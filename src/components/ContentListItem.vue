@@ -1,11 +1,12 @@
 <template>
   <!--  :color=" selected ? '#f2f5ff' : 'transparent'"-->
   <div
+      class="content-list-item"
+    :class="selected ? 'selected-content-list' : ''"
     @click="changeSelectedItem"
   >
     <div
       class="d-flex contentListItem-main-box"
-      :class=" $vnode.key === length-1 ? '' : 'list-border-bottom'"
     >
       <div class="right-content">
         <v-card
@@ -83,7 +84,7 @@
 import {Content} from '../Models/Content';
 
 export default {
-  name: 'ContentListItem',
+  name:'ContentListItem',
   props: {
     content: {
       type: Content,
@@ -91,18 +92,14 @@ export default {
         return new Content();
       },
     },
-    selected:{
-      type:Boolean,
-      default:false
+    selected: {
+      type: Boolean,
+      default: false
     },
     type: {
-      type:String,
+      type: String,
       default: ''
-    },
-    length: {
-      type: Number,
-      default: 0
-    },
+    }
   },
   methods: {
     changeSelectedItem(){
@@ -117,6 +114,9 @@ export default {
 }
 </script>
 <style scoped>
+.selected-content-list{
+  background-color: #9fa5c0;
+}
 .v-application p {
   margin-bottom: 0;
 }
@@ -137,8 +137,12 @@ export default {
   margin: 0 32px 21px 32px;
 }
 
-.list-border-bottom {
+.content-list-item .contentListItem-main-box {
   border-bottom: solid 1px rgba(159, 165, 192, 0.58);
+}
+
+.content-list-item:last-child .contentListItem-main-box {
+  border-bottom: none;
 }
 
 .contentListItem-box {
