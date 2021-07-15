@@ -52,7 +52,7 @@
         sm="12"
       >
         <content-list-component
-          v-model="currentContent.id"
+          v-model="currentContent"
           :loading="contentListLoading"
           :contents="filteredContents"
           :header="{ title: 'لیست فیلم ها', button: { title: 'من کجام؟', event: 'whereAmI' } }"
@@ -63,7 +63,6 @@
               <div class="ml-xm-2 ml-5 ">
                 <v-select
                   v-model="setFilterId"
-                  value="all"
                   color="#3e5480"
                   :items="sets.list"
                   item-text="short_title"
@@ -74,17 +73,23 @@
                   dense
                   background-color="#eff3ff"
                   flat
-                  label="انتخاب فرسنگ "
+                  placeholder="انتخاب فرسنگ ها"
+                  @change="getContents(setFilterId)"
                 />
               </div>
               <v-select
+                v-model="sectionFilterId"
+                value="all"
                 color="#3e5480"
                 :menu-props="{ bottom: true, offsetY: true }"
+                :items="filteredSections"
+                item-text="title"
+                item-value="id"
                 solo
                 append-icon="mdi-chevron-down"
                 dense
                 background-color="#eff3ff"
-                label="همه"
+                placeholder="همه"
                 flat
               />
             </div>
@@ -98,6 +103,7 @@
         md="8"
         sm="12"
       >
+        <div v-text="currentContent.title" />
         <comment-box />
       </v-col>
       <v-col
@@ -128,9 +134,10 @@ import chipGroup from '../components/chipGroup';
 import videoBox from '../components/videoBox';
 import {StudyPlanList} from '../Models/StudyPlan';
 import axios from 'axios';
-import {SetList, Set} from '@/Models/Set';
+import {SetList} from '@/Models/Set';
 import StudyPlanGroup from '@/components/studyPlanGroup/StudyPlanGroup';
 import {SetSection} from '@/Models/SetSection';
+import Vue from 'vue'
 
 export default {
   name: 'UserAbrishamProgress',
@@ -142,7 +149,7 @@ export default {
       currentContent: new Content(),
       studyPlans: new StudyPlanList(),
       sets: new SetList(),
-      setFilterId: 'all',
+      setFilterId: '',
       sectionFilterId: 'all',
       contentListLoading: false
     }
@@ -167,7 +174,7 @@ export default {
       return lessons
     },
     filteredSets () {
-      return this.sets.list.filter(set => this.setFilterId === 'all' || this.setFilterId === set.id)
+      return this.sets.list.filter(set => this.setFilterId === set.id)
     },
     selectedLesson () {
       return this.lessons.find( item => item.selected )
@@ -176,23 +183,37 @@ export default {
       return new ContentList(this.contents.list.filter(content =>  {
         return this.sectionFilterId === 'all' || content.section.id === this.sectionFilterId
       }))
+    },
+    filteredSections () {
+      var selectedSet = this.sets.list.find( setItem => setItem.id === this.setFilterId )
+      if (!selectedSet) {
+        return []
+      }
+
+      return selectedSet.sections.list
     }
   },
   watch : {
     selectedLesson (newValue) {
       this.getSets(newValue.id)
+    },
+    setFilterId (newValue) {
+      this.getContents(newValue)
     }
   },
   created() {
     this.getLessons()
-    this.getSets(443)
-    this.getContents(906)
+    // this.getSets(443)
+    // this.getContents(906)
   },
   methods: {
+    changeCurrentContent (id) {
+      Vue.set(this, 'currentContent', this.contents.list.find(content => content.id === id))
+      this.currentContent = this.contents.list.find(content => content.id === id)
+    },
     getLessons () {
       axios.get('/api/v2/abrisham/lessons')
       .then( response => {
-        // console.log('getLessons', response)
         response.data.forEach( (item, index) => {
           this.majors.push({
             id: index,
@@ -222,17 +243,14 @@ export default {
           this.getContents(response.data.data[0].id)
         }
         this.sets = new SetList(response.data.data)
-        this.sets.list.unshift(new Set({id: 'all', short_title: 'همه'}))
         this.sets.list.forEach(item => item.sections.list.unshift(new SetSection({ id: 'all', title: 'همه' })))
         this.contentListLoading = false
       })
     },
     getContents (setId) {
-      axios.get('/api/v2/set/' + setId)
+      axios.get('/api/v2/set/' + setId + '/contents')
       .then( response => {
-        // console.log('getContents', response)
-        // console.log('getContents', response.data.data.contents)
-        this.contents = new ContentList(response.data.data.contents)
+        this.contents = new ContentList(response.data.data)
       })
     },
     setComment () {
