@@ -201,14 +201,13 @@ export default {
   },
   created() {
     this.getLessons()
-    this.getSets(443)
-    this.getContents(906)
+    // this.getSets(443)
+    // this.getContents(906)
   },
   methods: {
     getLessons () {
       axios.get('/api/v2/abrisham/lessons')
       .then( response => {
-        console.log('getLessons', response)
         response.data.forEach( (item, index) => {
           this.majors.push({
             id: index,

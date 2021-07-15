@@ -87,7 +87,6 @@ export default {
   },
   data(){
     return {
-      items: ['تست1', 'تست2', 'تست3', 'تست4'],
       selectedItemId:0,
     }
   },
