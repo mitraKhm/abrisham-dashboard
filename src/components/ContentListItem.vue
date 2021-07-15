@@ -115,7 +115,7 @@ export default {
 </script>
 <style scoped>
 .selected-content-list{
-  background-color: #9fa5c0;
+  background-color: rgba(159, 165, 192, 0.23);
 }
 .v-application p {
   margin-bottom: 0;
