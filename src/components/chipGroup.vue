@@ -57,6 +57,10 @@ export default {
     chipTitle: {
       type: String,
       default:''
+    },
+    hasSelectBox: {
+      type:Boolean,
+      default:false
     }
   },
   data() {

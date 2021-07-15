@@ -15,7 +15,10 @@
             md="6"
             cols="6"
           >
-            <chip-group v-model="majors" />
+            <chip-group
+              v-model="majors"
+              :has-slect-box="true"
+            />
           </v-col>
           <v-col
             lg="6"
