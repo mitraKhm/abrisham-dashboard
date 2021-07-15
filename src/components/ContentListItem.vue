@@ -1,5 +1,4 @@
 <template>
-  <!--  :color=" selected ? '#f2f5ff' : 'transparent'"-->
   <div
     class="content-list-item"
     :class="selected ? 'selected-content-list' : ''"
@@ -10,16 +9,14 @@
     >
       <div class="right-content">
         <v-card
-          v-if="false"
+          v-if="content.inputData.lesson_name"
           height="22"
           class="mb-2 rounded-pill text-center text-caption"
           flat
           dark
           color="#009498"
-        >
-          <!--          get lesson name
-         {{ content }}-->
-        </v-card>
+          v-text="content.inputData.lesson_name"
+        />
         <div class="contentListItem-box">
           <v-card
             v-if="type === 'video'"
@@ -31,7 +28,7 @@
             />
           </v-card>
           <div
-            v-if="false"
+            v-if="content.has_watched"
             class="d-flex seen justify-center align-center"
           >
             <i class="fi fi-rr-check icon" />
@@ -44,7 +41,7 @@
       </div>
       <div class="left-content">
         <v-sheet
-          v-if="false"
+          v-if="content.inputData.start"
           text-color="#3e5480"
           depressed
           height="22"
@@ -54,9 +51,9 @@
         >
           <i class="fi fi-rr-clock ml-2" />
           <div>
-            <span />
+            <span v-text="getClockTime().start" />
             <span> الی </span>
-            <span />
+            <span v-text="getClockTime().end" />
           </div>
         </v-sheet>
         <v-sheet
@@ -102,6 +99,20 @@ export default {
     }
   },
   methods: {
+    getClockTime () {
+      return {
+        start: this.formatClock(this.content.inputData.start),
+        end: this.formatClock(this.content.inputData.end)
+      }
+    },
+    formatClock (clock) {
+      if (!clock) {
+        return clock
+      }
+      var timeArray = clock.split(':')
+      timeArray.splice(1, 1)
+      return  timeArray.join(':')
+    },
     changeSelectedItem(){
       this.$emit('itemClicked')
     }
@@ -114,27 +125,18 @@ export default {
 }
 </script>
 <style scoped>
-.selected-content-list{
-  background-color: #9fa5c0;
-}
-.v-application p {
-  margin-bottom: 0;
-}
 
-/*::-webkit-scrollbar {*/
-/*  width: 20px;*/
-/*}*/
-/*::-webkit-scrollbar-track {*/
-/*  background: red;*/
-/*}*/
-/*::-webkit-scrollbar-thumb {*/
-/*  background: blue;*/
-/*}*/
-/*::-webkit-scrollbar-thumb:hover {*/
-/*background: #555*/
-/*}*/
-.contentListItem-main-box {
-  margin: 0 32px 21px 32px;
+
+.content-list-item:hover {
+  cursor: pointer;
+  background-color: rgba(242, 245, 255, 0.21);
+}
+.content-list-item .selected-content-list {
+  background-color: #f2f5ff;
+}
+.content-list-item .contentListItem-main-box {
+  margin:0 32px;
+  padding-top: 21px;
 }
 
 .content-list-item .contentListItem-main-box {
@@ -196,11 +198,9 @@ export default {
   height: 54px;
   border-radius: 10px;
 }
-
 .right-content {
   margin-bottom: 21px;
 }
-
 .left-content {
   margin-right: 15px;
   width: 100%;
@@ -218,7 +218,7 @@ export default {
     border-radius: 0;
   }
   .contentListItem-main-box {
-    margin: 0 11px 21px 11px;
+    margin: 0 11px;
   }
   .contentListItem-box .rounded-card {
     height: 40px;
@@ -259,7 +259,7 @@ export default {
   }
 
   .contentListItem-main-box {
-    margin-bottom: 15px;
+    padding-top: 15px;
   }
 }
 

@@ -59,8 +59,8 @@ export default {
   components: {StudyPlan},
   created() {
     this.doesSelectedMajorExist()
-    console.log(this.StudyPlanList)
-    console.log(this.selectedMajor)
+    // console.log(this.StudyPlanList)
+    // console.log(this.selectedMajor)
   },
   data(){
     return {

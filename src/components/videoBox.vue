@@ -89,9 +89,9 @@
               <v-list class="align-center sheet-background">
                 <v-row justify="center">
                   <v-card
-                    v-for="(file, index) in downloadFiles"
+                    v-for="(file , index) in downloadFiles"
                     :key="index"
-                    class=" download-part"
+                    class="download-part"
                     flat
                     @click="sheet = false"
                   >
