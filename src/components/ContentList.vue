@@ -35,7 +35,6 @@
         <content-list-item
           v-for="(item , index) in filteredList"
           :key="index"
-          :length="filteredList.length"
           :content="item"
           :type="type"
           :selected="selectedItemId === item.id"
@@ -88,7 +87,6 @@ export default {
   },
   data(){
     return {
-      items: ['تست1', 'تست2', 'تست3', 'تست4'],
       selectedItemId:0,
     }
   },

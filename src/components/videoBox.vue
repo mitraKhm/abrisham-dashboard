@@ -11,8 +11,12 @@
       <v-row no-gutters>
         <v-col>
           <div class="d-flex flex-wrap title">
-            <p>دین و زندگی</p>
-            <p>فرسنگ هشتم</p>
+            <p class="title-item">
+              دین و زندگی
+            </p>
+            <p class="title-item">
+              فرسنگ هشتم
+            </p>
             <p>جلسه 23</p>
           </div>
           <div class="d-flex subtitle">
@@ -32,26 +36,29 @@
         <v-col class="icon-btn-box">
           <v-btn
             dark
-            :class="clickHandler ? 'seen-video-btn' : 'video-btn'"
+            :class="{ 'seen-video-btn': seen, 'video-btn': !seen }"
+            :loading="false"
             @click="clickHandler"
           >
             <span
-              v-if="seen===true"
+              v-if="seen===false "
             >
+              دیده نشده
+            </span>
+            <span v-else>
               دیده شده
               <i class="fi fi-rr-check" />
             </span>
           </v-btn>
           <div class="video-box-icon">
-            <v-bottom-sheet
-              v-model="sheet"
-            >
+            <v-bottom-sheet>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   color="transparent"
                   depressed
                   dark
                   v-bind="attrs"
+                  class="video-box-icon-button"
                   v-on="on"
                 >
                   <i class="fi fi-rr-download icon" />
@@ -96,12 +103,6 @@
                 </v-row>
               </v-list>
             </v-bottom-sheet>
-
-
-
-
-
-
             <v-bottom-sheet>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
@@ -116,19 +117,49 @@
               </template>
               <v-list class="align-center sheet-background">
                 <v-row justify="center">
-                  <!--                  <ShareNetwork-->
-                  <!--                    v-for="icon in icons"-->
-                  <!--                    :key="icon"-->
-                  <!--                    network="Facebook"-->
-                  <!--                    url="icon.link"-->
-                  <!--                    class="social-share"-->
-                  <!--                  >-->
-                  <!--                    <i :class="'fi-rr-' + icon.icon" />-->
-                  <!--                  </ShareNetwork>-->
+                  <ShareNetwork
+                    network="facebook"
+                    url="https://news.vuejs.org/issues/180"
+                    class="social-share"
+                  >
+                    <i class="fi fi-rr-share icon " />
+                  </ShareNetwork>
+                  <ShareNetwork
+                    network="Facebook"
+                    url="https://https://github.com/"
+                    class="social-share"
+                  >
+                    <i class="fi fi-rr-share icon " />
+                  </ShareNetwork>
+                  <ShareNetwork
+                    network="Facebook"
+                    url="https://https://github.com/"
+                    class="social-share"
+                  >
+                    <i class="fi fi-rr-share icon " />
+                  </ShareNetwork>
+                  <ShareNetwork
+                    network="Facebook"
+                    url="https://https://github.com/"
+                    class="social-share"
+                  >
+                    <i class="fi fi-rr-share icon " />
+                  </ShareNetwork>
                 </v-row>
               </v-list>
             </v-bottom-sheet>
-            <i class="fi fi-rr-bookmark icon" />
+            <v-btn
+              v-model="myFavorite"
+              color="transparent"
+              depressed
+              dark
+              @click="toggleFavorite"
+            >
+              <i
+                class="fi fi-rr-bookmark icon"
+                :class="{ 'favorite-bookmark': myFavorite , 'icon': !myFavorite }"
+              />
+            </v-btn>
           </div>
         </v-col>
       </v-row>
@@ -140,67 +171,67 @@
 <script>
 export default {
   name: 'VideoBox',
-  data: () => ({
-    seen:false,
-    sheet: false,
-    downloadFiles:[
-      {
-        title:'دانلود فایل کیفیت عالی',
-        videoQuality:'720',
-        format:'MP4',
-        videoVolume:'93MB',
-      },
-      {
-        title:'دانلود فایل کیفیت عالی',
-        videoQuality:'720',
-        format:'MP4',
-        videoVolume:'93MB',
-      },
-      {
-        title:'دانلود فایل کیفیت عالی',
-        videoQuality:'720',
-        format:'MP4',
-        videoVolume:'93MB',
-      },
-    ],
-    icons:[
-      {
-        name:'facebook',
-        icon:'power',
-        link:'https://news.vuejs.org/issues/180',
-      },
-      {
-        name:'facebook',
-        icon:'power',
-        link:'https://news.vuejs.org/issues/180',
-      },
-      {
-        name:'facebook',
-        icon:'power',
-        link:'https://news.vuejs.org/issues/180',
-      },
-      {
-        name:'facebook',
-        icon:'power',
-        link:'https://news.vuejs.org/issues/180',
-      },
-    ]
-  }),
-  methods:{
-    clickHandler(){
-      this.seen= !this.seen
-      return this.seen
+  props: {
+    value: {
+      type: Boolean ,
+      default: null
+    }
+  },
+  data(){
+    return {
+      loading:false,
+      seen:false,
+      myFavorite:false,
+      downloadFiles:[
+        {
+          title:'دانلود فایل کیفیت عالی',
+          videoQuality:'720',
+          format:'MP4',
+          videoVolume:'93MB',
+        },
+        {
+          title:'دانلود فایل کیفیت عالی',
+          videoQuality:'720',
+          format:'MP4',
+          videoVolume:'93MB',
+        },
+        {
+          title:'دانلود فایل کیفیت عالی',
+          videoQuality:'720',
+          format:'MP4',
+          videoVolume:'93MB',
+        }
+      ],
+    }
+  },
+  methods: {
+    clickHandler() {
+      this.seen = !this.seen;
+      this.loading = true;
+    },
+    toggleFavorite(){
+      this.myFavorite =! this.myFavorite;
+      this.$emit('favorite', this.myFavorite);
     }
   }
-
 }
 </script>
+
 <style scoped>
+.video-box .video-description .title .title-item::after{
+  content: ")";
+  color: #ff8f00;
+  padding-left: 6px;
+}
+
+.video-box .video-description .fi.favorite-bookmark {
+  color: #ff8f00;
+}
 .social-share{
   margin: 20px;
   text-decoration: none;
-  background-color: green;
-  color: black;
+  background-color:  #ff8f00;
+  color: white;
   border-radius: 50%;
   padding: 20px;
 
@@ -213,14 +244,11 @@ export default {
   border-radius: 20px ;
   border: #ff8f00 1px solid;
 
-
 }
 .download-part .download-title{
   margin:20px auto;
   height: 42px;
   text-align: center;
-
-
 }
 .download-part .download-title a{
   text-decoration: none;
@@ -250,7 +278,7 @@ export default {
 }
 .video-box .video-box-icon .icon{
   font-size: 24px;
-  margin-right: 40px;
+
   color:#3e5480;
 }
 .video-description{
@@ -268,7 +296,8 @@ export default {
   line-height: 40px
 }
 .video-box .video-description .video-btn{
-  background-color: #ff8f00;
+  background-color:#ff8f00;
+  color: #ffffff;
   width: 120px;
   height: 48px;
   border-radius: 10px;
@@ -281,6 +310,7 @@ export default {
   height: 48px;
   border-radius: 10px;
   border: solid 2px #ff8f00;
+  box-shadow: none;
 }
 .video-box .video-description  .fi {
   font-size: 18px;
@@ -307,7 +337,7 @@ export default {
   font-size: 20px;
   font-weight: 500;
 }
-@media screen and (max-width: 1200px){
+@media screen and (min-width: 1200px){
   .video-box .video-box-icon {
     margin-right: 60px;
   }
