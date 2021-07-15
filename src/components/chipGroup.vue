@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="d-flex list-box align-center  d-lg-block d-sm-none">
+    <div class="d-flex list-box align-center d-xl-block d-xs-none d-lg-block d-sm-none">
       <v-chip
         v-if="chipTitle"
         class="list-section"
@@ -15,16 +15,15 @@
           :color="item.selected ? item.color: 'transparent'"
           class="chip-box"
           :text-color="item.selected ? 'white': '#9fa5c0'"
-          @click="changeSelectedChip(index)"
+          @click="changeSelectedChip(item)"
         >
           {{ item.title }}
         </v-chip>
       </v-chip-group>
     </div>
-    <div class="d-flex d-lg-none d-sm-block">
+    <div class="d-flex d-xl-none d-lg-none d-sm-block d-xs-block">
       <v-select
         v-model="selectedId"
-        value="all"
         color="#3e5480"
         :items="chipData"
         item-text="title"
@@ -77,11 +76,14 @@ export default {
     },
   },
   methods:{
-    changeSelectedChip(selected){
-      this.chipData.map(i => {
-        i.selected = false
+    changeSelectedChip(selectedId){
+      this.chipData.map(item => {
+      if(item.id === selectedId){
+        return item.selected = true
+      }
+      return item.selected = false
       })
-      this.chipData[selected].selected = true;
+      this.$emit('input' , this.chipData)
     }
   }
 }
