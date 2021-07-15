@@ -114,16 +114,16 @@ export default {
   },
  computed :{
     filteredList () {
-    return this.contents.list.filter(item => {
-      var typeId = 0
-       if (this.type === 'video') {
-         typeId = 8
-       }
-       if (this.type === 'pamphlet') {
-         typeId = 1
-       }
-       return item.type === typeId
-     })
+      return this.contents.list.filter(item => {
+        var typeId = 0
+         if ( item.content_type.name === 'video') {
+           typeId = 8
+         }
+         if (item.content_type.name === 'pamphlet') {
+           typeId = 1
+         }
+         return  item.content_type.id === typeId
+       })
    }
   },
   watch:{
@@ -145,7 +145,7 @@ export default {
 }
 </script>
 
-<style>
+<style >
 .content-list-items-box{
   position: relative;
   height: 100%;
@@ -210,6 +210,16 @@ export default {
     margin: 13px 11px
   }
 }
+@media screen and (max-width: 960px) {
+  .content-list-items-box .content-box {
+    position: absolute;
+    overflow: auto;
+    height: 100%;
+    max-height: 400px;
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 1200px) {
 
 }

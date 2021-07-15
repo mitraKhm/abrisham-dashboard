@@ -32,6 +32,7 @@ class Content extends Model {
             {key: 'title'},
             {key: 'short_title'},
             {key: 'type'}, // 1=> pamphlet, 8=> video
+            {key: 'content_type'}, // 1=> pamphlet, 8=> video
             {key: 'photo'},
             {key: 'nextApiUrl'},
             {key: 'nextUrl'},
@@ -41,6 +42,8 @@ class Content extends Model {
             {key: 'previousUrl'},
             {key: 'redirectUrl'},
             {key: 'section_id'},
+            {key: 'is_current'},
+            {key: 'has_watched'},
             {
                 key: 'timepoints',
                 relatedModel: ContentTimePointList,
