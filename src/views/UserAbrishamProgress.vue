@@ -1,9 +1,10 @@
 <template>
   <div class="schedule-page">
+    <!--   --------------------------------- chip group ------------------------- -->
     <v-row>
       <v-col
         lg="9"
-        md="6"
+        md="7"
         cols="12"
         order-md="2"
         class="d-flex d-md-block justify-center"
@@ -18,7 +19,7 @@
           </v-col>
           <v-col
             lg="6"
-            md="6"
+            md="5"
             cols="12"
           >
             <chip-group
@@ -38,24 +39,34 @@
         نمایش محتوا بر اساس فعالیت شما
       </v-col>
     </v-row>
+    <!--   --------------------------------- video box &&  content list item ------------------------- -->
     <v-row>
-      <v-col md="8">
+      <v-col
+        md="8"
+        sm="12"
+      >
         <video-box
           :content="currentContent"
         />
       </v-col>
-      <v-col md="4">
+      <v-col
+        md="4"
+        sm="12"
+      >
         <content-list-component
+          v-model="currentContent.id"
           :loading="contentListLoading"
           :contents="filteredContents"
+          :header="{ title: 'لیست فیلم ها', button: { title: 'من کجام؟', event: 'whereAmI' } }"
           type="video"
         >
           <template v-slot:filter>
-            <div class="d-flex justify-space-between v-select-box">
-              <div class="ml-xm-2 ml-5">
+            <div class="d-flex  v-select-box">
+              <div class="ml-xm-2 ml-5 ">
                 <v-select
                   v-model="setFilterId"
                   value="all"
+                  color="#3e5480"
                   :items="sets.list"
                   item-text="short_title"
                   item-value="id"
@@ -65,22 +76,17 @@
                   dense
                   background-color="#eff3ff"
                   flat
-                  placeholder="انتخاب فرسنگ ها"
+                  label="انتخاب فرسنگ "
                 />
               </div>
               <v-select
-                v-model="sectionFilterId"
-                :disabled="setFilterId === 'all'"
-                :items="filteredSets[0] ? filteredSets[0].sections.list : []"
-                item-text="title"
-                item-value="id"
-                value="all"
+                color="#3e5480"
                 :menu-props="{ bottom: true, offsetY: true }"
                 solo
                 append-icon="mdi-chevron-down"
                 dense
                 background-color="#eff3ff"
-                placeholder="همه"
+                label="همه"
                 flat
               />
             </div>
@@ -88,12 +94,20 @@
         </content-list-component>
       </v-col>
     </v-row>
+    <!--   --------------------------------- comment box &&  content list item ------------------------- -->
     <v-row>
-      <v-col md="8">
+      <v-col
+        md="8"
+        sm="12"
+      >
         <comment-box />
       </v-col>
-      <v-col md="4">
+      <v-col
+        md="4"
+        sm="12"
+      >
         <content-list-component
+          :header="{ title: 'جزوه ها' }"
           :loading="contentListLoading"
           :contents="filteredContents"
           type="pamphlet"
@@ -161,10 +175,9 @@ export default {
       return this.lessons.find( item => item.selected )
     },
     filteredContents () {
-      if (this.setFilterId === 'all') {
-        return this.contents
-      }
-      return new ContentList(this.contents.list.filter(content => content.section.id === this.sectionFilterId))
+      return new ContentList(this.contents.list.filter(content =>  {
+        return this.sectionFilterId === 'all' || content.section.id === this.sectionFilterId
+      }))
     }
   },
   watch : {
@@ -219,8 +232,8 @@ export default {
     getContents (setId) {
       axios.get('/api/v2/set/' + setId)
       .then( response => {
-        console.log('getContents', response)
-        console.log('getContents', response.data.data.contents)
+        // console.log('getContents', response)
+        // console.log('getContents', response.data.data.contents)
         this.contents = new ContentList(response.data.data.contents)
       })
     },
@@ -241,10 +254,25 @@ export default {
 </script>
 
 <style lang="scss">
+.v-select-box {
+  .theme--light.v-label{
+    color:#3e5480;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+.v-select-box {
+  .theme--light.v-icon{
+    color:#3e5480;
+  }
+}
 .schedule-page {
   @media screen and (max-width: 1920px) {
     & {
       margin: 0 58px;
+    }
+    .content-list-box  .v-select-box{
+      margin: 0 15px;
     }
   }
   @media screen and (max-width: 1200px) {
