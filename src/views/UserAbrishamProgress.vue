@@ -1,6 +1,6 @@
 <template>
   <div class="schedule-page">
-    <!--   --------------------------------- chip group ------------------------- -->
+    <!--   -- ------------------------------- chip group ------------------------- -->
     <v-row>
       <v-col
         lg="9"
@@ -13,14 +13,12 @@
           <v-col
             lg="6"
             md="6"
-            cols="12"
           >
             <chip-group v-model="majors" />
           </v-col>
           <v-col
             lg="6"
             md="5"
-            cols="12"
           >
             <chip-group
               v-model="lessons"
