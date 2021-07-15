@@ -1,5 +1,11 @@
 <template>
   <div class="content-list-box">
+    <!--    <v-overlay-->
+    <!--      v-if="loading"-->
+    <!--      absolute-->
+    <!--    >-->
+    <!--      <v-progress-circular indeterminate />-->
+    <!--    </v-overlay>-->
     <slot name="header">
       <div>
         <div class="slot-header-box">
@@ -31,7 +37,10 @@
     </slot>
     <slot name="filter" />
     <div class="content-list-items-box">
-      <div class="content-box">
+      <div
+        v-if="!loading"
+        class="content-box"
+      >
         <content-list-item
           v-for="(item , index) in filteredList"
           :key="index"
@@ -39,6 +48,16 @@
           :type="type"
           :selected="selectedItem.id === item.id"
           @itemClicked="changeSelectedId(item)"
+        />
+      </div>
+      <div
+        v-for="i in 6"
+        :key="i"
+      >
+        <v-skeleton-loader
+          v-if="loading"
+          max-height="100"
+          type="list-item-avatar-three-line"
         />
       </div>
     </div>
@@ -148,6 +167,7 @@ export default {
   margin-right: 0!important;
 }
 .content-list-box {
+  position: relative;
   display: flex;
   flex-direction: column;
   border-radius: 30px;
