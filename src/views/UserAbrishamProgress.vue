@@ -65,6 +65,7 @@
               <div class="ml-xm-2 ml-5 ">
                 <v-select
                   v-model="setFilterId"
+                  :loading="contentListLoading"
                   color="#3e5480"
                   :items="sets.list"
                   item-text="short_title"
@@ -81,6 +82,7 @@
               </div>
               <v-select
                 v-model="sectionFilterId"
+                :loading="contentListLoading"
                 value="all"
                 color="#3e5480"
                 :menu-props="{ bottom: true, offsetY: true }"
