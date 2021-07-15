@@ -9,7 +9,7 @@
         order-md="2"
         class="d-flex d-md-block justify-center"
       >
-        <chip-group />
+        <chip-group v-model="majors" />
       </v-col>
       <v-col
         xl="5"
@@ -18,7 +18,7 @@
         order-md="1"
         class="text-md-right text-center"
       >
-        نمایش محتوا بر اساس فعالیت شما
+        نمایش محتوا بر اساس برنامه مطالعاتی
       </v-col>
     </v-row>
     <v-row align-stretch>
@@ -35,7 +35,13 @@
         md="4"
         sm="12"
       >
-        <content-list-component />
+        <content-list-component
+          v-model="currentContent"
+          :loading="contentListLoading"
+          :contents="filteredContents"
+          :header="{ title: 'لیست فیلم ها', button: { title: 'روزهای دیگر' }}"
+          type="video"
+        />
       </v-col>
     </v-row>
     <!--   --------------------------------- comment box &&  content list item ------------------------- -->
@@ -82,19 +88,47 @@ export default {
   data() {
     return {
       majors: [],
-      currents: new ContentList(),
+      selectedMajor: null,
+      contentListLoading: false,
+      contents: new ContentList(),
       currentContent: new Content(),
       studyPlans: new StudyPlanList()
     }
   },
+  computed: {
+    filteredContents () {
+      if (!this.selectedMajor) {
+        return this.contents
+      }
+
+      return new ContentList(this.contents.list.filter(content =>  {
+        return this.sectionFilterId === 'all' || content.section.id === this.selectedMajor.id
+      }))
+    },
+  },
   created() {
+    this.getLessons()
     this.getContents('2021-03-21')
   },
   methods: {
     getContents (date) {
       axios.get('/api/v2/abrisham/whereIsKarvan', { params: {'date': date, }})
           .then( response => {
-            this.currents = new ContentList(response.data.data)
+            this.contents = new ContentList(response.data.data)
+          })
+    },
+    getLessons () {
+      axios.get('/api/v2/abrisham/lessons')
+          .then( response => {
+            response.data.forEach( (item, index) => {
+              this.majors.push({
+                id: index,
+                title: item.title,
+                lessons: item.lessons,
+                selected: false,
+                color: 'red'
+              })
+            })
           })
     },
     // getStudyPlans () {

@@ -29,6 +29,7 @@ class Content extends Model {
             {key: 'title'},
             {key: 'short_title'},
             {key: 'type'}, // 1=> pamphlet, 8=> video
+            {key: 'content_type'}, // 1=> pamphlet, 8=> video
             {key: 'photo'},
             {key: 'nextApiUrl'},
             {key: 'nextUrl'},

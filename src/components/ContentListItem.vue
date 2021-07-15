@@ -10,16 +10,14 @@
     >
       <div class="right-content">
         <v-card
-          v-if="false"
+          v-if="content.inputData.lesson_name"
           height="22"
           class="mb-2 rounded-pill text-center text-caption"
           flat
           dark
           color="#009498"
-        >
-          <!--          get lesson name
-         {{ content }}-->
-        </v-card>
+          v-text="content.inputData.lesson_name"
+        />
         <div class="contentListItem-box">
           <v-card
             v-if="type === 'video'"
@@ -31,7 +29,7 @@
             />
           </v-card>
           <div
-            v-if="false"
+            v-if="content.has_watched"
             class="d-flex seen justify-center align-center"
           >
             <i class="fi fi-rr-check icon" />
@@ -44,7 +42,7 @@
       </div>
       <div class="left-content">
         <v-sheet
-          v-if="false"
+          v-if="content.inputData.start"
           text-color="#3e5480"
           depressed
           height="22"
@@ -54,9 +52,9 @@
         >
           <i class="fi fi-rr-clock ml-2" />
           <div>
-            <span />
+            <span v-text="getClockTime().start" />
             <span> الی </span>
-            <span />
+            <span v-text="getClockTime().end" />
           </div>
         </v-sheet>
         <v-sheet
@@ -102,6 +100,20 @@ export default {
     }
   },
   methods: {
+    getClockTime () {
+      return {
+        start: this.formatClock(this.content.inputData.start),
+        end: this.formatClock(this.content.inputData.end)
+      }
+    },
+    formatClock (clock) {
+      if (!clock) {
+        return clock
+      }
+      var timeArray = clock.split(':')
+      timeArray.splice(1, 1)
+      return  timeArray.join(':')
+    },
     changeSelectedItem(){
       this.$emit('itemClicked')
     }
