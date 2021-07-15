@@ -135,12 +135,12 @@ export default {
 }
 </script>
 <style scoped>
-.selected-content-list {
-  background-color: #eff3ff;
-}
 .content-list-item:hover {
   cursor: pointer;
-  background-color: rgba(239, 243, 255, 0.32);
+  background-color: rgba(242, 245, 255, 0.31);
+}
+.content-list-item.selected-content-list {
+  background-color: #eff3ff;
 }
 .content-list-item .contentListItem-main-box {
   margin:0 32px;

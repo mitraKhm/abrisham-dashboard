@@ -112,17 +112,21 @@ export default {
     }
   },
  computed :{
-    filteredList () {
-      return this.contents.list.filter(item => {
-        var typeId = 0
-         if ( item.content_type.name === 'video') {
-           typeId = 8
-         }
-         if (item.content_type.name === 'pamphlet') {
-           typeId = 1
-         }
-         return  item.content_type.id === typeId
-       })
+   // ----------------------------------Yadegari----------------------------------
+   //  filteredList () {
+   //    return this.contents.list.filter(item => {
+   //      var typeId = 0
+   //       if ( item.content_type.name === 'video') {
+   //         typeId = 8
+   //       }
+   //       if (item.content_type.name === 'pamphlet') {
+   //         typeId = 1
+   //       }
+   //       return  item.content_type.id === typeId
+   //     })
+   // },
+   filteredList () {
+      return this.contents.list.filter(item => item.content_type.name === this.type)
    }
   },
   watch:{
