@@ -116,13 +116,13 @@ export default {
     filteredList () {
       return this.contents.list.filter(item => {
         var typeId = 0
-         if (item.type === 'video' || item.content_type.name === 'video') {
+         if ( item.content_type.name === 'video') {
            typeId = 8
          }
-         if (this.type === 'pamphlet' || item.content_type.name === 'pamphlet') {
+         if (item.content_type.name === 'pamphlet') {
            typeId = 1
          }
-         return item.type === typeId || item.content_type.id === typeId
+         return  item.content_type.id === typeId
        })
    }
   },
