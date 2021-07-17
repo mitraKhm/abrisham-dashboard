@@ -64,6 +64,7 @@
           :contents="filteredContents"
           :header="{ title: 'لیست فیلم ها', button: { title: 'من کجام؟' } }"
           type="video"
+          @input="changeCurrentContent($event.id)"
           @clicked="whereAmI"
         >
           <template v-slot:filter>
@@ -250,7 +251,7 @@ export default {
           comment: comment
         })
         .then(response => {
-          this.currentContent.comments[0].comment = response.data.data.comment
+          this.currentContent.comments.push({ comment: response.data.data.comment })
           this.comment = this.currentContent.comments[0].comment
         })
       }
@@ -277,6 +278,9 @@ export default {
       this.currentContent = this.contents.list.find(content => content.id === id)
       if (this.currentContent.comments[0]) {
         this.comment = this.currentContent.comments[0].comment
+        console.log('comment', this.currentContent.comments[0].comment)
+      } else {
+        this.comment = ''
       }
     },
     getLessons () {
