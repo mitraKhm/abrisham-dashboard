@@ -36,12 +36,22 @@
         md="4"
         cols="12"
       >
+        <date-picker
+          v-model="DatePickerDate"
+          element="null"
+          input-format="YYYY-MM-DD"
+          format="YYYY/MM/DD"
+          :show="showDatePicker"
+          @close="showDatePicker = false"
+          @change="getContents(DatePickerDate)"
+        />
         <content-list-component
           v-model="currentContent"
           :loading="contentListLoading"
           :contents="filteredContents"
           :header="{ title: 'لیست فیلم ها', button: { title: 'روزهای دیگر' }}"
           type="video"
+          @clicked="showDatePicker = true"
         />
       </v-col>
     </v-row>
@@ -86,12 +96,15 @@ import videoBox from '../components/videoBox';
 import StudyPlanGroup from '../components/studyPlanGroup/StudyPlanGroup';
 import {StudyPlanList} from '../Models/StudyPlan';
 import axios from 'axios';
+import VuePersianDatetimePicker from 'vue-persian-datetime-picker';
 
 export default {
   name: 'Schedule',
-  components: {StudyPlanGroup, ContentListComponent, CommentBox, chipGroup, videoBox},
+  components: {StudyPlanGroup, ContentListComponent, CommentBox, chipGroup, videoBox, datePicker: VuePersianDatetimePicker},
   data() {
     return {
+      showDatePicker: false,
+      DatePickerDate: '',
       majors: [],
       selectedMajor: null,
       contentListLoading: false,
