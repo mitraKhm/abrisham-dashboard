@@ -96,7 +96,7 @@
                   <i class="fi fi-rr-download icon" />
                 </v-btn>
               </template>
-              <v-list class="align-center">
+              <v-list class="align-center download-list">
                 <v-row justify="center">
                   <v-card
                     v-for="(file , index) in downloadFiles"
@@ -158,39 +158,63 @@
                   >
                     <v-btn
                       class="ma-2"
-                      color="indigo"
+                      color="amber darken-3"
                       dark
                     >
                       <v-icon>mdi-whatsapp</v-icon>
                     </v-btn>
                   </ShareNetwork>
                   <ShareNetwork
-                    network="Facebook"
+                    network="telegram"
                     url="https://https://github.com/"
                     class="social-share"
                   >
                     <v-btn
                       class="ma-2"
-                      text
-                      icon
-                      color="green lighten-2"
+                      color="amber darken-3"
+                      dark
+                    >
+                      <v-icon>mdi-telegram</v-icon>
+                    </v-btn>
+                  </ShareNetwork>
+                  <ShareNetwork
+                    network="instagram"
+                    url="https://https://github.com/"
+                    class="social-share"
+                  >
+                    <v-btn
+                      class="ma-2"
+                      color="amber darken-3"
+                      dark
                     >
                       <v-icon>mdi-instagram</v-icon>
                     </v-btn>
                   </ShareNetwork>
                   <ShareNetwork
-                    network="Facebook"
+                    network="gmail"
                     url="https://https://github.com/"
                     class="social-share"
                   >
-                    <i class="fi fi-rr-share icon " />
+                    <v-btn
+                      class="ma-2"
+                      color="amber darken-3"
+                      dark
+                    >
+                      <v-icon>mdi-gmail</v-icon>
+                    </v-btn>
                   </ShareNetwork>
                   <ShareNetwork
-                    network="Facebook"
+                    network="email"
                     url="https://https://github.com/"
                     class="social-share"
                   >
-                    <i class="fi fi-rr-share icon " />
+                    <v-btn
+                      class="ma-2"
+                      color="amber darken-3"
+                      dark
+                    >
+                      <v-icon>mdi-email</v-icon>
+                    </v-btn>
                   </ShareNetwork>
                 </v-row>
               </v-list>
@@ -259,28 +283,6 @@ export default {
         videoVolume:'93MB',
       },
     ],
-    icons:[
-      {
-        name:'facebook',
-        icon:'power',
-        link:'https://news.vuejs.org/issues/180',
-      },
-      {
-        name:'facebook',
-        icon:'power',
-        link:'https://news.vuejs.org/issues/180',
-      },
-      {
-        name:'facebook',
-        icon:'power',
-        link:'https://news.vuejs.org/issues/180',
-      },
-      {
-        name:'facebook',
-        icon:'power',
-        link:'https://news.vuejs.org/issues/180',
-      },
-    ]
   }),
   methods: {
     test (event) {
@@ -440,6 +442,34 @@ export default {
   .seen-btn{
     margin-bottom: 15px;
   }
+  .download-part{
+    font-size: 12px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px ;
+    border: #ff8f00 1px solid;
+
+  }
+  .download-part .download-title{
+    margin:10px auto;
+    height: 32px;
+    text-align: center;
+  }
+  .download-part .download-title a{
+    font-size: 12px;
+    text-decoration: none;
+    color:#FFFFFF;
+    background-color:#ff8f00 ;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  .download-part .details{
+    font-size: 12px;
+    border-radius: 10px;
+    margin: 10px;
+    color: #FFFFFF;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1296px){
   .video-box-icon .v-btn:not(.v-btn--round).v-size--default{
@@ -454,8 +484,13 @@ export default {
     margin-left: 10px;
   }
 }
+@media only screen and (min-width: 960px) and (max-width: 990px){
+  .video-box .video-description .subtitle .part {
+    margin-left: 8px;
+  }
+}
 
-@media screen and (max-width: 990px){
+@media screen and (max-width: 959px){
   .video-box-icon .v-btn:not(.v-btn--round).v-size--default {
     min-width: 59px !important;
   }
@@ -464,8 +499,8 @@ export default {
     justify-content: space-between;
     flex-direction:row !important;
   }
-  .video-description .icon-btn-box {
-    align-items: start !important;
+  .video-box .video-description .icon-btn-box {
+    align-items: flex-start !important;
   }
   .video-description{
     margin-bottom: 0;
@@ -473,6 +508,38 @@ export default {
   .seen-btn{
     height: 40px !important;
     box-sizing: border-box;
+  }
+  download-part{
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px ;
+    border: #ff8f00 1px solid;
+
+  }
+  .download-part .download-title{
+    margin:5px auto;
+    height: 32px;
+    text-align: center;
+  }
+  .download-part .download-title a{
+    font-size: 10px;
+    text-decoration: none;
+    color:#FFFFFF;
+    background-color:#ff8f00 ;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  .download-part .details{
+    font-size: 8px;
+    border-radius: 5px;
+    margin: 1px;
+    color: #FFFFFF;
+  }
+  .download-part .details.v-btn:not(.v-btn--round).v-size--default {
+    height: 19px;
+    min-width: 0px !important;
+    padding: 0px 8px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 796px){
@@ -531,7 +598,7 @@ export default {
   .video-box .video-main {
     margin-bottom: 10px;
   }
-  .video-box .video-description{
+  .video-box .video-description .description{
     display: flex !important;
     flex-direction: column !important;
   }
@@ -547,6 +614,43 @@ export default {
   .video-description .icon-btn-box{
     flex-direction: column;
     align-items: flex-end;
+  }
+  .download-list{
+    padding-top: 3px;
+  }
+  .download-part{
+    margin: 10px !important;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px ;
+    border: none;
+    height: 30px;
+
+  }
+  .download-part .download-title{
+    margin:5px auto;
+    height: 32px;
+    text-align: center;
+  }
+  .download-part .download-title a{
+    font-size: 8px;
+    text-decoration: none;
+    color:#FFFFFF;
+    background-color:#ff8f00 ;
+    padding: 3px;
+    border-radius: 5px;
+  }
+  .download-part .details{
+    font-size: 6px;
+    border-radius: 5px;
+    margin: 1px;
+    color: #FFFFFF;
+    display: none;
+  }
+  .download-part .details.v-btn:not(.v-btn--round).v-size--default {
+    height: 10px;
+    min-width: 0px !important;
+    padding: 0px 4px;
   }
   .video-box-title {
     text-align: right;

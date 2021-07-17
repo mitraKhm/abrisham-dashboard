@@ -52,6 +52,8 @@
         cols="12"
       >
         <video-box
+          :lesson="selectedLesson"
+          :set="selectedSet"
           :content="currentContent"
         />
       </v-col>
