@@ -4,13 +4,12 @@
       class="list-box align-center"
       :class="dropDown ? 'chip-group-visibility' : 'd-flex'"
     >
-      <v-chip
+      <p
         v-if="chipTitle"
         class="list-section"
-        text-color="#3e5480"
       >
         {{ chipTitle }}
-      </v-chip>
+      </p>
       <v-chip-group>
         <v-chip
           v-for="(item) in chipData"
@@ -95,11 +94,18 @@ export default {
       }
     },
     changeSelectedChip(selectedId) {
-      this.chipData.forEach((item, index) => {
-        this.chipData[index].selected = item.id === selectedId
-        console.log(this.chipData[index].selected)
-        // item.selected = item.id === selectedId
+      // let that = this
+      let chipData = []
+
+      this.chipData.forEach((item) => {
+        let itemObject = item
+        let selected = item.id === selectedId
+        itemObject.selected = selected
+        chipData.push(itemObject)
       })
+
+      this.chipData = chipData
+
       console.log('test2', this.chipData, selectedId)
       this.setSelectedIdVariable()
 
