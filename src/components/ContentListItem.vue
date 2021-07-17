@@ -66,7 +66,7 @@
           height="22"
         />
         <div class="d-flex flex-column justify-center title-box">
-          <div class="d-flex justify-lg-space-between">
+          <div class="d-flex justify-space-between">
             <p class="contentListItem-title ">
               {{ content.short_title }}
             </p>

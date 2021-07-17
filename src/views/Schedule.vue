@@ -21,12 +21,12 @@
         نمایش محتوا بر اساس برنامه مطالعاتی
       </v-col>
     </v-row>
-    <v-row align-stretch>
-      <!--   --------------------------------- video box &&  content list item ------------------------- -->
+
+    <!--   --------------------------------- video box &&  content list item ------------------------- -->
+    <v-row>
       <v-col
         md="8"
-        sm="12"
-        xs="12"
+        cols="12"
       >
         <video-box
           :content="currentContent"
@@ -34,8 +34,7 @@
       </v-col>
       <v-col
         md="4"
-        sm="12"
-        xs="12"
+        cols="12"
       >
         <date-picker
           v-model="DatePickerDate"
@@ -61,6 +60,7 @@
       <v-col
         md="8"
         sm="12"
+        xs="12"
       >
         <div class="d-flex">
           <p class="video-box-title">
@@ -70,7 +70,10 @@
         </div>
         <comment-box />
       </v-col>
-      <v-col md="4">
+      <v-col
+        md="4"
+        xs="12"
+      >
         <content-list-component />
       </v-col>
     </v-row>
