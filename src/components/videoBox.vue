@@ -12,7 +12,6 @@
           v-if="content.file && content.file.video"
           :key="content.id"
           :emit="['progress']"
-          @progress="test"
         >
           <video
             :poster="content.photo"
@@ -285,9 +284,6 @@ export default {
     ],
   }),
   methods: {
-    test (event) {
-      console.log('test', event)
-    },
     clickHandler(){
       this.seen = !this.seen;
       this.loading = true;
