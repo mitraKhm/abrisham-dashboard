@@ -113,7 +113,6 @@
     <v-row>
       <v-col
         md="8"
-        xs="12"
         cols="12"
       >
         <div v-text="currentContent.title" />
