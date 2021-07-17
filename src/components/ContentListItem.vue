@@ -76,9 +76,9 @@
             {{ content.title }}
           </p>
       </div>
-    <a :href="content.file.pamphlet[0].link">
+    <a v-if="type === 'pamphlet'"
+       :href="content.file.pamphlet[0].link">
       <i
-          v-if="type === 'pamphlet'"
           class="fi fi-rr-download download-icon"
       />
     </a>

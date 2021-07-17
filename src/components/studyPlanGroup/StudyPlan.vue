@@ -523,7 +523,6 @@ export default {
   },
   methods: {
     loadSelectedPlan(plan){
-      console.log('plane in parent : ', plan)
       this.selectedPlan=plan
     },
     loadPlans () {
