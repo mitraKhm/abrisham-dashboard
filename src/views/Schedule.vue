@@ -26,6 +26,7 @@
       <v-col
         md="8"
         sm="12"
+        xs="12"
       >
         <video-box
           :content="currentContent"
@@ -34,6 +35,7 @@
       <v-col
         md="4"
         sm="12"
+        xs="12"
       >
         <content-list-component
           v-model="currentContent"
@@ -120,7 +122,7 @@ export default {
     getLessons () {
       axios.get('/api/v2/abrisham/lessons')
           .then( response => {
-            response.data.forEach( (item, index) => {
+            response.data.data.forEach( (item, index) => {
               this.majors.push({
                 id: index,
                 title: item.title,

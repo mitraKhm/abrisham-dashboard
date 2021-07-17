@@ -1,5 +1,5 @@
 <template>
-  <div class="schedule-page">
+  <div class="userAbrishamProgress-page">
     <!--   -- ------------------------------- chip group ------------------------- -->
     <v-row>
       <v-col
@@ -17,7 +17,7 @@
           >
             <chip-group
               v-model="majors"
-              :has-slect-box="true"
+              :drop-down="true"
             />
           </v-col>
           <v-col
@@ -28,6 +28,7 @@
             <chip-group
               v-model="lessons"
               title="درس"
+              :drop-down="true"
             />
           </v-col>
         </v-row>
@@ -46,6 +47,7 @@
     <v-row>
       <v-col
         md="8"
+        xs="12"
         cols="12"
       >
         <video-box
@@ -109,6 +111,7 @@
     <v-row>
       <v-col
         md="8"
+        xs="12"
         cols="12"
       >
         <div v-text="currentContent.title" />
