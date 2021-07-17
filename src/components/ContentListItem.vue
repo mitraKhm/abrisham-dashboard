@@ -14,7 +14,7 @@
           class="mb-2 rounded-pill text-center text-caption"
           flat
           dark
-          color="#009498"
+          :color="content.color"
           v-text="content.inputData.lesson_name"
         />
         <div class="contentListItem-box">
