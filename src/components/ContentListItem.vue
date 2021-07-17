@@ -40,22 +40,25 @@
         </div>
       </div>
       <div class="left-content">
-        <v-sheet
-          v-if="content.inputData.start"
-          text-color="#3e5480"
-          depressed
-          height="22"
-          width="78"
-          class="d-flex justify-center mb-2 rounded-pill time-sheet"
-          color="#eff3ff"
-        >
-          <i class="fi fi-rr-clock ml-2" />
-          <div>
-            <span v-text="getClockTime().start" />
-            <span> الی </span>
-            <span v-text="getClockTime().end" />
-          </div>
-        </v-sheet>
+        <div class="d-flex">
+          <v-sheet
+            v-if="content.inputData.start"
+            text-color="#3e5480"
+            depressed
+            height="22"
+            class="d-flex justify-center mb-2 rounded-pill time-sheet"
+            color="#eff3ff"
+          >
+            <div class="d-flex align-center px-2">
+              <i class="fi fi-rr-clock ml-2 mt-1" />
+              <div>
+                <span v-text="getClockTime().start" />
+                <span> الی </span>
+                <span v-text="getClockTime().end" />
+              </div>
+            </div>
+          </v-sheet>
+        </div>
         <v-sheet
           v-if="false"
           class="mb-2"
@@ -63,9 +66,15 @@
           height="22"
         />
         <div class="d-flex flex-column justify-center title-box">
-          <p class="contentListItem-title ">
-            {{ content.short_title }}
-          </p>
+          <div class="d-flex justify-lg-space-between">
+            <p class="contentListItem-title ">
+              {{ content.short_title }}
+            </p>
+            <i
+              v-if="type === 'pamphlet'"
+              class="fi fi-rr-download download-icon"
+            />
+          </div>
           <p
             class="contentListItem-description"
           >
@@ -110,7 +119,8 @@ export default {
         return clock
       }
       var timeArray = clock.split(':')
-      timeArray.splice(1, 1)
+
+      timeArray.splice(2, 1)
       return  timeArray.join(':')
     },
     changeSelectedItem(){
@@ -121,36 +131,29 @@ export default {
     return {
     }
   },
-
 }
 </script>
-<style scoped>
-
-
+<style >
 .content-list-item:hover {
   cursor: pointer;
   background-color: rgba(242, 245, 255, 0.31);
 }
 .content-list-item.selected-content-list {
-  background-color: #f2f5ff;
+  background-color: #eff3ff;
 }
 .content-list-item .contentListItem-main-box {
   margin:0 32px;
   padding-top: 21px;
 }
-
 .content-list-item .contentListItem-main-box {
   border-bottom: solid 1px rgba(159, 165, 192, 0.58);
 }
-
 .content-list-item:last-child .contentListItem-main-box {
   border-bottom: none;
 }
-
 .contentListItem-box {
   position: relative;
 }
-
 .contentListItem-box .seen {
   height: 54px;
   width: 96px;
@@ -160,12 +163,10 @@ export default {
   position: absolute;
   top: 0;
 }
-
 .contentListItem-box .seen .icon {
   font-size: 25px;
   color: #fff;
 }
-
 .contentListItem-description {
   font-size: 14px;
   color: #9fa5c0;
@@ -175,7 +176,6 @@ export default {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
-
 .contentListItem-title {
   font-size: 18px;
   font-weight: 500;
@@ -188,11 +188,15 @@ export default {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
-
 .contentListItem-main-box .left-content .time-sheet {
   font-size: 12px;
 }
-
+.title-box .download-icon{
+  color: #3e5480;
+  font-weight: 500;
+  font-size: 20px;
+  margin-right: 5px;
+}
 .contentListItem-box .rounded-card {
   width: 96px;
   height: 54px;
@@ -247,32 +251,31 @@ export default {
     color: #3e5480;
     margin-bottom: 0;
   }
+  .content-list-item .contentListItem-main-box {
+    margin: 0 15px;
+    padding-top: 15px;
+  }
 }
-
 @media screen and (max-width: 576px) {
   .left-content {
     margin-right: 5px;
   }
-
   .right-content {
     margin-bottom: 15px;
   }
-
-  .contentListItem-main-box {
-    padding-top: 15px;
-  }
 }
-
 @media screen and (max-width: 350px) {
   .title-box .contentListItem-title {
     font-size: 14px;
   }
-
+  .content-list-item .contentListItem-main-box{
+   margin: 0 10px;
+   padding-top: 10px;
+  }
   .title-box .contentListItem-description {
     font-size: 12px;
   }
 }
-
 @media screen and (max-width: 320px) {
   .contentListItem-box .rounded-card {
     height: 33px;

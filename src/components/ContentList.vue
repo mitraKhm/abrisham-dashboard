@@ -25,7 +25,6 @@
               class="slot-header-box-days"
             >
               <div
-
                 @click="btnClicked()"
               >
                 {{ header.button.title }}
@@ -215,12 +214,10 @@ export default {
   }
 }
 @media screen and (max-width: 960px) {
+
   .content-list-items-box .content-box {
-    position: absolute;
-    overflow: auto;
-    height: 100%;
-    max-height: 400px;
-    width: 100%;
+    position: relative;
+    max-height: 300px;
   }
 }
 
@@ -260,7 +257,7 @@ export default {
   }
   .content-list-box .slot-header-box .slot-header-box-movie {
     font-size:16px;
-    padding:0;
+    padding:0 15px 0 0;
   }
   .content-list-box .slot-header-box .slot-header-box-days{
     font-size: 12px;

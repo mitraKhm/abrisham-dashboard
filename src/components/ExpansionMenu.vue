@@ -33,6 +33,7 @@
                 />
                 <v-list-item
                   :key="index"
+                  :to="i.routeName"
                   class="menu-header-text"
                   @click="changeSelectedItem(i)"
                 >
@@ -45,10 +46,6 @@
                   <v-list-item-title>
                     {{ i.title }}
                   </v-list-item-title>
-                  <v-divider
-                    v-if="index < updateList.length - 1"
-                    :key="index"
-                  />
                 </v-list-item>
               </template>
             </v-list>
