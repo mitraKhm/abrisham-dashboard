@@ -345,6 +345,12 @@ export default {
         this.contentListLoading = false
       })
     },
+    setFavored () {
+      axios.post('/api/v2/c/'+this.currentContent.id+'/favored')
+    },
+    setUnfavored () {
+      axios.post('/api/v2/c/'+this.currentContent.id+'/unfavored')
+    },
     setComment () {
 
     },
