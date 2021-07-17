@@ -18,6 +18,7 @@
             <chip-group
               v-model="majors"
               :drop-down="true"
+              @input="filterLessons"
             />
           </v-col>
           <v-col
@@ -64,6 +65,7 @@
           :contents="filteredContents"
           :header="{ title: 'لیست فیلم ها', button: { title: 'من کجام؟' } }"
           type="video"
+          @input="changeCurrentContent($event.id)"
           @clicked="whereAmI"
         >
           <template v-slot:filter>
@@ -160,6 +162,7 @@ export default {
   data() {
     return {
       majors: [],
+      lessons: [],
       contents: new ContentList(),
       currentContent: new Content(),
       studyPlans: new StudyPlanList(),
@@ -171,24 +174,6 @@ export default {
     }
   },
   computed: {
-    lessons () {
-      let lessons = this.majors.filter( majorItem => majorItem.selected).map( item => item.lessons )[0]
-      if (!lessons) {
-        return []
-      }
-      lessons.map( item => {
-        item.color = 'blue'
-        return item
-      } )
-
-      const hasSelected = lessons.find( item => item.selected )
-
-      if (!hasSelected && lessons.length > 0) {
-        lessons[0].selected = true
-      }
-
-      return lessons
-    },
     filteredSets () {
       return this.sets.list.filter(set => this.setFilterId === set.id)
     },
@@ -233,6 +218,24 @@ export default {
     // this.getContents(906)
   },
   methods: {
+    filterLessons () {
+      let lessons = this.majors.filter( majorItem => majorItem.selected).map( item => item.lessons )[0]
+      if (!lessons) {
+        return []
+      }
+      // lessons.map( item => {
+      //   item.color = 'blue'
+      //   return item
+      // } )
+
+      const hasSelected = lessons.find( item => item.selected )
+
+      if (!hasSelected && lessons.length > 0) {
+        lessons[0].selected = true
+      }
+
+      this.lessons = lessons
+    },
     saveComment (comment) {
       if (this.currentContent.comments[0]) {
         axios.post('/api/v2/comment/' + this.currentContent.comments[0].id, {
@@ -250,7 +253,7 @@ export default {
           comment: comment
         })
         .then(response => {
-          this.currentContent.comments[0].comment = response.data.data.comment
+          this.currentContent.comments.push({ comment: response.data.data.comment })
           this.comment = this.currentContent.comments[0].comment
         })
       }
@@ -277,6 +280,9 @@ export default {
       this.currentContent = this.contents.list.find(content => content.id === id)
       if (this.currentContent.comments[0]) {
         this.comment = this.currentContent.comments[0].comment
+        console.log('comment', this.currentContent.comments[0].comment)
+      } else {
+        this.comment = ''
       }
     },
     getLessons () {
@@ -288,10 +294,11 @@ export default {
             title: item.title,
             lessons: item.lessons,
             selected: false,
-            color: 'red'
+            color: '#ff8f00'
           })
         })
         this.setMajorSelected()
+        this.filterLessons()
         this.whereAmI()
       })
     },
