@@ -1,5 +1,5 @@
 <template>
-  <div class="schedule-page">
+  <div class="userAbrishamProgress-page">
     <!--   -- ------------------------------- chip group ------------------------- -->
     <v-row>
       <v-col
@@ -47,6 +47,7 @@
     <v-row>
       <v-col
         md="8"
+        xs="12"
         cols="12"
       >
         <video-box
@@ -110,6 +111,7 @@
     <v-row>
       <v-col
         md="8"
+        xs="12"
         cols="12"
       >
         <div v-text="currentContent.title" />
