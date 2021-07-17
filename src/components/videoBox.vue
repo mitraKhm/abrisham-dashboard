@@ -30,7 +30,10 @@
       </v-responsive>
     </v-card>
     <div class="video-description">
-      <v-row no-gutters>
+      <v-row
+        no-gutters
+        class="description"
+      >
         <v-col>
           <div class="d-flex flex-wrap title">
             <p class="title-item title-text">
@@ -149,18 +152,31 @@
               <v-list class="align-center">
                 <v-row justify="center">
                   <ShareNetwork
-                    network="facebook"
+                    network="whatsapp"
                     url="https://news.vuejs.org/issues/180"
                     class="social-share"
                   >
-                    <i class="fi fi-rr-share icon " />
+                    <v-btn
+                      class="ma-2"
+                      color="indigo"
+                      dark
+                    >
+                      <v-icon>mdi-whatsapp</v-icon>
+                    </v-btn>
                   </ShareNetwork>
                   <ShareNetwork
                     network="Facebook"
                     url="https://https://github.com/"
                     class="social-share"
                   >
-                    <i class="fi fi-rr-share icon " />
+                    <v-btn
+                      class="ma-2"
+                      text
+                      icon
+                      color="green lighten-2"
+                    >
+                      <v-icon>mdi-instagram</v-icon>
+                    </v-btn>
                   </ShareNetwork>
                   <ShareNetwork
                     network="Facebook"
@@ -359,12 +375,7 @@ export default {
   color: #ff8f00;
 }
 .social-share{
-  margin: 20px;
-  text-decoration: none;
-  background-color:  #ff8f00;
-  color: white;
-  border-radius: 50%;
-  padding: 20px;
+
 }
 
 .download-part{
@@ -418,7 +429,7 @@ export default {
   .video-box .video-description .icon-btn-box {
     display: flex;
     flex-direction: column !important;
-    justify-content: flex-start;
+    align-items: flex-end !important;
   }
   .icon-btn-box .video-box-icon-button{
     justify-content: end ;
@@ -542,7 +553,7 @@ export default {
   }
 }
 @media only screen and (min-width: 359px) and (max-width: 403px){
-  .video-description{
+  .description{
     display: flex;
     flex-direction: column !important;
   }
