@@ -65,21 +65,23 @@
           color="transparent"
           height="22"
         />
+        <div class="d-flex justify-space-between align-center">
         <div class="d-flex flex-column justify-center title-box">
-          <div class="d-flex justify-space-between">
             <p class="contentListItem-title ">
               {{ content.short_title }}
             </p>
-            <i
-              v-if="type === 'pamphlet'"
-              class="fi fi-rr-download download-icon"
-            />
-          </div>
           <p
             class="contentListItem-description"
           >
             {{ content.title }}
           </p>
+      </div>
+    <a :href="content.file.pamphlet[0].link">
+      <i
+          v-if="type === 'pamphlet'"
+          class="fi fi-rr-download download-icon"
+      />
+    </a>
         </div>
       </div>
     </div>
@@ -134,6 +136,9 @@ export default {
 }
 </script>
 <style >
+a{
+  text-decoration: none;
+}
 .content-list-item:hover {
   cursor: pointer;
   background-color: rgba(242, 245, 255, 0.31);
@@ -191,7 +196,7 @@ export default {
 .contentListItem-main-box .left-content .time-sheet {
   font-size: 12px;
 }
-.title-box .download-icon{
+ .download-icon{
   color: #3e5480;
   font-weight: 500;
   font-size: 20px;
