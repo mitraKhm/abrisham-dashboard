@@ -196,6 +196,7 @@ export default {
   font-size: 14px;
   padding-bottom:0;
   justify-self: end;
+  cursor: pointer;
 }
 .content-list-box  .v-select-box{
   margin: 0 26px;
