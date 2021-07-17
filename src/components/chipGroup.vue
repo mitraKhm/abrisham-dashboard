@@ -60,33 +60,33 @@ export default {
     },
     chipTitle: {
       type: String,
-      default:''
+      default: ''
     },
     dropDown: {
-      type:Boolean,
-      default:false
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
       chipData: [],
-      selectedId : 0
+      selectedId: 0
     }
   },
   watch: {
-   value: {
+    value: {
       handler() {
-       this.chipData = this.value
+        this.chipData = this.value
         this.setSelectedIdVariable()
       },
       immediate: true
     }
   },
-  methods:{
-    getSelectedItem () {
+  methods: {
+    getSelectedItem() {
       return this.chipData.find(item => item.selected)
     },
-    setSelectedIdVariable () {
+    setSelectedIdVariable() {
       const selectedItem = this.getSelectedItem()
       if (!selectedItem) {
         this.selectedId = null
@@ -94,48 +94,53 @@ export default {
         this.selectedId = selectedItem.id
       }
     },
-    changeSelectedChip(selectedId){
+    changeSelectedChip(selectedId) {
       this.chipData.forEach(item => {
-        // console.log(selectedId)
-      if(item.id === selectedId){
-        return item.selected = true
-      }
-      return item.selected = false
+        if (item.id === selectedId) {
+          return item.selected = true
+        }
+        return item.selected = false
       })
-      this.$emit('input' , this.chipData)
+      this.$emit('input', this.chipData)
       this.setSelectedIdVariable()
     }
   }
 }
 </script>
 
-<style >
+<style>
 
 .v-select.v-input--dense .v-select__selection--comma {
   font-size: 14px;
   font-weight: 500;
   color: #3e5480;
 }
-.theme--light.v-label{
-  color:#3e5480;
+
+.theme--light.v-label {
+  color: #3e5480;
   font-size: 14px;
   font-weight: 500;
 }
-.v-select__slot .theme--light.v-select .v-select__selections{
-  color:red ;
+
+.v-select__slot .theme--light.v-select .v-select__selections {
+  color: red;
 }
- .theme--light.v-icon{
-  color:#3e5480;
+
+.theme--light.v-icon {
+  color: #3e5480;
 }
-.list-box{
+
+.list-box {
   align-0: center;
 }
-.list-section{
+
+.list-section {
   font-size: 16px;
   font-weight: bold;
   color: #3e5480
 }
-.chip-box{
+
+.chip-box {
   font-size: 16px;
   font-weight: 500;
   height: 42px;
@@ -143,12 +148,14 @@ export default {
   line-height: 2.13;
   padding: 8px 20px 9px;
 }
-@media screen and (max-width: 960px){
-  .chip-group-visibility{
+
+@media screen and (max-width: 960px) {
+  .chip-group-visibility {
     display: none !important;
   }
 }
-@media screen and (max-width:350px){
+
+@media screen and (max-width: 350px) {
 
 }
 

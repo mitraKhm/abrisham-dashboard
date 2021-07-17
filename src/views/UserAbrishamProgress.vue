@@ -20,6 +20,7 @@
             <chip-group
               v-model="majors"
               :drop-down="true"
+              @input="filterLessons"
             />
           </v-col>
           <v-col
@@ -53,6 +54,8 @@
         cols="12"
       >
         <video-box
+          :lesson="selectedLesson"
+          :set="selectedSet"
           :content="currentContent"
         />
       </v-col>
@@ -163,6 +166,7 @@ export default {
   data() {
     return {
       majors: [],
+      lessons: [],
       contents: new ContentList(),
       currentContent: new Content(),
       studyPlans: new StudyPlanList(),
@@ -174,26 +178,8 @@ export default {
     }
   },
   computed: {
-    lessons () {
-      let lessons = this.majors.filter( majorItem => majorItem.selected).map( item => item.lessons )[0]
-      if (!lessons) {
-        return []
-      }
-      lessons.map( item => {
-        item.color = 'blue'
-        return item
-      } )
-
-      const hasSelected = lessons.find( item => item.selected )
-
-      if (!hasSelected && lessons.length > 0) {
-        lessons[0].selected = true
-      }
-
-      return lessons
-    },
-    filteredSets () {
-      return this.sets.list.filter(set => this.setFilterId === set.id)
+    selectedSet () {
+      return this.sets.list.find(set => this.setFilterId === set.id)
     },
     selectedLesson () {
       return this.lessons.find( item => item.selected )
@@ -237,6 +223,24 @@ export default {
     // this.getContents(906)
   },
   methods: {
+    filterLessons () {
+      let lessons = this.majors.filter( majorItem => majorItem.selected).map( item => item.lessons )[0]
+      if (!lessons) {
+        return []
+      }
+      // lessons.map( item => {
+      //   item.color = 'blue'
+      //   return item
+      // } )
+
+      const hasSelected = lessons.find( item => item.selected )
+
+      if (!hasSelected && lessons.length > 0) {
+        lessons[0].selected = true
+      }
+
+      this.lessons = lessons
+    },
     saveComment (comment) {
       if (this.currentContent.comments[0]) {
         axios.post('/api/v2/comment/' + this.currentContent.comments[0].id, {
@@ -301,10 +305,11 @@ export default {
             title: item.title,
             lessons: item.lessons,
             selected: false,
-            color: 'red'
+            color: '#ff8f00'
           })
         })
         this.setMajorSelected()
+        this.filterLessons()
         this.whereAmI()
       })
     },
