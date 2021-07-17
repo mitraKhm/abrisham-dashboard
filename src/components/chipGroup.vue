@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="d-flex list-box align-center  d-lg-block d-sm-none">
+    <div class="d-flex list-box align-center ">
       <v-chip
         v-if="chipTitle"
         class="list-section"
@@ -15,16 +15,17 @@
           :color="item.selected ? item.color: 'transparent'"
           class="chip-box"
           :text-color="item.selected ? 'white': '#9fa5c0'"
-          @click="changeSelectedChip(index)"
+          @click="changeSelectedChip(item.id)"
         >
           {{ item.title }}
         </v-chip>
       </v-chip-group>
     </div>
-    <div class="d-flex d-lg-none d-sm-block">
+    <div
+      class="ma-5 d-flex d-xl-none d-lg-none d-sm-block d-xs-block"
+    >
       <v-select
         v-model="selectedId"
-        value="all"
         color="#3e5480"
         :items="chipData"
         item-text="title"
@@ -36,12 +37,13 @@
         dense
         background-color="#eff3ff"
         flat
-        label="رشته"
+        :label="chipTitle"
         @change="changeSelectedChip"
       />
     </div>
   </div>
 </template>
+
 <script>
 export default {
   name: 'ChipGroup',
@@ -55,6 +57,10 @@ export default {
     chipTitle: {
       type: String,
       default:''
+    },
+    hasSelectBox: {
+      type:Boolean,
+      default:false
     }
   },
   data() {
@@ -67,21 +73,33 @@ export default {
    value: {
       handler() {
        this.chipData = this.value
+        this.setSelectedIdVariable()
       },
       immediate: true
-    },
-    chipData:{
-      handler(){
-        this.value = this.chipData
-      }
-    },
+    }
   },
   methods:{
-    changeSelectedChip(selected){
-      this.chipData.map(i => {
-        i.selected = false
+    getSelectedItem () {
+      return this.chipData.find(item => item.selected)
+    },
+    setSelectedIdVariable () {
+      const selectedItem = this.getSelectedItem()
+      if (!selectedItem) {
+        this.selectedId = null
+      } else {
+        this.selectedId = selectedItem.id
+      }
+    },
+    changeSelectedChip(selectedId){
+      this.chipData.forEach(item => {
+        console.log(selectedId)
+      if(item.id === selectedId){
+        return item.selected = true
+      }
+      return item.selected = false
       })
-      this.chipData[selected].selected = true;
+      this.$emit('input' , this.chipData)
+      this.setSelectedIdVariable()
     }
   }
 }

@@ -19,7 +19,10 @@ class Content extends Model {
             {key: 'author'},
             {key: 'contenttype_id'},
             {key: 'context'},
-            {key: 'comment'},
+            {
+                key: 'comments',
+                default: []
+            },
             {key: 'description'},
             {key: 'display'},
             {key: 'duration'},
@@ -29,6 +32,7 @@ class Content extends Model {
             {key: 'title'},
             {key: 'short_title'},
             {key: 'type'}, // 1=> pamphlet, 8=> video
+            {key: 'content_type'}, // 1=> pamphlet, 8=> video
             {key: 'photo'},
             {key: 'nextApiUrl'},
             {key: 'nextUrl'},
@@ -38,6 +42,8 @@ class Content extends Model {
             {key: 'previousUrl'},
             {key: 'redirectUrl'},
             {key: 'section_id'},
+            {key: 'is_current'},
+            {key: 'has_watched'},
             {
                 key: 'timepoints',
                 relatedModel: ContentTimePointList,
