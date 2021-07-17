@@ -44,6 +44,7 @@ class Content extends Model {
             {key: 'section_id'},
             {key: 'is_current'},
             {key: 'has_watched'},
+            {key: 'major'},
             {
                 key: 'timepoints',
                 relatedModel: ContentTimePointList,

@@ -13,9 +13,9 @@
       </v-chip>
       <v-chip-group>
         <v-chip
-          v-for="(item , index) in chipData"
-          :key="index"
-          :color="item.selected ? item.color: 'transparent'"
+          v-for="(item) in chipData"
+          :key="item.id"
+          :color="item.selected ? item.color : 'transparent'"
           class="chip-box"
           :text-color="item.selected ? 'white': '#9fa5c0'"
           @click="changeSelectedChip(item.id)"
@@ -95,14 +95,16 @@ export default {
       }
     },
     changeSelectedChip(selectedId) {
-      this.chipData.forEach(item => {
-        if (item.id === selectedId) {
-          return item.selected = true
-        }
-        return item.selected = false
+      this.chipData.forEach((item, index) => {
+        this.chipData[index].selected = item.id === selectedId
+        console.log(this.chipData[index].selected)
+        // item.selected = item.id === selectedId
       })
-      this.$emit('input', this.chipData)
+      console.log('test2', this.chipData, selectedId)
       this.setSelectedIdVariable()
+
+      this.$emit('input', this.chipData)
+
     }
   }
 }
