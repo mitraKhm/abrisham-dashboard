@@ -117,7 +117,6 @@
     <v-row>
       <v-col
         md="8"
-        xs="12"
         cols="12"
       >
         <div v-text="currentContent.title" />
@@ -178,8 +177,8 @@ export default {
     }
   },
   computed: {
-    selectedSet () {
-      return this.sets.list.find(set => this.setFilterId === set.id)
+    filteredSets () {
+      return this.sets.list.filter(set => this.setFilterId === set.id)
     },
     selectedLesson () {
       return this.lessons.find( item => item.selected )
@@ -347,6 +346,12 @@ export default {
       .catch(() => {
         this.contentListLoading = false
       })
+    },
+    setFavored () {
+      axios.post('/api/v2/c/'+this.currentContent.id+'/favored')
+    },
+    setUnfavored () {
+      axios.post('/api/v2/c/'+this.currentContent.id+'/unfavored')
     },
     setComment () {
 

@@ -123,7 +123,7 @@ export default {
     },
     methods: {
         showPlanDetails() {
-          // console.log(this.plans)
+          this.$emit('planClicked' , this.plans)
         },
         timeToPixel(time) {
             return (this.headerWidth * time) / 3600
