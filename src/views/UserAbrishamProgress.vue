@@ -209,6 +209,7 @@ export default {
         return
       }
       this.getSets(newValue.id)
+      this.whereAmI()
     },
     setFilterId (newValue) {
       this.getContents(newValue)
@@ -262,8 +263,14 @@ export default {
     },
     whereAmI () {
       let product = this.lessons.find(lesson => lesson.selected)
+      this.contentListLoading = true
       axios.get('/api/v2/product/' + product.id + '/toWatch')
       .then(response => {
+        if (response.data.data.length > 0) {
+          this.getContents(response.data.data[0].id)
+        }
+        this.sets = new SetList(response.data.data)
+        this.sets.list.forEach(item => item.sections.list.unshift(new SetSection({ id: 'all', title: 'همه' })))
         this.contentListLoading = true
         axios.get('/api/v2/set/' + response.data.data.set.id + '/contents')
             .then( response2 => {
