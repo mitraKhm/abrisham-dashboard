@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <div class="d-flex list-box align-center ">
+  <div class="drop-down-mz">
+    <div
+      class="list-box align-center"
+      :class="dropDown ? 'chip-group-visibility' : 'd-flex'"
+    >
       <v-chip
         v-if="chipTitle"
         class="list-section"
@@ -22,7 +25,8 @@
       </v-chip-group>
     </div>
     <div
-      class="ma-5 d-flex d-xl-none d-lg-none d-sm-block d-xs-block"
+      v-if="dropDown"
+      class="drop-down-select-box mt-5 d-flex d-xl-none d-lg-none d-md-none d-sm-block d-xs-block"
     >
       <v-select
         v-model="selectedId"
@@ -58,7 +62,7 @@ export default {
       type: String,
       default:''
     },
-    hasSelectBox: {
+    dropDown: {
       type:Boolean,
       default:false
     }
@@ -105,7 +109,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style >
+
+.v-select.v-input--dense .v-select__selection--comma {
+  font-size: 14px;
+  font-weight: 500;
+  color: #3e5480;
+}
 .theme--light.v-label{
   color:#3e5480;
   font-size: 14px;
@@ -133,4 +143,14 @@ export default {
   line-height: 2.13;
   padding: 8px 20px 9px;
 }
+@media screen and (max-width: 960px){
+  .chip-group-visibility{
+    display: none !important;
+  }
+}
+@media screen and (max-width:350px){
+
+}
+
+
 </style>

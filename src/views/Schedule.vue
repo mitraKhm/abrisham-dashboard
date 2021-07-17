@@ -26,6 +26,7 @@
       <v-col
         md="8"
         sm="12"
+        xs="12"
       >
         <video-box
           :content="currentContent"
@@ -34,6 +35,7 @@
       <v-col
         md="4"
         sm="12"
+        xs="12"
       >
         <content-list-component
           v-model="currentContent"
