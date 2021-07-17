@@ -52,6 +52,8 @@
         cols="12"
       >
         <video-box
+          :lesson="selectedLesson"
+          :set="selectedSet"
           :content="currentContent"
         />
       </v-col>
@@ -173,8 +175,8 @@ export default {
     }
   },
   computed: {
-    filteredSets () {
-      return this.sets.list.filter(set => this.setFilterId === set.id)
+    selectedSet () {
+      return this.sets.list.find(set => this.setFilterId === set.id)
     },
     selectedLesson () {
       return this.lessons.find( item => item.selected )
