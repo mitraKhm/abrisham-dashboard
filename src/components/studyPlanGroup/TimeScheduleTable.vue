@@ -114,7 +114,7 @@ export default {
         }
     },
     created() {
-      console.log('plans  ',this.plans)
+      // console.log('plans  ',this.plans)
         const totalTime = this.clockToSeconds(this.endTime).hour - this.calcStartDay(this.clockToSeconds(this.startTime))
 
         for (var i = 0; i < totalTime + 1; i++) {
@@ -123,7 +123,7 @@ export default {
     },
     methods: {
         showPlanDetails() {
-          console.log(this.plans)
+          // console.log(this.plans)
         },
         timeToPixel(time) {
             return (this.headerWidth * time) / 3600

@@ -96,7 +96,7 @@ export default {
     },
     changeSelectedChip(selectedId){
       this.chipData.forEach(item => {
-        console.log(selectedId)
+        // console.log(selectedId)
       if(item.id === selectedId){
         return item.selected = true
       }

@@ -41,7 +41,7 @@
           v-model="DatePickerDate"
           element="null"
           input-format="YYYY-MM-DD"
-          format="YYYY/MM/DD"
+          format="YYYY-MM-DD"
           :show="showDatePicker"
           @close="showDatePicker = false"
           @change="getContents(DatePickerDate)"
@@ -98,6 +98,9 @@ import VuePersianDatetimePicker from 'vue-persian-datetime-picker';
 export default {
   name: 'Schedule',
   components: {StudyPlanGroup, ContentListComponent, CommentBox, chipGroup, videoBox, datePicker: VuePersianDatetimePicker},
+  destroyed () {
+    console.log('destoryed')
+  },
   data() {
     return {
       showDatePicker: false,
