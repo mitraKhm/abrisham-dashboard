@@ -11,6 +11,7 @@
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "js-abstract-model": "^0.1.27",
+    "lottie-web": "^5.7.12",
     "persian-date": "^1.1.0",
     "videojs-resolution-switcher": "^0.4.2",
     "vue": "^2.6.11",
