@@ -77,6 +77,7 @@ export default {
   },
   created() {
     this.login()
+    this.getUserInfo()
   },
   methods: {
     login () {
@@ -89,6 +90,12 @@ export default {
             })
       }
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token
+    },
+    getUserInfo () {
+      axios.get('/api/v2/user')
+      .then( (response) => {
+        console.log('res', response)
+      })
     },
     onResize () {
       this.$store.commit('updateWindowSize', { x: window.innerWidth, y: window.innerHeight })
