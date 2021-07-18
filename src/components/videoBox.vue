@@ -1,29 +1,29 @@
 <template>
   <div class="video-box">
     <v-card
-      flat
-      color="#eff3ff"
-      class="rounded-xl video-main"
+        flat
+        color="#eff3ff"
+        class="rounded-xl video-main"
     >
       <v-responsive
-        :aspect-ratio="16/9"
+          :aspect-ratio="16/9"
       >
         <vue-plyr
-          v-if="content.file && content.file.video"
-          :key="content.id"
-          :emit="['progress']"
-          @progress="test"
+            v-if="content.file && content.file.video"
+            :key="content.id"
+            :emit="['progress']"
+            @progress="test"
         >
           <video
-            :poster="content.photo"
-            :src="content.file.video[0].link"
+              :poster="content.photo"
+              :src="content.file.video[0].link"
           >
             <source
-              v-for="video in content.file.video"
-              :key="video.link"
-              :src="video.link"
-              type="video/mp4"
-              :size="video.res.slice(0, -1)"
+                v-for="video in content.file.video"
+                :key="video.link"
+                :src="video.link"
+                type="video/mp4"
+                :size="video.res.slice(0, -1)"
             >
           </video>
         </vue-plyr>
@@ -31,26 +31,26 @@
     </v-card>
     <div class="video-description">
       <v-row
-        no-gutters
-        class="description"
+          no-gutters
+          class="description"
       >
         <v-col>
           <div class="d-flex flex-wrap title">
             <p class="title-item title-text">
-              دین و زندگی
+              {{ lesson.title }}
             </p>
             <p class="title-item title-text">
-              فرسنگ هشتم
+              {{ set.title }}
             </p>
             <p class="title-text">
-              جلسه 23
+              جلسه {{ content.order }}
             </p>
           </div>
           <div class="d-flex subtitle">
             <div class="d-flex part align-start">
               <v-img
-                src="../assets/ic_alaa.png"
-                class="alaa-logo icon"
+                  src="../assets/ic_alaa.png"
+                  class="alaa-logo icon"
               />
               <p>گروه آموزشی آلاء</p>
             </div>
@@ -62,74 +62,89 @@
         </v-col>
         <v-col class="icon-btn-box">
           <v-btn
-            dark
-            class="seen-btn"
-            :class="{ 'seen-video-btn': seen, 'video-btn': !seen }"
-            :loading="false"
-            @click="clickHandler"
+              dark
+              class="seen-btn"
+              :class="{ 'seen-video-btn': content.has_watched, 'video-btn': !content.has_watched }"
+              :loading="false"
+              @click="clickHandler"
           >
             <span
-              v-if="seen===false "
-              class="video-btn-text"
-            >
-              دیده نشده
+                v-if="content.has_watched"
+                class="video-btn-text"
+            > دیده شده
+              <i class="fi fi-rr-check" />
             </span>
             <span
-              v-else
-              class="video-btn-text"
+                v-else
+                class="video-btn-text"
             >
-              دیده شده
-              <i class="fi fi-rr-check" />
+              دیده نشده
             </span>
           </v-btn>
           <div class="video-box-icon">
             <v-bottom-sheet>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
-                  color="transparent"
-                  depressed
-                  dark
-                  v-bind="attrs"
-                  class="video-box-icon-button"
-                  v-on="on"
+                    color="transparent"
+                    depressed
+                    dark
+                    v-bind="attrs"
+                    class="video-box-icon-button"
+                    v-on="on"
                 >
                   <i class="fi fi-rr-download icon" />
                 </v-btn>
               </template>
               <v-list class="align-center download-list">
-                <v-row justify="center">
+                <v-row
+                    class="download-btn"
+                    justify="center"
+                >
                   <v-card
-                    v-for="(file , index) in downloadFiles"
-                    :key="index"
-                    class="download-part"
-                    flat
-                    @click="sheet = false"
+                      v-for="(file , index) in content.file.video"
+                      :key="index"
+                      class="download-part"
+                      flat
+                      @click="sheet = false"
                   >
                     <v-card-actions
-                      class="download-title"
+                        class="download-title"
                     >
-                      <a href="#"><i class="fi fi-rr-download icon" />
-                        {{ file.title }}
+                      <v-badge
+                          class="download-badge"
+                          :content="file.res"
+                          color="red"
+                          offset-y="18"
+                          offset-x="28"
+                      />
+                      <v-badge
+                          class="download-badge"
+                          :content="file.size"
+                          offset-x="35"
+                      />
+
+                      <a href="file.link"><i class="fi fi-rr-download icon" />
+                        {{ file.caption }}
                       </a>
                     </v-card-actions>
                     <v-col>
                       <v-btn
-                        class="details red"
-                        depressed
+                          class="details red"
+                          depressed
                       >
-                        {{ file.videoQuality }}
+                        {{ file.res }}
                       </v-btn>
                       <v-btn
-                        class="details green"
-                        depressed
+                          class="details green"
+                          depressed
                       >
-                        {{ file.format }}
+                        {{ file.ext }}
                       </v-btn>
                       <v-btn
-                        class="details blue"
-                        depressed
+                          class="details blue"
+                          depressed
                       >
-                        {{ file.videoVolume }}
+                        {{ file.size }}
                       </v-btn>
                     </v-col>
                   </v-card>
@@ -139,12 +154,12 @@
             <v-bottom-sheet>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
-                  color="transparent"
-                  depressed
-                  dark
-                  v-bind="attrs"
-                  class="video-box-icon-button"
-                  v-on="on"
+                    color="transparent"
+                    depressed
+                    dark
+                    v-bind="attrs"
+                    class="video-box-icon-button"
+                    v-on="on"
                 >
                   <i class="fi fi-rr-share icon" />
                 </v-btn>
@@ -152,84 +167,114 @@
               <v-list class="align-center">
                 <v-row justify="center">
                   <ShareNetwork
-                    network="whatsapp"
-                    url="https://news.vuejs.org/issues/180"
-                    class="social-share"
+                      network="whatsapp"
+                      class="social-share"
                   >
                     <v-btn
-                      class="ma-2"
-                      color="amber darken-3"
-                      dark
+                        class="ma-2"
+                        color="amber darken-3"
+                        dark
+                        :to="content.url.web"
+                        @click="getShareLink (content, 'whatsapp')"
                     >
                       <v-icon>mdi-whatsapp</v-icon>
                     </v-btn>
                   </ShareNetwork>
                   <ShareNetwork
-                    network="telegram"
-                    url="https://https://github.com/"
-                    class="social-share"
+                      network="telegram"
+                      class="social-share"
                   >
                     <v-btn
-                      class="ma-2"
-                      color="amber darken-3"
-                      dark
+                        class="ma-2"
+                        color="amber darken-3"
+                        dark
+                        :to="getShareLink (content, 'telegram')"
                     >
                       <v-icon>mdi-telegram</v-icon>
                     </v-btn>
                   </ShareNetwork>
                   <ShareNetwork
-                    network="instagram"
-                    url="https://https://github.com/"
-                    class="social-share"
+                      network="mail"
+                      class="social-share"
                   >
                     <v-btn
-                      class="ma-2"
-                      color="amber darken-3"
-                      dark
+                        class="ma-2"
+                        color="amber darken-3"
+                        dark
+                        :to="getShareLink (content, 'mail')"
                     >
-                      <v-icon>mdi-instagram</v-icon>
+                      <v-icon>mdi-mail</v-icon>
                     </v-btn>
                   </ShareNetwork>
                   <ShareNetwork
-                    network="gmail"
-                    url="https://https://github.com/"
-                    class="social-share"
+                      network="linkedin"
+                      class="social-share"
                   >
                     <v-btn
-                      class="ma-2"
-                      color="amber darken-3"
-                      dark
+                        class="ma-2"
+                        color="amber darken-3"
+                        dark
+                        :to="content.url.web"
+                        @click="getShareLink (content, 'linkedin')"
                     >
-                      <v-icon>mdi-gmail</v-icon>
+                      <v-icon>mdi-linkedin</v-icon>
                     </v-btn>
                   </ShareNetwork>
                   <ShareNetwork
-                    network="email"
-                    url="https://https://github.com/"
-                    class="social-share"
+                      network="pinterest"
+                      class="social-share"
                   >
                     <v-btn
-                      class="ma-2"
-                      color="amber darken-3"
-                      dark
+                        class="ma-2"
+                        color="amber darken-3"
+                        dark
+                        :to="content.url.web"
+                        @click="getShareLink (content, 'pinterest')"
                     >
-                      <v-icon>mdi-email</v-icon>
+                      <v-icon>mdi-pinterest</v-icon>
+                    </v-btn>
+                  </ShareNetwork>
+                  <ShareNetwork
+                      network="twitter"
+                      class="social-share"
+                  >
+                    <v-btn
+                        class="ma-2"
+                        color="amber darken-3"
+                        dark
+                        :to="content.url.web"
+                        @click="getShareLink (content, 'twitter')"
+                    >
+                      <v-icon>mdi-twitter</v-icon>
+                    </v-btn>
+                  </ShareNetwork>
+                  <ShareNetwork
+                      network="facebook"
+                      class="social-share"
+                  >
+                    <v-btn
+                        class="ma-2"
+                        color="amber darken-3"
+                        dark
+                        :to="content.url.web"
+                        @click="getShareLink (content, 'facebook')"
+                    >
+                      <v-icon>mdi-facebook</v-icon>
                     </v-btn>
                   </ShareNetwork>
                 </v-row>
               </v-list>
             </v-bottom-sheet>
             <v-btn
-              v-model="myFavorite"
-              color="transparent"
-              depressed
-              dark
-              class="video-box-icon-button"
-              @click="toggleFavorite"
+                color="transparent"
+                depressed
+                dark
+                class="video-box-icon-button"
+                @click="toggleFavorite"
             >
               <i
-                class="fi fi-rr-bookmark icon"
-                :class="{ 'favorite-bookmark': myFavorite , 'icon': !myFavorite }"
+                  class="fi fi-rr-bookmark icon"
+                  :class="{ 'favorite-bookmark': content.is_favored , 'icon': !content.is_favored }"
               />
             </v-btn>
           </div>
@@ -246,61 +291,67 @@ import {Content} from '@/Models/Content';
 
 export default {
   name: 'VideoBox',
-  components: {
-
-  },
-  computed: {
-
-  },
+  components: {},
+  computed: {},
   props: {
     content: {
       type: Content,
       default: new Content()
     },
+    lesson: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    },
+    set: {
+      type: Object,
+      default: () => {
+        return {}
+      },
+    },
   },
   data: () => ({
-    myFavorite:false,
-    loading:false,
-    seen:false,
     sheet: false,
-    downloadFiles:[
-      {
-        title:'دانلود فایل کیفیت عالی',
-        videoQuality:'720',
-        format:'MP4',
-        videoVolume:'93MB',
-      },
-      {
-        title:'دانلود فایل کیفیت عالی',
-        videoQuality:'720',
-        format:'MP4',
-        videoVolume:'93MB',
-      },
-      {
-        title:'دانلود فایل کیفیت عالی',
-        videoQuality:'720',
-        format:'MP4',
-        videoVolume:'93MB',
-      },
-    ],
   }),
   methods: {
-    test (event) {
+    test(event) {
       console.log('test', event)
     },
-    clickHandler(){
-      this.seen = !this.seen;
-      this.loading = true;
+    clickHandler() {
+      if (!this.content.has_watched) {
+        this.content.loading = true;
+        this.$emit('has_watched')
+      }
     },
-    toggleFavorite(){
-      this.myFavorite =! this.myFavorite;
-      this.$emit('favorite', this.myFavorite);
-    }
-  }
+    toggleFavorite() {
+      this.content.is_favored=!this.content.is_favored;
+      if (!this.content.is_favored) {
+        this.$emit('favorite');
+      }
+    },
+    getShareLink (content, socialMedia) {
+      if (socialMedia === 'telegram') {
+        return 'https://telegram.me/share/url?url='+content.url.web+'&text=' + content.title
+      } else if (socialMedia === 'whatsapp') {
+        return 'https://web.whatsapp.com/send?l=en&text=' + content.url.web
+      } else if (socialMedia === 'mail') {
+        return 'mailto:info@alaatv.com?&subject='+content.title+'&body=' + content.url.web
+      } else if (socialMedia === 'linkedin') {
+        return 'https://www.linkedin.com/shareArticle?mini=true&url='+content.url.web+'&title='+content.title+'&summary=&source=alaatv.com'
+      } else if (socialMedia === 'pinterest') {
+        return 'https://pinterest.com/pin/create/button/?url='+content.url.web+'&media=&description=alaatv.com'
+      } else if (socialMedia === 'twitter') {
+        return 'https://twitter.com/home?status='+content.url.web
+      } else if (socialMedia === 'facebook') {
+        return 'https://www.facebook.com/sharer/sharer.php?u='+content.url.web
+      }
+    },
+  },
 }
 </script>
 
-<style scoped>
+<style>
 .video-box-icon .v-btn:not(.v-btn--round).v-size--default{
   padding:0;
 }
@@ -379,6 +430,9 @@ export default {
 .social-share{
 
 }
+.download-part .download-badge{
+  display: none;
+}
 
 .download-part{
   margin: 20px;
@@ -386,6 +440,7 @@ export default {
   flex-direction: column;
   border-radius: 20px ;
   border: #ff8f00 1px solid;
+
 
 }
 .download-part .download-title{
@@ -509,7 +564,7 @@ export default {
     height: 40px !important;
     box-sizing: border-box;
   }
-  download-part{
+  .download-part{
     margin: 5px;
     display: flex;
     flex-direction: column;
@@ -618,6 +673,13 @@ export default {
   .download-list{
     padding-top: 3px;
   }
+  .download-btn {
+    display: flex;
+    flex-direction: column !important;
+  }
+  .download-badge{
+    display: block !important;
+  }
   .download-part{
     margin: 10px !important;
     display: flex;
@@ -627,18 +689,21 @@ export default {
     height: 30px;
 
   }
+  .download-badge .v-badge__badge{
+    font-size: 9px !important;
+    height: 17px !important;
+  }
   .download-part .download-title{
     margin:5px auto;
     height: 32px;
     text-align: center;
   }
   .download-part .download-title a{
-    font-size: 8px;
+    font-size: 12px;
     text-decoration: none;
-    color:#FFFFFF;
-    background-color:#ff8f00 ;
-    padding: 3px;
     border-radius: 5px;
+    width: 120px;
+    height: 30px;
   }
   .download-part .details{
     font-size: 6px;
