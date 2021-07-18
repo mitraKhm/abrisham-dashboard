@@ -57,6 +57,8 @@
           :lesson="selectedLesson"
           :set="selectedSet"
           :content="currentContent"
+          @favorite="toggleFavor"
+          @has_watched="watched"
         />
       </v-col>
       <v-col
@@ -89,7 +91,7 @@
                   background-color="#eff3ff"
                   flat
                   placeholder="انتخاب فرسنگ ها"
-                  @change="getContents(setFilterId)"
+                  @change="onChangeSet"
                 />
               </div>
               <v-select
@@ -158,10 +160,12 @@ import {SetList} from '@/Models/Set';
 import StudyPlanGroup from '@/components/studyPlanGroup/StudyPlanGroup';
 import {SetSection} from '@/Models/SetSection';
 import Vue from 'vue'
+import ContentMixin from '../Mixin/ContentMixin'
 
 export default {
   name: 'UserAbrishamProgress',
   components: {StudyPlanGroup, ContentListComponent, CommentBox, chipGroup, videoBox},
+  mixins: [ContentMixin],
   data() {
     return {
       majors: [],
@@ -214,9 +218,6 @@ export default {
       }
       this.getSets(newValue.id)
       this.whereAmI()
-    },
-    setFilterId (newValue) {
-      this.getContents(newValue)
     }
   },
   created() {
@@ -242,28 +243,6 @@ export default {
       }
 
       this.lessons = lessons
-    },
-    saveComment (comment) {
-      if (this.currentContent.comments[0]) {
-        axios.post('/api/v2/comment/' + this.currentContent.comments[0].id, {
-          comment: comment,
-          _method: 'PUT'
-        })
-        .then(response => {
-          this.currentContent.comments[0].comment = response.data.data.comment
-          this.comment = this.currentContent.comments[0].comment
-        })
-      } else {
-        axios.post('/api/v2/comment', {
-          commentable_id: this.currentContent.id,
-          commentable_type: 'content',
-          comment: comment
-        })
-        .then(response => {
-          this.currentContent.comments.push({ comment: response.data.data.comment })
-          this.comment = this.currentContent.comments[0].comment
-        })
-      }
     },
     whereAmI () {
       let product = this.lessons.find(lesson => lesson.selected)
@@ -340,32 +319,21 @@ export default {
         this.contentListLoading = false
       })
     },
+    onChangeSet () {
+      this.getContents(this.setFilterId)
+    },
     getContents (setId) {
       this.contentListLoading = true
       axios.get('/api/v2/set/' + setId + '/contents')
       .then( response => {
         this.contents = new ContentList(response.data.data)
+        this.currentContent = new Content(this.contents.list[0])
         this.contentListLoading = false
       })
       .catch(() => {
         this.contentListLoading = false
       })
     },
-    setFavored () {
-      axios.post('/api/v2/c/'+this.currentContent.id+'/favored')
-    },
-    setUnfavored () {
-      axios.post('/api/v2/c/'+this.currentContent.id+'/unfavored')
-    },
-    setComment () {
-
-    },
-    // getStudyPlans () {
-    //   this.studyPlans.fetch({'studyPlan_id' : 1}, '/api/v2/plan')
-    //   .then( (response) => {
-    //     this.studyPlans = new StudyPlanList(response.data.data)
-    //   })
-    // },
     loadPlansOfStudyPlan (studyPlanId) {
       axios.get('/api/v2/plan', { params: {'studyPlan_id': studyPlanId, }})
     }

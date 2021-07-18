@@ -33,6 +33,8 @@
       >
         <video-box
           :content="currentContent"
+          @favorite="toggleFavor"
+          @has_watched="watched"
         />
       </v-col>
       <v-col
@@ -46,7 +48,7 @@
           format="YYYY-MM-DD"
           :show="showDatePicker"
           @close="showDatePicker = false"
-          @change="getContents(DatePickerDate)"
+          @change="onChangeDate"
         />
         <content-list-component
           v-model="currentContent"
@@ -97,10 +99,12 @@ import {StudyPlanList} from '../Models/StudyPlan';
 import axios from 'axios';
 import VuePersianDatetimePicker from 'vue-persian-datetime-picker';
 import Vue from 'vue';
+import ContentMixin from '../Mixin/ContentMixin'
 
 export default {
   name: 'Schedule',
   components: {StudyPlanGroup, ContentListComponent, CommentBox, chipGroup, videoBox, datePicker: VuePersianDatetimePicker},
+  mixins: [ContentMixin],
   destroyed () {
     console.log('destoryed')
   },
@@ -140,8 +144,11 @@ export default {
         this.comment = ''
       }
     },
+    onChangeDate () {
+      this.getContents(this.DatePickerDate)
+    },
     getContents (date) {
-      axios.get('/api/v2/abrisham/whereIsKarvan', { params: {'date': date, }})
+      axios.get('/api/v2/abrisham/whereIsKarvan', { params: {'date': date }})
           .then( response => {
             this.contents = new ContentList(response.data.data)
             // find and set the color of the content
@@ -157,6 +164,7 @@ export default {
               }
               content.color = 'red'
             })
+            this.currentContent = new Content(this.contents.list[0])
           })
     },
     getLessons () {
@@ -173,12 +181,6 @@ export default {
             })
           })
     },
-    // getStudyPlans () {
-    //   this.studyPlans.fetch({'studyPlan_id' : 1}, '/api/v2/plan')
-    //   .then( (response) => {
-    //     this.studyPlans = new StudyPlanList(response.data.data)
-    //   })
-    // },
     loadPlansOfStudyPlan (studyPlanId) {
       axios.get('/api/v2/plan', { params: {'studyPlan_id': studyPlanId, }})
     },
