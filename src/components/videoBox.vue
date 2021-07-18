@@ -9,7 +9,7 @@
         :aspect-ratio="16/9"
       >
         <vue-plyr
-          v-if="content.file && content.file.video"
+          v-if="content.file && content.file.video && content.inputData.can_see"
           :key="content.id"
           :emit="['progress']"
         >
@@ -26,9 +26,7 @@
             >
           </video>
         </vue-plyr>
-        <div
-          v-else
-        >
+        <div v-else-if="(!content.file || !content.file.video) && content.inputData.can_see">
           <v-alert
             class="null-video"
             outlined
@@ -41,6 +39,14 @@
             اوه نه! ویدیویی وجود نداره...
           </v-alert>
         </div>
+        <div v-else>
+          <a
+            :href="content.url.web"
+            target="_blank"
+          >
+            <v-img :src="content.photo" />
+          </a>
+        </div>
       </v-responsive>
     </v-card>
     <div class="video-description">
@@ -51,11 +57,18 @@
         <v-col>
           <div class="d-flex flex-wrap title">
             <p
-              v-if=" lesson.title"
+              v-if=" lesson.title || content.input.lesson"
               class="title-item title-text"
             >
               {{ lesson.title }}
             </p>
+            <p
+              v-else-if="content.input.lesson"
+              class="title-item title-text"
+            >
+              {{ content.input.lesson }}
+            </p>
+
             <p
               v-if="set.short_title"
               class="title-item title-text"
@@ -140,13 +153,11 @@
                         class="download-badge"
                         :content="file.res"
                         color="red"
-                        offset-y="18"
-                        offset-x="28"
+                        offset-x="-120"
                       />
                       <v-badge
                         class="download-badge"
                         :content="file.size"
-                        offset-x="35"
                       />
 
                       <a href="file.link"><i class="fi fi-rr-download icon" />
@@ -350,8 +361,7 @@ export default {
     },
     toggleFavorite() {
       this.content.loading = true;
-      if (!this.content.is_favored) {
-        this.$emit('favorite');
+      this.$emit('favorite');
       }
     },
     getShareLink (content, socialMedia) {
@@ -371,7 +381,6 @@ export default {
         return 'https://www.facebook.com/sharer/sharer.php?u='+content.url.web
       }
     },
-  },
 }
 </script>
 
