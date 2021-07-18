@@ -1,5 +1,7 @@
 <template>
-  <div class="userAbrishamProgress-page">
+  <div
+    class="userAbrishamProgress-page"
+  >
     <!--   -- ------------------------------- chip group ------------------------- -->
     <v-row>
       <v-col
@@ -175,8 +177,8 @@ export default {
     }
   },
   computed: {
-    selectedSet () {
-      return this.sets.list.find(set => this.setFilterId === set.id)
+    filteredSets () {
+      return this.sets.list.filter(set => this.setFilterId === set.id)
     },
     selectedLesson () {
       return this.lessons.find( item => item.selected )
@@ -208,6 +210,7 @@ export default {
         return
       }
       this.getSets(newValue.id)
+      this.whereAmI()
     },
     setFilterId (newValue) {
       this.getContents(newValue)
@@ -261,8 +264,14 @@ export default {
     },
     whereAmI () {
       let product = this.lessons.find(lesson => lesson.selected)
+      this.contentListLoading = true
       axios.get('/api/v2/product/' + product.id + '/toWatch')
       .then(response => {
+        if (response.data.data.length > 0) {
+          this.getContents(response.data.data[0].id)
+        }
+        this.sets = new SetList(response.data.data)
+        this.sets.list.forEach(item => item.sections.list.unshift(new SetSection({ id: 'all', title: 'همه' })))
         this.contentListLoading = true
         axios.get('/api/v2/set/' + response.data.data.set.id + '/contents')
             .then( response2 => {
@@ -281,7 +290,7 @@ export default {
       this.currentContent = this.contents.list.find(content => content.id === id)
       if (this.currentContent.comments[0]) {
         this.comment = this.currentContent.comments[0].comment
-        console.log('comment', this.currentContent.comments[0].comment)
+        // console.log('comment', this.currentContent.comments[0].comment)
       } else {
         this.comment = ''
       }
@@ -337,6 +346,12 @@ export default {
       .catch(() => {
         this.contentListLoading = false
       })
+    },
+    setFavored () {
+      axios.post('/api/v2/c/'+this.currentContent.id+'/favored')
+    },
+    setUnfavored () {
+      axios.post('/api/v2/c/'+this.currentContent.id+'/unfavored')
     },
     setComment () {
 

@@ -1,15 +1,18 @@
 <template>
   <div>
     <v-expansion-panels
-        flat
-        class="red"
-        v-model="panel"
-        multiple
+      v-model="panel"
+      flat
+      class="red"
+      multiple
     >
       <v-expansion-panel>
         <v-expansion-panel-header disable-icon-rotate>
           <template v-slot:actions>
-            <v-icon color="transparent"   x-small>
+            <v-icon
+              color="transparent"
+              x-small
+            >
               mdi-alert-circle
             </v-icon>
           </template>
@@ -18,7 +21,7 @@
           <div class="plan-details">
             <v-card elevation="0">
               <v-sheet
-                  class="plan-sheet"
+                class="plan-sheet"
               >
                 <v-row>
                   <v-col class="text-right plan-sheet-title-1">
@@ -33,8 +36,8 @@
                 </v-row>
               </v-sheet>
               <v-card
-                  class="plan-sheet-details"
-                  elevation="0"
+                class="plan-sheet-details"
+                elevation="0"
               >
                 <v-row>
                   <v-col class="text-right plan-sheet-details-title">
@@ -56,8 +59,8 @@
                     <v-row>
                       <v-col>
                         <v-card
-                            elevation="0"
-                            class="plan-sheet-details-video-thumbnail"
+                          elevation="0"
+                          class="plan-sheet-details-video-thumbnail"
                         />
                       </v-col>
                       <v-col>

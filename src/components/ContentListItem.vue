@@ -14,7 +14,7 @@
           class="mb-2 rounded-pill text-center text-caption"
           flat
           dark
-          color="#009498"
+          :color="content.color"
           v-text="content.inputData.lesson_name"
         />
         <div class="contentListItem-box">
@@ -66,22 +66,24 @@
           height="22"
         />
         <div class="d-flex justify-space-between align-center">
-        <div class="d-flex flex-column justify-center title-box">
+          <div class="d-flex flex-column justify-center title-box">
             <p class="contentListItem-title ">
               {{ content.short_title }}
             </p>
-          <p
-            class="contentListItem-description"
+            <p
+              class="contentListItem-description"
+            >
+              {{ content.title }}
+            </p>
+          </div>
+          <a
+            v-if="type === 'pamphlet'"
+            :href="content.file.pamphlet[0].link"
           >
-            {{ content.title }}
-          </p>
-      </div>
-    <a v-if="type === 'pamphlet'"
-       :href="content.file.pamphlet[0].link">
-      <i
-          class="fi fi-rr-download download-icon"
-      />
-    </a>
+            <i
+              class="fi fi-rr-download download-icon"
+            />
+          </a>
         </div>
       </div>
     </div>
