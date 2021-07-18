@@ -106,7 +106,6 @@ export default {
 
       this.chipData = chipData
 
-      console.log('test2', this.chipData, selectedId)
       this.setSelectedIdVariable()
 
       this.$emit('input', this.chipData)
