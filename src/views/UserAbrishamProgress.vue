@@ -89,7 +89,7 @@
                   background-color="#eff3ff"
                   flat
                   placeholder="انتخاب فرسنگ ها"
-                  @change="getContents(setFilterId)"
+                  @change="onChangeSet"
                 />
               </div>
               <v-select
@@ -214,9 +214,6 @@ export default {
       }
       this.getSets(newValue.id)
       this.whereAmI()
-    },
-    setFilterId (newValue) {
-      this.getContents(newValue)
     }
   },
   created() {
@@ -340,11 +337,15 @@ export default {
         this.contentListLoading = false
       })
     },
+    onChangeSet () {
+      this.getContents(this.setFilterId)
+    },
     getContents (setId) {
       this.contentListLoading = true
       axios.get('/api/v2/set/' + setId + '/contents')
       .then( response => {
         this.contents = new ContentList(response.data.data)
+        this.currentContent = new Content(this.contents.list[0])
         this.contentListLoading = false
       })
       .catch(() => {

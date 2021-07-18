@@ -46,7 +46,7 @@
           format="YYYY-MM-DD"
           :show="showDatePicker"
           @close="showDatePicker = false"
-          @change="getContents(DatePickerDate)"
+          @change="onChangeDate"
         />
         <content-list-component
           v-model="currentContent"
@@ -140,8 +140,11 @@ export default {
         this.comment = ''
       }
     },
+    onChangeDate () {
+      this.getContents(this.DatePickerDate)
+    },
     getContents (date) {
-      axios.get('/api/v2/abrisham/whereIsKarvan', { params: {'date': date, }})
+      axios.get('/api/v2/abrisham/whereIsKarvan', { params: {'date': date }})
           .then( response => {
             this.contents = new ContentList(response.data.data)
             // find and set the color of the content
@@ -157,6 +160,7 @@ export default {
               }
               content.color = 'red'
             })
+            this.currentContent = new Content(this.contents.list[0])
           })
     },
     getLessons () {

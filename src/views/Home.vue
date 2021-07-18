@@ -10,13 +10,13 @@
       class="coming-soon-mobile"
       src="../assets/image/cs_0-960.png"
     >
+    <p class="coming-soon">
+      ...به زودی
+    </p>
+    <p class="coming-soon-description">
+      این بخش هنوز آماده نیست ولی به زودی آماده و فعال میشه.
+    </p>
   </div>
-  <p class="coming-soon">
-    ...به زودی
-  </p>
-  <p class="coming-soon-description">
-    این بخش هنوز آماده نیست ولی به زودی آماده و فعال میشه.
-  </p>
 </template>
 
 <script>
