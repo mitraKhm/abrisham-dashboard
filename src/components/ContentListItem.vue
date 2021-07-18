@@ -14,7 +14,7 @@
           class="mb-2 rounded-pill text-center text-caption"
           flat
           dark
-          color="#009498"
+          :color="content.color"
           v-text="content.inputData.lesson_name"
         />
         <div class="contentListItem-box">
@@ -65,21 +65,25 @@
           color="transparent"
           height="22"
         />
-        <div class="d-flex flex-column justify-center title-box">
-          <div class="d-flex justify-space-between">
+        <div class="d-flex justify-space-between align-center">
+          <div class="d-flex flex-column justify-center title-box">
             <p class="contentListItem-title ">
               {{ content.short_title }}
             </p>
+            <p
+              class="contentListItem-description"
+            >
+              {{ content.title }}
+            </p>
+          </div>
+          <a
+            v-if="type === 'pamphlet'"
+            :href="content.file.pamphlet[0].link"
+          >
             <i
-              v-if="type === 'pamphlet'"
               class="fi fi-rr-download download-icon"
             />
-          </div>
-          <p
-            class="contentListItem-description"
-          >
-            {{ content.title }}
-          </p>
+          </a>
         </div>
       </div>
     </div>
@@ -134,6 +138,12 @@ export default {
 }
 </script>
 <style >
+a{
+  text-decoration: none;
+}
+.v-application p{
+  margin-bottom: 0;
+}
 .content-list-item:hover {
   cursor: pointer;
   background-color: rgba(242, 245, 255, 0.31);
@@ -191,7 +201,7 @@ export default {
 .contentListItem-main-box .left-content .time-sheet {
   font-size: 12px;
 }
-.title-box .download-icon{
+ .download-icon{
   color: #3e5480;
   font-weight: 500;
   font-size: 20px;

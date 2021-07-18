@@ -9,7 +9,10 @@
         order-md="2"
         class="d-flex d-md-block justify-center"
       >
-        <chip-group v-model="majors" />
+        <chip-group
+          v-model="userMajors"
+          chip-title="رشته: "
+        />
       </v-col>
       <v-col
         xl="5"
@@ -40,7 +43,7 @@
           v-model="DatePickerDate"
           element="null"
           input-format="YYYY-MM-DD"
-          format="YYYY/MM/DD"
+          format="YYYY-MM-DD"
           :show="showDatePicker"
           @close="showDatePicker = false"
           @change="getContents(DatePickerDate)"
@@ -51,6 +54,7 @@
           :contents="filteredContents"
           :header="{ title: 'لیست فیلم ها', button: { title: 'روزهای دیگر' }}"
           type="video"
+          @input="changeCurrentContent($event.id)"
           @clicked="showDatePicker = true"
         />
       </v-col>
@@ -62,12 +66,7 @@
         sm="12"
         xs="12"
       >
-        <div class="d-flex">
-          <p class="video-box-title">
-            درسنامه فرسنگ هشتم (قسمت بیست و سوم)، فصل سوم شیمی یازدهم (قسمت
-            بیست و سوم)
-          </p>
-        </div>
+        <div v-text="currentContent.title" />
         <comment-box />
       </v-col>
       <v-col
@@ -78,7 +77,7 @@
       </v-col>
     </v-row>
     <!--   --------------------------------- study plan ------------------------- -->
-    <v-row>
+    <v-row v-if="false">
       <v-col>
         <study-plan-group />
       </v-col>
@@ -97,16 +96,20 @@ import StudyPlanGroup from '../components/studyPlanGroup/StudyPlanGroup';
 import {StudyPlanList} from '../Models/StudyPlan';
 import axios from 'axios';
 import VuePersianDatetimePicker from 'vue-persian-datetime-picker';
+import Vue from 'vue';
 
 export default {
   name: 'Schedule',
   components: {StudyPlanGroup, ContentListComponent, CommentBox, chipGroup, videoBox, datePicker: VuePersianDatetimePicker},
+  destroyed () {
+    console.log('destoryed')
+  },
   data() {
     return {
       showDatePicker: false,
       DatePickerDate: '',
       majors: [],
-      selectedMajor: null,
+      userMajors: [],
       contentListLoading: false,
       contents: new ContentList(),
       currentContent: new Content(),
@@ -115,24 +118,45 @@ export default {
   },
   computed: {
     filteredContents () {
-      if (!this.selectedMajor) {
-        return this.contents
-      }
-
       return new ContentList(this.contents.list.filter(content =>  {
-        return this.sectionFilterId === 'all' || content.section.id === this.selectedMajor.id
+        const selectedMajor = this.userMajors.find(major => major.selected)
+        return !selectedMajor || content.major.id === selectedMajor.id
       }))
-    },
+    }
   },
   created() {
     this.getLessons()
-    this.getContents('2021-03-21')
+    this.getContents()
+    this.getMajorsForChip()
   },
   methods: {
+    changeCurrentContent (id) {
+      Vue.set(this, 'currentContent', this.contents.list.find(content => content.id === id))
+      this.currentContent = this.contents.list.find(content => content.id === id)
+      if (this.currentContent.comments[0]) {
+        this.comment = this.currentContent.comments[0].comment
+        // console.log('comment', this.currentContent.comments[0].comment)
+      } else {
+        this.comment = ''
+      }
+    },
     getContents (date) {
       axios.get('/api/v2/abrisham/whereIsKarvan', { params: {'date': date, }})
           .then( response => {
             this.contents = new ContentList(response.data.data)
+            // find and set the color of the content
+            this.contents.list.forEach(content => {
+              let major = this.majors.find(major => major.id === content.major.id)
+              let lesson
+              if (major.lessons) {
+                lesson = major.lessons.find(lesson => lesson.title === content.inputData.lesson_name)
+              }
+              if (major.lessons && lesson) {
+                content.color = lesson.color
+                return
+              }
+              content.color = 'red'
+            })
           })
     },
     getLessons () {
@@ -144,7 +168,7 @@ export default {
                 title: item.title,
                 lessons: item.lessons,
                 selected: false,
-                color: 'red'
+                color: item.color
               })
             })
           })
@@ -162,6 +186,14 @@ export default {
       axios.get('/api/v2/plan', { params: {'studyPlan_id': studyPlanId, }})
       .then( response => {
         this.majors = response.data.data
+      })
+    },
+    getMajorsForChip () {
+      axios.get('/api/v2/abrisham/majors')
+      .then(response => {
+        this.userMajors = response.data.data
+        this.userMajors.forEach((major, index) => major.selected = index === 0)
+        this.userMajors.forEach((major) => major.color = 'red')
       })
     }
   }
