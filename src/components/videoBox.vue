@@ -9,7 +9,7 @@
         :aspect-ratio="16/9"
       >
         <vue-plyr
-          v-if="content.file && content.file.video"
+          v-if="content.file && content.file.video && content.inputData.can_see"
           :key="content.id"
           :emit="['progress']"
         >
@@ -26,9 +26,7 @@
             >
           </video>
         </vue-plyr>
-        <div
-          v-else
-        >
+        <div v-else-if="(!content.file || !content.file.video) && content.inputData.can_see">
           <v-alert
             class="null-video"
             outlined
@@ -41,6 +39,14 @@
             اوه نه! ویدیویی وجود نداره...
           </v-alert>
         </div>
+        <div v-else>
+          <a
+            :href="content.url.web"
+            target="_blank"
+          >
+            <v-img :src="content.photo" />
+          </a>
+        </div>
       </v-responsive>
     </v-card>
     <div class="video-description">
@@ -51,16 +57,34 @@
         <v-col>
           <div class="d-flex flex-wrap title">
             <p
-              v-if=" lesson.title"
+              v-if="lesson.title"
               class="title-item title-text"
             >
               {{ lesson.title }}
             </p>
             <p
-              v-if="set.short_title"
+              v-else-if="content.inputData.lesson"
               class="title-item title-text"
             >
-              {{ set.short_title }}
+              {{ content.inputData.lesson }}
+            </p>
+
+            <p
+              v-if="set || content.set"
+              class="title-item title-text"
+            >
+              <span
+                v-if="set"
+                class="title-item"
+              >
+                {{ set.short_title }}
+              </span>
+              <span
+                v-if="content.set"
+                class="title-item"
+              >
+                {{ content.set.short_title }}
+              </span>
             </p>
             <p
               v-if="content.order"
@@ -140,16 +164,14 @@
                         class="download-badge"
                         :content="file.res"
                         color="red"
-                        offset-y="18"
-                        offset-x="28"
+                        offset-x="-120"
                       />
                       <v-badge
                         class="download-badge"
                         :content="file.size"
-                        offset-x="35"
                       />
 
-                      <a href="file.link"><i class="fi fi-rr-download icon" />
+                      <a :href="file.link"><i class="fi fi-rr-download icon" />
                         {{ file.caption }}
                       </a>
                     </v-card-actions>
@@ -283,7 +305,7 @@
                       color="amber darken-3"
                       dark
                       :to="content.url.web"
-                      @click="getShareLink (content, 'facebook')"
+                      @click="getShareLink(content, 'facebook')"
                     >
                       <v-icon>mdi-facebook</v-icon>
                     </v-btn>
@@ -350,10 +372,8 @@ export default {
     },
     toggleFavorite() {
       this.content.loading = true;
-      if (!this.content.is_favored) {
-        this.$emit('favorite');
-      }
-    },
+      this.$emit('favorite');
+      },
     getShareLink (content, socialMedia) {
       if (socialMedia === 'telegram') {
         return 'https://telegram.me/share/url?url='+content.url.web+'&text=' + content.title
@@ -371,7 +391,8 @@ export default {
         return 'https://www.facebook.com/sharer/sharer.php?u='+content.url.web
       }
     },
-  },
+    },
+
 }
 </script>
 
@@ -433,8 +454,6 @@ export default {
   font-size: 16px;
   font-weight: 500;
 }
-
-
 .video-box .video-description .video-box-icon {
   margin-right: 20px;
   padding-top: 10px;
@@ -444,7 +463,6 @@ export default {
   color:#3e5480;
   padding: 6px 0;
 }
-
 .video-box  .video-description .icon-btn-box{
   display: flex;
   flex-direction: row;
@@ -452,9 +470,6 @@ export default {
 }
 .video-box .video-description .fi.favorite-bookmark {
   color: #ff8f00;
-}
-.social-share{
-
 }
 .download-part .download-badge{
   display: none;
@@ -465,9 +480,7 @@ export default {
   display: flex;
   flex-direction: column;
   border-radius: 20px ;
-  border: #ff8f00 1px solid;
-
-
+  border: #ff8f00 1px solid !important;
 }
 .download-part .download-title{
   margin:20px auto;
@@ -504,7 +517,7 @@ export default {
     min-width: 57px !important;
   }
   .video-description {
-    margin-bottom: 0px !important;
+    margin-bottom:0 !important;
   }
   .video-box .video-main{
     margin-bottom: 16px;
@@ -569,7 +582,6 @@ export default {
     margin-left: 8px;
   }
 }
-
 @media screen and (max-width: 959px){
   .video-box-icon .v-btn:not(.v-btn--round).v-size--default {
     min-width: 59px !important;
@@ -617,8 +629,8 @@ export default {
   }
   .download-part .details.v-btn:not(.v-btn--round).v-size--default {
     height: 19px;
-    min-width: 0px !important;
-    padding: 0px 8px;
+    min-width: 0!important;
+    padding: 0 8px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 796px){
@@ -672,7 +684,6 @@ export default {
     height: 36px !important;
   }
 }
-
 @media screen and (max-width: 576px){
   .video-box .video-main {
     margin-bottom: 10px;
@@ -711,7 +722,7 @@ export default {
     border-radius: 10px ;
     border: none;
     height: 30px;
-
+    border: none;
   }
   .download-badge .v-badge__badge{
     font-size: 9px !important;
@@ -738,8 +749,8 @@ export default {
   }
   .download-part .details.v-btn:not(.v-btn--round).v-size--default {
     height: 10px;
-    min-width: 0px !important;
-    padding: 0px 4px;
+    min-width: 0 !important;
+    padding: 0 4px;
   }
   .video-box-title {
     text-align: right;
