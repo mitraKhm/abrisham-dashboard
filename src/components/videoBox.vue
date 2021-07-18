@@ -9,10 +9,9 @@
           :aspect-ratio="16/9"
       >
         <vue-plyr
-            v-if="content.file && content.file.video"
-            :key="content.id"
-            :emit="['progress']"
-            @progress="test"
+          v-if="content.file && content.file.video"
+          :key="content.id"
+          :emit="['progress']"
         >
           <video
               :poster="content.photo"
@@ -315,9 +314,6 @@ export default {
     sheet: false,
   }),
   methods: {
-    test(event) {
-      console.log('test', event)
-    },
     clickHandler() {
       if (!this.content.has_watched) {
         this.content.loading = true;
