@@ -141,6 +141,9 @@ export default {
 a{
   text-decoration: none;
 }
+.v-application p{
+  margin-bottom: 0;
+}
 .content-list-item:hover {
   cursor: pointer;
   background-color: rgba(242, 245, 255, 0.31);
