@@ -63,17 +63,28 @@
               {{ lesson.title }}
             </p>
             <p
-              v-else-if="content.input.lesson"
+              v-else-if="content.inputData.lesson"
               class="title-item title-text"
             >
-              {{ content.input.lesson }}
+              {{ content.inputData.lesson }}
             </p>
 
             <p
-              v-if="content.set.short_title"
+              v-if="set || content.set"
               class="title-item title-text"
             >
-              {{ content.set.short_title }}
+              <span
+                v-if="set"
+                class="title-item"
+              >
+                {{ set.short_title }}
+              </span>
+              <span
+                v-if="content.set"
+                class="title-item"
+              >
+                {{ content.set.short_title }}
+              </span>
             </p>
             <p
               v-if="content.order"
@@ -443,8 +454,6 @@ export default {
   font-size: 16px;
   font-weight: 500;
 }
-
-
 .video-box .video-description .video-box-icon {
   margin-right: 20px;
   padding-top: 10px;
@@ -454,7 +463,6 @@ export default {
   color:#3e5480;
   padding: 6px 0;
 }
-
 .video-box  .video-description .icon-btn-box{
   display: flex;
   flex-direction: row;
@@ -462,9 +470,6 @@ export default {
 }
 .video-box .video-description .fi.favorite-bookmark {
   color: #ff8f00;
-}
-.social-share{
-
 }
 .download-part .download-badge{
   display: none;
@@ -475,9 +480,7 @@ export default {
   display: flex;
   flex-direction: column;
   border-radius: 20px ;
-  border: #ff8f00 1px solid;
-
-
+  border: #ff8f00 1px solid !important;
 }
 .download-part .download-title{
   margin:20px auto;
@@ -579,7 +582,6 @@ export default {
     margin-left: 8px;
   }
 }
-
 @media screen and (max-width: 959px){
   .video-box-icon .v-btn:not(.v-btn--round).v-size--default {
     min-width: 59px !important;
@@ -682,7 +684,6 @@ export default {
     height: 36px !important;
   }
 }
-
 @media screen and (max-width: 576px){
   .video-box .video-main {
     margin-bottom: 10px;
@@ -721,7 +722,7 @@ export default {
     border-radius: 10px ;
     border: none;
     height: 30px;
-
+    border: none;
   }
   .download-badge .v-badge__badge{
     font-size: 9px !important;
