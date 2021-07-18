@@ -504,7 +504,6 @@ export default {
     flex-direction: column;
     border-radius: 10px ;
     border: #ff8f00 1px solid;
-
   }
   .download-part .download-title{
     margin:10px auto;
@@ -569,8 +568,7 @@ export default {
     display: flex;
     flex-direction: column;
     border-radius: 5px ;
-    border: #ff8f00 1px solid;
-
+    border: #ff8f00 1px solid !important;
   }
   .download-part .download-title{
     margin:5px auto;
