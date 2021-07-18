@@ -137,7 +137,7 @@
         />
       </v-col>
     </v-row>
-    <v-row>
+    <v-row v-if="false">
       <v-col>
         <study-plan-group />
       </v-col>
@@ -179,6 +179,9 @@ export default {
   computed: {
     filteredSets () {
       return this.sets.list.filter(set => this.setFilterId === set.id)
+    },
+    selectedSet () {
+      return this.sets.list.find( item => item.id === this.setFilterId )
     },
     selectedLesson () {
       return this.lessons.find( item => item.selected )
@@ -270,9 +273,10 @@ export default {
         if (response.data.data.length > 0) {
           this.getContents(response.data.data[0].id)
         }
-        this.sets = new SetList(response.data.data)
-        this.sets.list.forEach(item => item.sections.list.unshift(new SetSection({ id: 'all', title: 'همه' })))
+        // this.sets = new SetList(response.data.data)
+        // this.sets.list.forEach(item => item.sections.list.unshift(new SetSection({ id: 'all', title: 'همه' })))
         this.contentListLoading = true
+        this.setFilterId = response.data.data.set.id
         axios.get('/api/v2/set/' + response.data.data.set.id + '/contents')
             .then( response2 => {
               this.contents = new ContentList(response2.data.data)

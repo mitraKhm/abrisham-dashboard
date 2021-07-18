@@ -12,7 +12,6 @@
         <chip-group
           v-model="userMajors"
           chip-title="رشته: "
-          @input="test"
         />
       </v-col>
       <v-col
@@ -67,12 +66,7 @@
         sm="12"
         xs="12"
       >
-        <div class="d-flex">
-          <p class="video-box-title">
-            درسنامه فرسنگ هشتم (قسمت بیست و سوم)، فصل سوم شیمی یازدهم (قسمت
-            بیست و سوم)
-          </p>
-        </div>
+        <div v-text="currentContent.title" />
         <comment-box />
       </v-col>
       <v-col
@@ -83,7 +77,7 @@
       </v-col>
     </v-row>
     <!--   --------------------------------- study plan ------------------------- -->
-    <v-row>
+    <v-row v-if="false">
       <v-col>
         <study-plan-group />
       </v-col>
@@ -126,7 +120,6 @@ export default {
     filteredContents () {
       return new ContentList(this.contents.list.filter(content =>  {
         const selectedMajor = this.userMajors.find(major => major.selected)
-        console.log(selectedMajor)
         return !selectedMajor || content.major.id === selectedMajor.id
       }))
     }
@@ -137,9 +130,6 @@ export default {
     this.getMajorsForChip()
   },
   methods: {
-    test () {
-      console.log('test')
-    },
     changeCurrentContent (id) {
       Vue.set(this, 'currentContent', this.contents.list.find(content => content.id === id))
       this.currentContent = this.contents.list.find(content => content.id === id)
