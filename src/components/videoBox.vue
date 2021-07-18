@@ -57,7 +57,7 @@
         <v-col>
           <div class="d-flex flex-wrap title">
             <p
-              v-if=" lesson.title || content.input.lesson"
+              v-if="lesson.title"
               class="title-item title-text"
             >
               {{ lesson.title }}
@@ -70,10 +70,10 @@
             </p>
 
             <p
-              v-if="set.short_title"
+              v-if="content.set.short_title"
               class="title-item title-text"
             >
-              {{ set.short_title }}
+              {{ content.set.short_title }}
             </p>
             <p
               v-if="content.order"
@@ -160,7 +160,7 @@
                         :content="file.size"
                       />
 
-                      <a href="file.link"><i class="fi fi-rr-download icon" />
+                      <a :href="file.link"><i class="fi fi-rr-download icon" />
                         {{ file.caption }}
                       </a>
                     </v-card-actions>
@@ -294,7 +294,7 @@
                       color="amber darken-3"
                       dark
                       :to="content.url.web"
-                      @click="getShareLink (content, 'facebook')"
+                      @click="getShareLink(content, 'facebook')"
                     >
                       <v-icon>mdi-facebook</v-icon>
                     </v-btn>
@@ -362,8 +362,7 @@ export default {
     toggleFavorite() {
       this.content.loading = true;
       this.$emit('favorite');
-      }
-    },
+      },
     getShareLink (content, socialMedia) {
       if (socialMedia === 'telegram') {
         return 'https://telegram.me/share/url?url='+content.url.web+'&text=' + content.title
@@ -381,6 +380,8 @@ export default {
         return 'https://www.facebook.com/sharer/sharer.php?u='+content.url.web
       }
     },
+    },
+
 }
 </script>
 
@@ -513,7 +514,7 @@ export default {
     min-width: 57px !important;
   }
   .video-description {
-    margin-bottom: 0px !important;
+    margin-bottom:0 !important;
   }
   .video-box .video-main{
     margin-bottom: 16px;
@@ -626,8 +627,8 @@ export default {
   }
   .download-part .details.v-btn:not(.v-btn--round).v-size--default {
     height: 19px;
-    min-width: 0px !important;
-    padding: 0px 8px;
+    min-width: 0!important;
+    padding: 0 8px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 796px){
@@ -747,8 +748,8 @@ export default {
   }
   .download-part .details.v-btn:not(.v-btn--round).v-size--default {
     height: 10px;
-    min-width: 0px !important;
-    padding: 0px 4px;
+    min-width: 0 !important;
+    padding: 0 4px;
   }
   .video-box-title {
     text-align: right;
