@@ -66,12 +66,7 @@
         sm="12"
         xs="12"
       >
-        <div class="d-flex">
-          <p class="video-box-title">
-            درسنامه فرسنگ هشتم (قسمت بیست و سوم)، فصل سوم شیمی یازدهم (قسمت
-            بیست و سوم)
-          </p>
-        </div>
+        <div v-text="currentContent.title" />
         <comment-box />
       </v-col>
       <v-col
