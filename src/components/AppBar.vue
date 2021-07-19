@@ -27,7 +27,10 @@
           :alt="user.full_name"
         >
       </v-avatar>
-      <i v-if="false" class="fi fi-rr-bell icon" />
+      <i
+        v-if="false"
+        class="fi fi-rr-bell icon"
+      />
 
       <div
         v-if="width.x <= 768"

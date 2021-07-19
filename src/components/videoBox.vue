@@ -106,7 +106,7 @@
               <p>گروه آموزشی آلاء</p>
             </div>
             <div
-              v-if="content.author"
+              v-if="content.author && (content.author.first_name || content.author.last_name)"
               class="d-flex part align-center"
             >
               <i class="fi fi-rr-graduation-cap icon" />
