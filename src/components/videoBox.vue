@@ -57,21 +57,25 @@
         <v-col>
           <div class="d-flex flex-wrap title">
             <p
-              v-if="lesson.title"
-              class="title-item title-text"
+              v-if="lesson.title ||content.inputData.lesson"
+              class="title-text"
             >
-              {{ lesson.title }}
+              <span
+                v-if="lesson.title"
+                class="title-item"
+              >
+                {{ lesson.title }}
+              </span>
+              <span
+                v-if="content.inputData.lesson"
+                class="title-item"
+              >
+                {{ content.inputData.lesson }}
+              </span>
             </p>
-            <p
-              v-else-if="content.inputData.lesson"
-              class="title-item title-text"
-            >
-              {{ content.inputData.lesson }}
-            </p>
-
             <p
               v-if="set || content.set"
-              class="title-item title-text"
+              class="title-text"
             >
               <span
                 v-if="set"
@@ -93,6 +97,11 @@
               جلسه {{ content.order }}
             </p>
           </div>
+
+
+
+
+
           <div class="d-flex subtitle">
             <div class="d-flex part align-start">
               <v-img
