@@ -106,7 +106,7 @@
               class="d-flex part align-center"
             >
               <i class="fi fi-rr-graduation-cap icon" />
-              <p>{{ content.author }}</p>
+              <p>{{ content.author.first_name }} {{ content.author.last_name }}</p>
             </div>
           </div>
         </v-col>
