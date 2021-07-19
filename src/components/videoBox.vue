@@ -57,30 +57,34 @@
         <v-col>
           <div class="d-flex flex-wrap title">
             <p
-              v-if="lesson.title"
-              class="title-item title-text"
-            >
-              {{ lesson.title }}
-            </p>
-            <p
-              v-else-if="content.inputData.lesson"
-              class="title-item title-text"
-            >
-              {{ content.inputData.lesson }}
-            </p>
-
-            <p
-              v-if="set || content.set"
-              class="title-item title-text"
+              v-if="lesson.title ||content.inputData.lesson"
+              class="title-text"
             >
               <span
-                v-if="set"
+                v-if="lesson.title"
+                class="title-item"
+              >
+                {{ lesson.title }}
+              </span>
+              <span
+                v-if="content.inputData.lesson"
+                class="title-item"
+              >
+                {{ content.inputData.lesson }}
+              </span>
+            </p>
+            <p
+              v-if="set || content.set"
+              class="title-text"
+            >
+              <span
+                v-if="set && set.short_title"
                 class="title-item"
               >
                 {{ set.short_title }}
               </span>
               <span
-                v-if="content.set"
+                v-if="content.set && content.set.short_title"
                 class="title-item"
               >
                 {{ content.set.short_title }}
@@ -162,18 +166,18 @@
                     >
                       <v-badge
                         class="download-badge"
-                        :content="file.res"
-                        color="red"
-                        offset-x="-120"
-                      />
-                      <v-badge
-                        class="download-badge"
                         :content="file.size"
+                        offset-x="35"
                       />
 
                       <a :href="file.link"><i class="fi fi-rr-download icon" />
                         {{ file.caption }}
                       </a>
+                      <v-badge
+                        class="download-badge"
+                        :content="file.res"
+                        color="red"
+                      />
                     </v-card-actions>
                     <v-col>
                       <v-btn
@@ -222,8 +226,7 @@
                       class="ma-2"
                       color="amber darken-3"
                       dark
-                      :to="content.url.web"
-                      @click="getShareLink (content, 'whatsapp')"
+                      @click="openUrl (content, 'whatsapp')"
                     >
                       <v-icon>mdi-whatsapp</v-icon>
                     </v-btn>
@@ -236,7 +239,7 @@
                       class="ma-2"
                       color="amber darken-3"
                       dark
-                      :to="getShareLink (content, 'telegram')"
+                      @click="openUrl (content, 'telegram')"
                     >
                       <v-icon>mdi-telegram</v-icon>
                     </v-btn>
@@ -249,7 +252,7 @@
                       class="ma-2"
                       color="amber darken-3"
                       dark
-                      :to="getShareLink (content, 'mail')"
+                      @click="openUrl (content, 'mail')"
                     >
                       <v-icon>mdi-mail</v-icon>
                     </v-btn>
@@ -262,8 +265,7 @@
                       class="ma-2"
                       color="amber darken-3"
                       dark
-                      :to="content.url.web"
-                      @click="getShareLink (content, 'linkedin')"
+                      @click="openUrl (content, 'linkedin')"
                     >
                       <v-icon>mdi-linkedin</v-icon>
                     </v-btn>
@@ -276,8 +278,7 @@
                       class="ma-2"
                       color="amber darken-3"
                       dark
-                      :to="content.url.web"
-                      @click="getShareLink (content, 'pinterest')"
+                      @click="openUrl (content, 'pinterest')"
                     >
                       <v-icon>mdi-pinterest</v-icon>
                     </v-btn>
@@ -290,8 +291,7 @@
                       class="ma-2"
                       color="amber darken-3"
                       dark
-                      :to="content.url.web"
-                      @click="getShareLink (content, 'twitter')"
+                      @click="openUrl (content, 'twitter')"
                     >
                       <v-icon>mdi-twitter</v-icon>
                     </v-btn>
@@ -304,8 +304,7 @@
                       class="ma-2"
                       color="amber darken-3"
                       dark
-                      :to="content.url.web"
-                      @click="getShareLink(content, 'facebook')"
+                      @click="openUrl (content, 'facebook')"
                     >
                       <v-icon>mdi-facebook</v-icon>
                     </v-btn>
@@ -318,7 +317,7 @@
               depressed
               dark
               :loading="content.loading"
-              class="video-box-icon-button"
+              class="video-box-icon-button bookmark-button"
               @click="toggleFavorite"
             >
               <i
@@ -391,8 +390,11 @@ export default {
         return 'https://www.facebook.com/sharer/sharer.php?u='+content.url.web
       }
     },
+    openUrl(content, socialMedia){
+      const url=this.getShareLink (content, socialMedia);
+      open(url);
+    }
     },
-
 }
 </script>
 
@@ -499,6 +501,9 @@ export default {
   margin: 20px;
   color: #FFFFFF;
 }
+.video-box .video-description .description .icon-btn-box .video-box-icon .bookmark-button .v-btn__loader .v-progress-circular .v-progress-circular__overlay {
+  color: #ff8f00 !important;
+}
 
 .v-application p{
   margin-bottom: 0;
@@ -508,9 +513,6 @@ export default {
   font-size: 20px;
   font-weight: 500;
 }
-
-
-
 
 @media screen and (max-width: 1200px){
   .video-box-icon .v-btn:not(.v-btn--round).v-size--default{
@@ -722,7 +724,7 @@ export default {
     border-radius: 10px ;
     border: none;
     height: 30px;
-    border: none;
+    border: none !important;
   }
   .download-badge .v-badge__badge{
     font-size: 9px !important;
