@@ -89,6 +89,7 @@
     </div>
   </div>
 </template>
+
 <script>
 
 import {Content} from '../Models/Content';
@@ -137,6 +138,7 @@ export default {
   },
 }
 </script>
+
 <style >
 a{
   text-decoration: none;

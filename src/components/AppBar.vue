@@ -16,18 +16,21 @@
         v-if="width.x > 768"
         class="name"
       >
-        شهاب عبادی
+        {{ user.full_name }}
       </span>
       <v-avatar
         v-if="width.x > 768"
         class="avatar"
       >
         <img
-          src="https://cdn.vuetifyjs.com/images/john.jpg"
-          alt="John"
+          :src="user.photo"
+          :alt="user.full_name"
         >
       </v-avatar>
-      <i class="fi fi-rr-bell icon" />
+      <i
+        v-if="false"
+        class="fi fi-rr-bell icon"
+      />
 
       <div
         v-if="width.x <= 768"
@@ -61,6 +64,8 @@
 </template>
 
 <script>
+import {User} from '../Models/User'
+
 export default {
   name: 'AppBar',
   props:{
@@ -70,6 +75,11 @@ export default {
         return {}
       }
     },
+  },
+  computed: {
+    user () {
+      return new User(this.$store.getters.user)
+    }
   },
   data(){
     return {
